@@ -26,415 +26,593 @@ get_header();
     </main>
 </div>
 
-<!-- Hero Section -->
-<section class="dk-section dk-hero dk-hero-light" style="padding-top: var(--dk-space-12); padding-bottom: var(--dk-space-8);">
-    <div class="dk-container">
-        <div class="dk-hero-content">
-            <span class="dk-badge dk-badge-gold-light dk-mb-4" style="padding: var(--dk-space-2) var(--dk-space-6); border-radius: var(--dk-radius-full);">
-                Catalogue
-            </span>
-            <h1>Tous nos produits</h1>
-            <p class="dk-text-secondary" style="font-size: var(--dk-text-lg); max-width: 768px; margin: 0 auto;">
-                Découvrez notre sélection complète de produits digitaux premium. Utilisez les filtres pour trouver exactement ce dont vous avez besoin.
-            </p>
-        </div>
-    </div>
-</section>
-
 <!-- Products Section -->
-<section class="dk-section dk-section-light">
+<section class="dk-products-page">
     <div class="dk-container">
-        <div class="dk-products-layout" style="display: grid; gap: var(--dk-space-8);">
-
-            <!-- Mobile Filters Toggle -->
-            <div class="dk-filters-toggle" style="display: block;">
-                <button class="dk-btn dk-btn-secondary dk-btn-full" id="dk-filters-toggle-btn" style="margin-bottom: var(--dk-space-6);">
-                    <i data-lucide="sliders-horizontal"></i>
-                    Filtrer les produits
-                </button>
-            </div>
-
-            <div class="dk-products-grid" style="display: grid; grid-template-columns: 1fr; gap: var(--dk-space-8);">
-
-                <!-- Sidebar Filters -->
-                <aside class="dk-filters" id="dk-filters-sidebar">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--dk-space-6);">
-                        <h3 class="dk-filters-title" style="margin-bottom: 0;">Filtres</h3>
-                        <button class="dk-btn dk-btn-sm" id="dk-filters-close" style="display: none;">
-                            <i data-lucide="x"></i>
-                        </button>
-                    </div>
-
-                    <!-- Category Filter -->
-                    <div class="dk-filters-group">
-                        <h4 class="dk-filters-title">Catégorie</h4>
-                        <div class="dk-filters-options">
-                            <label class="dk-checkbox">
-                                <input type="checkbox" name="category" value="all" checked>
-                                <span>Tous les produits</span>
-                            </label>
-                            <label class="dk-checkbox">
-                                <input type="checkbox" name="category" value="ebook">
-                                <span>Ebooks</span>
-                            </label>
-                            <label class="dk-checkbox">
-                                <input type="checkbox" name="category" value="application">
-                                <span>Applications</span>
-                            </label>
-                            <label class="dk-checkbox">
-                                <input type="checkbox" name="category" value="template">
-                                <span>Templates</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Price Filter -->
-                    <div class="dk-filters-group">
-                        <h4 class="dk-filters-title">Prix</h4>
-                        <div class="dk-filters-options">
-                            <label class="dk-radio">
-                                <input type="radio" name="price" value="all" checked>
-                                <span>Tous les prix</span>
-                            </label>
-                            <label class="dk-radio">
-                                <input type="radio" name="price" value="0-50">
-                                <span>Moins de 50 €</span>
-                            </label>
-                            <label class="dk-radio">
-                                <input type="radio" name="price" value="50-100">
-                                <span>50 € - 100 €</span>
-                            </label>
-                            <label class="dk-radio">
-                                <input type="radio" name="price" value="100-200">
-                                <span>100 € - 200 €</span>
-                            </label>
-                            <label class="dk-radio">
-                                <input type="radio" name="price" value="200+">
-                                <span>Plus de 200 €</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Rating Filter -->
-                    <div class="dk-filters-group">
-                        <h4 class="dk-filters-title">Note minimum</h4>
-                        <div class="dk-filters-options">
-                            <label class="dk-radio">
-                                <input type="radio" name="rating" value="all" checked>
-                                <span>Toutes les notes</span>
-                            </label>
-                            <label class="dk-radio">
-                                <input type="radio" name="rating" value="4">
-                                <span>4 étoiles et plus</span>
-                            </label>
-                            <label class="dk-radio">
-                                <input type="radio" name="rating" value="4.5">
-                                <span>4.5 étoiles et plus</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Reset Filters -->
-                    <button class="dk-btn dk-btn-secondary dk-btn-full dk-mt-6" id="dk-reset-filters">
-                        <i data-lucide="rotate-ccw"></i>
-                        Réinitialiser les filtres
+        <div class="dk-products-layout">
+            <!-- Sidebar Filters -->
+            <aside class="dk-filters-sidebar" id="dk-filters-sidebar">
+                <div class="dk-filters-header">
+                    <h3>Filtres</h3>
+                    <button class="dk-filters-close" id="dk-filters-close">
+                        <i data-lucide="x"></i>
                     </button>
-                </aside>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="dk-filter-group">
+                    <h4>Catégorie</h4>
+                    <div class="dk-filter-options">
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="category" value="ebook">
+                            <span class="dk-filter-label">Ebook</span>
+                            <span class="dk-filter-count">3</span>
+                        </label>
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="category" value="application">
+                            <span class="dk-filter-label">Application</span>
+                            <span class="dk-filter-count">3</span>
+                        </label>
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="category" value="template">
+                            <span class="dk-filter-label">Template</span>
+                            <span class="dk-filter-count">3</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Promotion Toggle -->
+                <div class="dk-filter-group">
+                    <div class="dk-filter-toggle-row">
+                        <span>En promotion</span>
+                        <label class="dk-toggle">
+                            <input type="checkbox" name="promotion">
+                            <span class="dk-toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Format Filter -->
+                <div class="dk-filter-group">
+                    <h4>Format</h4>
+                    <div class="dk-filter-options">
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="format" value="web">
+                            <span class="dk-filter-label">Web</span>
+                        </label>
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="format" value="ios">
+                            <span class="dk-filter-label">iOS</span>
+                        </label>
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="format" value="android">
+                            <span class="dk-filter-label">Android</span>
+                        </label>
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="format" value="pdf">
+                            <span class="dk-filter-label">PDF</span>
+                        </label>
+                    </div>
+                    <button class="dk-filter-more">Voir plus +</button>
+                </div>
+
+                <!-- Rating Filter -->
+                <div class="dk-filter-group">
+                    <h4>Notes clients</h4>
+                    <div class="dk-filter-options">
+                        <label class="dk-filter-radio">
+                            <input type="radio" name="rating" value="5">
+                            <span class="dk-stars">★★★★★</span>
+                            <span class="dk-filter-label">& plus</span>
+                        </label>
+                        <label class="dk-filter-radio">
+                            <input type="radio" name="rating" value="4">
+                            <span class="dk-stars">★★★★☆</span>
+                            <span class="dk-filter-label">& plus</span>
+                        </label>
+                        <label class="dk-filter-radio">
+                            <input type="radio" name="rating" value="3">
+                            <span class="dk-stars">★★★☆☆</span>
+                            <span class="dk-filter-label">& plus</span>
+                        </label>
+                        <label class="dk-filter-radio">
+                            <input type="radio" name="rating" value="2">
+                            <span class="dk-stars">★★☆☆☆</span>
+                            <span class="dk-filter-label">& plus</span>
+                        </label>
+                        <label class="dk-filter-radio">
+                            <input type="radio" name="rating" value="1">
+                            <span class="dk-stars">★☆☆☆☆</span>
+                            <span class="dk-filter-label">& plus</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="dk-filter-group">
+                    <h4>Prix</h4>
+                    <div class="dk-filter-options">
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="price" value="0-30">
+                            <span class="dk-filter-label">Moins de 30€</span>
+                        </label>
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="price" value="30-50">
+                            <span class="dk-filter-label">30€ - 50€</span>
+                        </label>
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="price" value="50-100">
+                            <span class="dk-filter-label">50€ - 100€</span>
+                        </label>
+                        <label class="dk-filter-checkbox">
+                            <input type="checkbox" name="price" value="100+">
+                            <span class="dk-filter-label">Plus de 100€</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Filter Actions -->
+                <div class="dk-filter-actions">
+                    <button class="dk-btn dk-btn-primary dk-btn-full">
+                        Afficher les résultats
+                    </button>
+                    <button class="dk-filter-reset">
+                        <i data-lucide="x"></i>
+                        Effacer les filtres
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Products Content -->
+            <div class="dk-products-content">
+                <!-- Page Header -->
+                <div class="dk-products-header">
+                    <h1>Tous nos produits</h1>
+                    <p>Explorez l'ensemble de notre catalogue : ebooks, applications et templates de qualité professionnelle</p>
+                </div>
+
+                <!-- Mobile Filter Toggle -->
+                <button class="dk-filter-toggle-btn" id="dk-filter-toggle">
+                    <i data-lucide="sliders-horizontal"></i>
+                    Filtres
+                </button>
 
                 <!-- Products Grid -->
-                <div class="dk-products-list">
-                    <!-- Sort Bar -->
-                    <div class="dk-sort-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--dk-space-6); flex-wrap: wrap; gap: var(--dk-space-4);">
-                        <p class="dk-text-secondary" style="margin: 0;">
-                            <span id="dk-products-count">12</span> produits trouvés
-                        </p>
-                        <select class="dk-input" style="width: auto; padding: var(--dk-space-2) var(--dk-space-4);" id="dk-sort-select">
-                            <option value="popular">Les plus populaires</option>
-                            <option value="newest">Les plus récents</option>
-                            <option value="price-asc">Prix croissant</option>
-                            <option value="price-desc">Prix décroissant</option>
-                            <option value="rating">Meilleures notes</option>
-                        </select>
-                    </div>
-
-                    <!-- Products Grid -->
-                    <div class="dk-grid dk-grid-3" id="dk-products-grid">
-                        <!-- Product Card 1 -->
-                        <div class="dk-card-product" data-category="ebook" data-price="59" data-rating="4.8">
-                            <img src="https://images.unsplash.com/photo-1675495277087-10598bf7bcd1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Guide du développeur moderne" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="book-open" style="width: 12px; height: 12px;"></i>
-                                    Ebook
-                                </span>
-                                <h3 class="dk-card-product-title">Guide du développeur moderne</h3>
-                                <p class="dk-card-product-description">Ebook complet pour maîtriser les outils et pratiques du développement moderne.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">59 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.8 (127)
-                                    </span>
-                                </div>
+                <div class="dk-products-grid" id="dk-products-grid">
+                    <!-- Product Card 1 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="ebook" data-price="59" data-rating="4.8">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1675495277087-10598bf7bcd1?w=400&q=80" alt="Guide du Développeur Moderne">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>Guide du Développeur Moderne</h3>
+                            <span class="dk-product-category">Ebook</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">59 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(234)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 2 -->
-                        <div class="dk-card-product" data-category="template" data-price="149" data-rating="4.9">
-                            <img src="https://images.unsplash.com/photo-1698440050363-1697e5f0277c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Design System Pro" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="layout" style="width: 12px; height: 12px;"></i>
-                                    Template
-                                </span>
-                                <h3 class="dk-card-product-title">Design System Pro</h3>
-                                <p class="dk-card-product-description">Système de design complet avec composants React, Figma et documentation.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">149 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.9 (89)
-                                    </span>
-                                </div>
+                    <!-- Product Card 2 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="ebook" data-price="39" data-rating="4.7">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=400&q=80" alt="Marketing Digital - Stratégies complètes">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>Marketing Digital - Stratégies complètes</h3>
+                            <span class="dk-product-category">Ebook</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-old">59 €</span>
+                                <span class="dk-price-current">39 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(189)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 3 -->
-                        <div class="dk-card-product" data-category="ebook" data-price="79" data-rating="4.7">
-                            <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80" alt="Masterclass UI/UX Design" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="book-open" style="width: 12px; height: 12px;"></i>
-                                    Ebook
-                                </span>
-                                <h3 class="dk-card-product-title">Masterclass UI/UX Design</h3>
-                                <p class="dk-card-product-description">Formation complète en design d'interfaces et expérience utilisateur.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">79 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.7 (203)
-                                    </span>
-                                </div>
+                    <!-- Product Card 3 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="ebook" data-price="44" data-rating="4.9">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80" alt="Réussir en Freelance - Guide complet">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>Réussir en Freelance - Guide complet</h3>
+                            <span class="dk-product-category">Ebook</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">44 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(156)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 4 -->
-                        <div class="dk-card-product" data-category="application" data-price="199" data-rating="4.6">
-                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80" alt="Fitness Tracker Pro" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="smartphone" style="width: 12px; height: 12px;"></i>
-                                    Application
-                                </span>
-                                <h3 class="dk-card-product-title">Fitness Tracker Pro</h3>
-                                <p class="dk-card-product-description">Application mobile complète de suivi fitness. Code source React Native inclus.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">199 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.6 (56)
-                                    </span>
-                                </div>
+                    <!-- Product Card 4 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="ebook" data-price="49" data-rating="4.6">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=80" alt="Créer un Startup - De l'idée au succès">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>Créer un Startup - De l'idée au succès</h3>
+                            <span class="dk-product-category">Ebook</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">49 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★☆</span>
+                                <span>(89)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 5 -->
-                        <div class="dk-card-product" data-category="template" data-price="49" data-rating="4.9">
-                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Landing Page SaaS" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="layout" style="width: 12px; height: 12px;"></i>
-                                    Template
-                                </span>
-                                <h3 class="dk-card-product-title">Landing Page SaaS</h3>
-                                <p class="dk-card-product-description">Template de landing page moderne pour SaaS. Next.js 14, TypeScript, Tailwind CSS.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">49 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.9 (312)
-                                    </span>
-                                </div>
+                    <!-- Product Card 5 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="ebook" data-price="54" data-rating="4.8">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=400&q=80" alt="UI/UX Design - De zéro à expert">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>UI/UX Design - De zéro à expert</h3>
+                            <span class="dk-product-category">Ebook</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-old">79 €</span>
+                                <span class="dk-price-current">54 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(178)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 6 -->
-                        <div class="dk-card-product" data-category="ebook" data-price="39" data-rating="4.8">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="IA pour le Marketing Digital" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="book-open" style="width: 12px; height: 12px;"></i>
-                                    Ebook
-                                </span>
-                                <h3 class="dk-card-product-title">IA pour le Marketing Digital</h3>
-                                <p class="dk-card-product-description">Guide pratique pour utiliser l'IA dans vos campagnes marketing.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">39 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.8 (167)
-                                    </span>
-                                </div>
+                    <!-- Product Card 6 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="application" data-price="59" data-rating="4.7">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400&q=80" alt="App Fitness Premium">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>App Fitness Premium</h3>
+                            <span class="dk-product-category">Application</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">59 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(123)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 7 -->
-                        <div class="dk-card-product" data-category="template" data-price="129" data-rating="4.7">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Dashboard Admin Pro" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="layout" style="width: 12px; height: 12px;"></i>
-                                    Template
-                                </span>
-                                <h3 class="dk-card-product-title">Dashboard Admin Pro</h3>
-                                <p class="dk-card-product-description">Template de tableau de bord admin complet. React + TypeScript + Chart.js.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">129 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.7 (94)
-                                    </span>
-                                </div>
+                    <!-- Product Card 7 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="application" data-price="79" data-rating="4.9">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80" alt="E-commerce App Starter Kit">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>E-commerce App Starter Kit</h3>
+                            <span class="dk-product-category">Application</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">79 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(245)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 8 -->
-                        <div class="dk-card-product" data-category="application" data-price="249" data-rating="4.9">
-                            <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&q=80" alt="E-commerce Starter Kit" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="smartphone" style="width: 12px; height: 12px;"></i>
-                                    Application
-                                </span>
-                                <h3 class="dk-card-product-title">E-commerce Starter Kit</h3>
-                                <p class="dk-card-product-description">Kit complet pour créer votre boutique en ligne. Next.js + Stripe + CMS.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">249 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.9 (71)
-                                    </span>
-                                </div>
+                    <!-- Product Card 8 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="application" data-price="89" data-rating="4.6">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80" alt="App Livraison - Clone Uber Eats">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>App Livraison - Clone Uber Eats</h3>
+                            <span class="dk-product-category">Application</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">89 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(167)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 9 -->
-                        <div class="dk-card-product" data-category="ebook" data-price="45" data-rating="4.6">
-                            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&q=80" alt="Guide Production Podcast" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="book-open" style="width: 12px; height: 12px;"></i>
-                                    Ebook
-                                </span>
-                                <h3 class="dk-card-product-title">Guide Production Podcast</h3>
-                                <p class="dk-card-product-description">Guide complet pour lancer et monétiser votre podcast.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">45 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.6 (138)
-                                    </span>
-                                </div>
+                    <!-- Product Card 9 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="application" data-price="69" data-rating="4.8">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&q=80" alt="App Réseau Social - Starter Kit">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>App Réseau Social - Starter Kit</h3>
+                            <span class="dk-product-category">Application</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">69 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(198)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 10 -->
-                        <div class="dk-card-product" data-category="template" data-price="89" data-rating="4.8">
-                            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Mobile UI Kit Premium" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="layout" style="width: 12px; height: 12px;"></i>
-                                    Template
-                                </span>
-                                <h3 class="dk-card-product-title">Mobile UI Kit Premium</h3>
-                                <p class="dk-card-product-description">Kit UI mobile avec 150+ écrans pour iOS et Android. Figma + React Native.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">89 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.8 (156)
-                                    </span>
-                                </div>
+                    <!-- Product Card 10 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="application" data-price="64" data-rating="4.7">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80" alt="CRM Mobile - Gestion clients Pro">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>CRM Mobile - Gestion clients Pro</h3>
+                            <span class="dk-product-category">Application</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-old">89 €</span>
+                                <span class="dk-price-current">64 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(134)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 11 -->
-                        <div class="dk-card-product" data-category="ebook" data-price="69" data-rating="4.9">
-                            <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&q=80" alt="SEO - Le Guide Ultime" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="book-open" style="width: 12px; height: 12px;"></i>
-                                    Ebook
-                                </span>
-                                <h3 class="dk-card-product-title">SEO - Le Guide Ultime 2024</h3>
-                                <p class="dk-card-product-description">Formation SEO complète et à jour. Stratégies on-page, off-page, technique.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">69 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.9 (245)
-                                    </span>
-                                </div>
+                    <!-- Product Card 11 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="template" data-price="59" data-rating="4.8">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&q=80" alt="Dashboard Analytics Pro">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>Dashboard Analytics Pro</h3>
+                            <span class="dk-product-category">Template</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">59 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(289)</span>
                             </div>
                         </div>
+                    </a>
 
-                        <!-- Product Card 12 -->
-                        <div class="dk-card-product" data-category="template" data-price="79" data-rating="4.7">
-                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80" alt="Portfolio Créatif Animé" class="dk-card-product-image">
-                            <div class="dk-card-product-content">
-                                <span class="dk-card-product-category">
-                                    <i data-lucide="layout" style="width: 12px; height: 12px;"></i>
-                                    Template
-                                </span>
-                                <h3 class="dk-card-product-title">Portfolio Créatif Animé</h3>
-                                <p class="dk-card-product-description">Template portfolio avec animations impressionnantes. Next.js + Three.js.</p>
-                                <div class="dk-card-product-footer">
-                                    <span class="dk-card-product-price">79 €</span>
-                                    <span class="dk-card-product-rating">
-                                        <i data-lucide="star"></i>
-                                        4.7 (103)
-                                    </span>
-                                </div>
+                    <!-- Product Card 12 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="template" data-price="89" data-rating="4.9">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=400&q=80" alt="Landing Pages Bundle - 30 Templates">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>Landing Pages Bundle - 30 Templates</h3>
+                            <span class="dk-product-category">Template</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-old">129 €</span>
+                                <span class="dk-price-current">89 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(312)</span>
                             </div>
                         </div>
-                    </div>
+                    </a>
+
+                    <!-- Product Card 13 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="template" data-price="44" data-rating="4.6">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&q=80" alt="Pack 50 Templates Email Marketing">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>Pack 50 Templates Email Marketing</h3>
+                            <span class="dk-product-category">Template</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">44 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(256)</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Product Card 14 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="template" data-price="54" data-rating="4.7">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=400&q=80" alt="UI Kit Modern - Components Library">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>UI Kit Modern - Components Library</h3>
+                            <span class="dk-product-category">Template</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-current">54 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(167)</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Product Card 15 -->
+                    <a href="<?php echo esc_url(home_url('/fiche-produit/')); ?>" class="dk-product-card" data-category="template" data-price="49" data-rating="4.8">
+                        <div class="dk-product-card-image">
+                            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=400&q=80" alt="Portfolio Templates - Creative Pro">
+                            <button class="dk-product-favorite" onclick="event.preventDefault();">
+                                <i data-lucide="heart"></i>
+                            </button>
+                        </div>
+                        <div class="dk-product-card-body">
+                            <h3>Portfolio Templates - Creative Pro</h3>
+                            <span class="dk-product-category">Template</span>
+                            <div class="dk-product-price">
+                                <span class="dk-price-old">69 €</span>
+                                <span class="dk-price-current">49 €</span>
+                            </div>
+                            <div class="dk-product-rating">
+                                <span class="dk-stars-small">★★★★★</span>
+                                <span>(278)</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="dk-load-more">
+                    <button class="dk-btn dk-btn-outline-dark">
+                        Charger plus de produits
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<style>
-@media (min-width: 1024px) {
-    .dk-products-grid {
-        grid-template-columns: 280px 1fr !important;
-    }
-    .dk-filters-toggle {
-        display: none !important;
-    }
-}
+<!-- FAQ Section -->
+<section class="dk-section dk-section-white">
+    <div class="dk-container" style="max-width: 800px;">
+        <div class="dk-section-header">
+            <h2>Questions fréquentes</h2>
+            <p>Retrouvez les réponses aux questions les plus courantes</p>
+        </div>
 
-@media (max-width: 1023px) {
-    .dk-filters {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1000;
-        border-radius: 0;
-        overflow-y: auto;
-    }
-    .dk-filters.active {
-        display: block;
-    }
-    #dk-filters-close {
-        display: flex !important;
-    }
-}
-</style>
+        <div class="dk-faq-list">
+            <div class="dk-accordion-item">
+                <button class="dk-accordion-trigger">
+                    <span>Comment fonctionne l'achat sur Digital Kappa ?</span>
+                    <i data-lucide="plus"></i>
+                </button>
+                <div class="dk-accordion-content">
+                    <div class="dk-accordion-content-inner">
+                        <p>Notre système d'achat est simple et rapide : cliquez sur un produit, consultez les détails et achetez en un clic. Pas besoin de créer un compte ou un panier.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dk-accordion-item">
+                <button class="dk-accordion-trigger">
+                    <span>Quels moyens de paiement acceptez-vous ?</span>
+                    <i data-lucide="plus"></i>
+                </button>
+                <div class="dk-accordion-content">
+                    <div class="dk-accordion-content-inner">
+                        <p>Nous acceptons les cartes bancaires (Visa, Mastercard, American Express) et PayPal. Tous les paiements sont sécurisés via Stripe.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dk-accordion-item">
+                <button class="dk-accordion-trigger">
+                    <span>Puis-je essayer avant d'acheter ?</span>
+                    <i data-lucide="plus"></i>
+                </button>
+                <div class="dk-accordion-content">
+                    <div class="dk-accordion-content-inner">
+                        <p>Certains produits proposent des démos ou versions d'essai. Dans tous les cas, nous offrons une garantie satisfait ou remboursé de 14 jours.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dk-accordion-item">
+                <button class="dk-accordion-trigger">
+                    <span>Que faire si j'ai un problème avec un produit ?</span>
+                    <i data-lucide="plus"></i>
+                </button>
+                <div class="dk-accordion-content">
+                    <div class="dk-accordion-content-inner">
+                        <p>Contactez notre support par email à support@digitalkappa.com. Nous répondons sous 24h et vous aidons à résoudre tout problème technique.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dk-text-center dk-mt-8">
+            <a href="<?php echo esc_url(home_url('/faq/')); ?>" class="dk-btn dk-btn-outline-gold">
+                Voir toutes les questions →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Info Section -->
+<section class="dk-section dk-section-light">
+    <div class="dk-container">
+        <h2 class="dk-text-center dk-mb-12">Catalogue Digital Kappa : Ebooks, applications web et templates professionnels</h2>
+
+        <div class="dk-info-grid">
+            <div class="dk-info-block">
+                <div class="dk-info-icon">
+                    <i data-lucide="search"></i>
+                </div>
+                <p>Explorez le catalogue complet Digital Kappa : plus de 15 produits digitaux professionnels en trois catégories principales. Ebooks pour apprendre et se former, applications mobiles et web prêtes à l'emploi, templates pour accélérer vos projets.</p>
+            </div>
+
+            <div class="dk-info-block">
+                <div class="dk-info-icon">
+                    <i data-lucide="book-open"></i>
+                </div>
+                <p>Nos ebooks couvrent développement web (React, Node.js, JavaScript, TypeScript), design UI/UX, marketing digital et entrepreneuriat. Format PDF téléchargeable immédiatement, avec exercices pratiques inclus.</p>
+            </div>
+
+            <div class="dk-info-block">
+                <div class="dk-info-icon">
+                    <i data-lucide="smartphone"></i>
+                </div>
+                <p>Applications fonctionnelles et personnalisables disponibles pour iOS, Android ou web. Support technique et mises à jour régulières inclus. Technologies (React, Vue.js, Figma, Sketch) 100% personnalisables et responsive.</p>
+            </div>
+
+            <div class="dk-info-block">
+                <div class="dk-info-icon">
+                    <i data-lucide="filter"></i>
+                </div>
+                <p>Utilisez nos filtres pour affiner votre recherche par catégorie, format ou niveau. Chaque produit dispose d'une fiche détaillée avec description complète et garantie de remboursement 14 jours. Paiement sécurisé par carte bancaire ou PayPal.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <?php
 get_footer();

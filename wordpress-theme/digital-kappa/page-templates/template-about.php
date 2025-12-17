@@ -27,202 +27,205 @@ get_header();
 </div>
 
 <!-- Hero Section -->
-<section class="dk-section dk-hero dk-hero-light">
+<section class="dk-about-hero">
     <div class="dk-container">
-        <div class="dk-hero-content">
-            <span class="dk-badge dk-badge-gold-light dk-mb-4" style="padding: var(--dk-space-2) var(--dk-space-6); border-radius: var(--dk-radius-full);">
-                À propos de nous
-            </span>
-            <h1>Digital Kappa, votre partenaire digital</h1>
-            <p class="dk-text-secondary" style="font-size: var(--dk-text-lg); max-width: 768px; margin: 0 auto;">
-                Nous proposons des ressources numériques simples, efficaces et de qualité pour aider les créateurs, entrepreneurs et passionnés à accomplir plus en moins de temps.
-            </p>
+        <div class="dk-about-hero-content">
+            <span class="dk-about-badge">À propos de nous</span>
+            <h1>Digital Kappa, votre<br>partenaire digital</h1>
+            <p>Nous proposons des ressources numériques simples, efficaces et de qualité pour aider les créateurs, entrepreneurs et passionnés à accomplir plus en moins de temps.</p>
         </div>
 
         <!-- Stats -->
-        <div class="dk-grid dk-grid-4" style="max-width: 900px; margin: var(--dk-space-12) auto 0;">
-            <div class="dk-text-center">
-                <p class="dk-text-gold" style="font-size: var(--dk-text-3xl); font-weight: 600; margin-bottom: var(--dk-space-2);">2026</p>
-                <p class="dk-text-secondary">Année de lancement</p>
+        <div class="dk-about-stats">
+            <div class="dk-about-stat">
+                <span class="dk-about-stat-value">2026</span>
+                <span class="dk-about-stat-label">Année de lancement</span>
             </div>
-            <div class="dk-text-center">
-                <p class="dk-text-gold" style="font-size: var(--dk-text-3xl); font-weight: 600; margin-bottom: var(--dk-space-2);">100%</p>
-                <p class="dk-text-secondary">Engagement qualité</p>
+            <div class="dk-about-stat">
+                <span class="dk-about-stat-value">100%</span>
+                <span class="dk-about-stat-label">Engagement qualité</span>
             </div>
-            <div class="dk-text-center">
-                <p class="dk-text-gold" style="font-size: var(--dk-text-3xl); font-weight: 600; margin-bottom: var(--dk-space-2);">14 jours</p>
-                <p class="dk-text-secondary">Garantie satisfait ou remboursé</p>
+            <div class="dk-about-stat">
+                <span class="dk-about-stat-value">14 jours</span>
+                <span class="dk-about-stat-label">Garantie satisfait ou remboursé</span>
             </div>
-            <div class="dk-text-center">
-                <p class="dk-text-gold" style="font-size: var(--dk-text-3xl); font-weight: 600; margin-bottom: var(--dk-space-2);">24h</p>
-                <p class="dk-text-secondary">Support réactif</p>
+            <div class="dk-about-stat">
+                <span class="dk-about-stat-value">24h</span>
+                <span class="dk-about-stat-label">Support réactif</span>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Our Story Section -->
-<section class="dk-section dk-section-gray">
+<!-- Notre histoire Section -->
+<section class="dk-about-story">
     <div class="dk-container">
-        <div class="dk-grid dk-grid-2" style="align-items: center; max-width: 1100px; margin: 0 auto;">
-            <div>
+        <div class="dk-about-story-grid">
+            <div class="dk-about-story-content">
                 <h2>Notre histoire</h2>
-                <div class="dk-text-secondary" style="line-height: 1.8;">
-                    <p>Digital Kappa naît de l'envie de proposer des ressources numériques simples, efficaces et de qualité pour aider les créateurs, entrepreneurs et passionnés à accomplir plus en moins de temps.</p>
-                    <p>Le projet vise à rendre l'accès aux outils digitaux plus rapide, plus clair et plus fiable. Contrairement aux marketplaces géantes où il est difficile de s'y retrouver, nous proposons une sélection organisée qui évite la confusion.</p>
-                    <p>Notre mission est de vous faire gagner du temps en vous proposant des produits prêts à l'emploi, pensés pour être directement utilisables dans vos projets personnels ou professionnels.</p>
-                </div>
+                <p>Digital Kappa naît de l'envie de proposer des ressources numériques simples, efficaces et de qualité pour aider les créateurs, entrepreneurs et passionnés à accomplir plus en moins de temps.</p>
+                <p>Le projet vise à rendre l'accès aux outils digitaux plus rapide, plus clair et plus fiable. Contrairement aux marketplaces géantes où il est difficile de s'y retrouver, nous proposons une sélection organisée qui évite la confusion.</p>
+                <p>Notre mission est de vous faire gagner du temps en vous proposant des produits prêts à l'emploi, pensés pour être directement utilisables dans vos projets personnels ou professionnels.</p>
             </div>
-            <div style="background: linear-gradient(135deg, var(--dk-gold), var(--dk-gold-hover)); border-radius: var(--dk-radius-2xl); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; box-shadow: var(--dk-shadow-xl);">
-                <div class="dk-text-center" style="color: #fff; padding: var(--dk-space-8);">
-                    <i data-lucide="users" style="width: 64px; height: 64px; margin-bottom: var(--dk-space-4); opacity: 0.9;"></i>
-                    <p style="font-size: var(--dk-text-xl);">Notre équipe à votre service</p>
-                </div>
+            <div class="dk-about-story-image">
+                <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/about-story.jpg'); ?>" alt="Notre histoire - Digital Kappa">
             </div>
         </div>
     </div>
 </section>
 
-<!-- Our Values Section -->
-<section class="dk-section dk-section-light">
+<!-- Nos valeurs Section -->
+<section class="dk-about-values">
     <div class="dk-container">
-        <div class="dk-section-header">
+        <div class="dk-about-values-header">
             <h2>Nos valeurs</h2>
             <p>Ce qui nous guide au quotidien</p>
         </div>
 
-        <div class="dk-grid dk-grid-3">
-            <div class="dk-card-feature">
-                <div class="dk-card-feature-icon">
+        <div class="dk-about-values-grid">
+            <div class="dk-about-value-card">
+                <div class="dk-about-value-icon">
                     <i data-lucide="zap"></i>
                 </div>
-                <h3 class="dk-card-feature-title">Simplicité</h3>
-                <p class="dk-card-feature-description">Des produits faciles à comprendre et à utiliser, sans complexité inutile.</p>
+                <h4>Simplicité</h4>
+                <p>Des produits faciles à comprendre et à utiliser, sans complexité inutile.</p>
             </div>
 
-            <div class="dk-card-feature">
-                <div class="dk-card-feature-icon">
+            <div class="dk-about-value-card">
+                <div class="dk-about-value-icon">
                     <i data-lucide="users"></i>
                 </div>
-                <h3 class="dk-card-feature-title">Accessibilité</h3>
-                <p class="dk-card-feature-description">Des ressources accessibles à tous, quel que soit votre niveau.</p>
+                <h4>Accessibilité</h4>
+                <p>Des ressources accessibles à tous, quel que soit votre niveau.</p>
             </div>
 
-            <div class="dk-card-feature">
-                <div class="dk-card-feature-icon">
+            <div class="dk-about-value-card">
+                <div class="dk-about-value-icon">
                     <i data-lucide="award"></i>
                 </div>
-                <h3 class="dk-card-feature-title">Qualité</h3>
-                <p class="dk-card-feature-description">Une sélection rigoureuse garantissant l'excellence de chaque produit.</p>
+                <h4>Qualité</h4>
+                <p>Une sélection rigoureuse garantissant l'excellence de chaque produit.</p>
             </div>
 
-            <div class="dk-card-feature">
-                <div class="dk-card-feature-icon">
-                    <i data-lucide="trending-up"></i>
+            <div class="dk-about-value-card">
+                <div class="dk-about-value-icon">
+                    <i data-lucide="layers"></i>
                 </div>
-                <h3 class="dk-card-feature-title">Modernité</h3>
-                <p class="dk-card-feature-description">Des outils et designs à la pointe des tendances actuelles.</p>
+                <h4>Modernité</h4>
+                <p>Des outils et designs à la pointe des tendances actuelles.</p>
             </div>
 
-            <div class="dk-card-feature">
-                <div class="dk-card-feature-icon">
-                    <i data-lucide="shield"></i>
+            <div class="dk-about-value-card">
+                <div class="dk-about-value-icon">
+                    <i data-lucide="shield-check"></i>
                 </div>
-                <h3 class="dk-card-feature-title">Fiabilité</h3>
-                <p class="dk-card-feature-description">Des produits testés et approuvés par notre communauté.</p>
+                <h4>Fiabilité</h4>
+                <p>Des produits testés et approuvés par notre communauté.</p>
             </div>
 
-            <div class="dk-card-feature">
-                <div class="dk-card-feature-icon">
-                    <i data-lucide="check-circle"></i>
+            <div class="dk-about-value-card">
+                <div class="dk-about-value-icon">
+                    <i data-lucide="heart"></i>
                 </div>
-                <h3 class="dk-card-feature-title">Satisfaction client</h3>
-                <p class="dk-card-feature-description">Votre réussite est notre priorité absolue.</p>
+                <h4>Satisfaction client</h4>
+                <p>Votre réussite est notre priorité absolue.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- What Makes Us Different Section -->
-<section class="dk-section dk-section-dark">
-    <div class="dk-container" style="max-width: 900px;">
-        <h2 class="dk-text-center" style="margin-bottom: var(--dk-space-12);">Ce qui nous différencie</h2>
+<!-- Ce qui nous différencie Section -->
+<section class="dk-about-difference">
+    <div class="dk-container">
+        <h2>Ce qui nous différencie</h2>
 
-        <div style="display: flex; flex-direction: column; gap: var(--dk-space-6);">
-            <div class="dk-flex dk-gap-4">
-                <i data-lucide="check" style="color: var(--dk-gold); width: 24px; height: 24px; flex-shrink: 0;"></i>
+        <div class="dk-about-difference-grid">
+            <div class="dk-about-difference-item">
+                <span class="dk-about-difference-check"><i data-lucide="check"></i></span>
                 <div>
-                    <h3 style="color: #fff; margin-bottom: var(--dk-space-1);">Téléchargement instantané</h3>
-                    <p style="color: rgba(255,255,255,0.6); font-size: var(--dk-text-sm);">Accédez immédiatement à vos produits dès l'achat, sans attente.</p>
+                    <h4>Téléchargement instantané</h4>
+                    <p>Accédez immédiatement à vos produits dès l'achat, sans attente.</p>
                 </div>
             </div>
 
-            <div class="dk-flex dk-gap-4">
-                <i data-lucide="check" style="color: var(--dk-gold); width: 24px; height: 24px; flex-shrink: 0;"></i>
+            <div class="dk-about-difference-item">
+                <span class="dk-about-difference-check"><i data-lucide="check"></i></span>
                 <div>
-                    <h3 style="color: #fff; margin-bottom: var(--dk-space-1);">Organisation claire et intuitive</h3>
-                    <p style="color: rgba(255,255,255,0.6); font-size: var(--dk-text-sm);">Trouvez facilement ce que vous cherchez grâce à notre système de catégorisation simple.</p>
+                    <h4>Organisation claire et intuitive</h4>
+                    <p>Trouvez facilement ce que vous cherchez grâce à notre système de catégorisation simple.</p>
                 </div>
             </div>
 
-            <div class="dk-flex dk-gap-4">
-                <i data-lucide="check" style="color: var(--dk-gold); width: 24px; height: 24px; flex-shrink: 0;"></i>
+            <div class="dk-about-difference-item">
+                <span class="dk-about-difference-check"><i data-lucide="check"></i></span>
                 <div>
-                    <h3 style="color: #fff; margin-bottom: var(--dk-space-1);">Qualité constante</h3>
-                    <p style="color: rgba(255,255,255,0.6); font-size: var(--dk-text-sm);">Chaque produit est vérifié et validé selon nos standards élevés.</p>
+                    <h4>Qualité constante</h4>
+                    <p>Chaque produit est sélectionné selon des critères rigoureux de qualité.</p>
                 </div>
             </div>
 
-            <div class="dk-flex dk-gap-4">
-                <i data-lucide="check" style="color: var(--dk-gold); width: 24px; height: 24px; flex-shrink: 0;"></i>
+            <div class="dk-about-difference-item">
+                <span class="dk-about-difference-check"><i data-lucide="check"></i></span>
                 <div>
-                    <h3 style="color: #fff; margin-bottom: var(--dk-space-1);">Support dédié</h3>
-                    <p style="color: rgba(255,255,255,0.6); font-size: var(--dk-text-sm);">Une équipe disponible pour vous accompagner dans vos projets.</p>
+                    <h4>Interface moderne et épurée</h4>
+                    <p>Une expérience utilisateur fluide, sans complexité technique inutile.</p>
                 </div>
             </div>
 
-            <div class="dk-flex dk-gap-4">
-                <i data-lucide="check" style="color: var(--dk-gold); width: 24px; height: 24px; flex-shrink: 0;"></i>
+            <div class="dk-about-difference-item">
+                <span class="dk-about-difference-check"><i data-lucide="check"></i></span>
                 <div>
-                    <h3 style="color: #fff; margin-bottom: var(--dk-space-1);">Mises à jour gratuites</h3>
-                    <p style="color: rgba(255,255,255,0.6); font-size: var(--dk-text-sm);">Bénéficiez des améliorations et nouvelles fonctionnalités sans coût additionnel.</p>
+                    <h4>Éviter la confusion des marketplaces géantes</h4>
+                    <p>Une sélection organisée qui vous fait gagner un temps précieux.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Mission Statement Section -->
-<section class="dk-section dk-section-gray">
-    <div class="dk-container" style="max-width: 900px;">
-        <h2 class="dk-text-center">À propos de Digital Kappa : Notre mission et nos valeurs</h2>
-
-        <div class="dk-text-secondary" style="line-height: 1.8;">
-            <p>Digital Kappa est bien plus qu'une simple marketplace de produits numériques. Nous aspirons à devenir le partenaire de confiance de tous les créateurs, développeurs et entrepreneurs qui souhaitent gagner du temps et se concentrer sur l'essentiel : la création de valeur.</p>
-
-            <p>Nous croyons fermement que l'accès aux ressources digitales de qualité ne devrait pas être un parcours du combattant. C'est pourquoi nous sélectionnons chaque produit avec soin, en veillant à ce qu'il réponde aux standards les plus élevés en termes de fonctionnalité, de design et d'utilisabilité.</p>
-
-            <p>L'innovation est au cœur de notre ADN. Nous restons constamment à l'affût des nouvelles tendances et technologies pour enrichir notre catalogue et vous proposer les outils les plus modernes et performants du marché.</p>
-
-            <p>Vous n'êtes pas qu'un simple client pour nous : vous faites partie de la communauté Digital Kappa. Votre réussite est notre réussite, et nous mettons tout en œuvre pour vous accompagner dans vos projets, avec un support technique réactif et une garantie satisfait ou remboursé de 14 jours.</p>
-
-            <p>Notre engagement est simple : vous fournir des produits digitaux de qualité, accessibles, modernes et fiables, pour que vous puissiez vous concentrer sur ce qui compte vraiment - la réalisation de vos ambitions.</p>
+<!-- Info Section -->
+<section class="dk-about-info">
+    <div class="dk-container">
+        <div class="dk-about-info-header">
+            <h2>À propos de Digital Kappa : Mission, valeurs et engagement qualité</h2>
         </div>
-    </div>
-</section>
 
-<!-- CTA Section -->
-<section class="dk-cta">
-    <div class="dk-cta-content">
-        <h2>Rejoignez l'aventure Digital Kappa</h2>
-        <p>Découvrez notre catalogue de produits digitaux premium et trouvez ce qu'il vous faut pour réussir.</p>
-        <div class="dk-cta-buttons">
-            <a href="<?php echo esc_url(home_url('/tous-nos-produits/')); ?>" class="dk-btn dk-btn-primary dk-btn-lg">
-                Découvrir les produits
-            </a>
-            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="dk-btn dk-btn-outline-white dk-btn-lg">
-                Nous contacter
-            </a>
+        <div class="dk-info-grid">
+            <div class="dk-info-block">
+                <div class="dk-info-icon">
+                    <span>1</span>
+                </div>
+                <div>
+                    <p>Digital Kappa est née d'un constat simple : trouver rapidement des produits digitaux de qualité dans les grandes marketplaces est devenu difficile. Notre équipe de développeurs, designers et entrepreneurs a créé cette plateforme française pour offrir une alternative claire et fiable.</p>
+                </div>
+            </div>
+
+            <div class="dk-info-block">
+                <div class="dk-info-icon">
+                    <span>2</span>
+                </div>
+                <div>
+                    <p>Contrairement aux marketplaces géantes, Digital Kappa propose une sélection rigoureuse. Chaque ebook, application ou template est testé selon des critères stricts de qualité, pertinence et utilité pratique avant mise en ligne.</p>
+                </div>
+            </div>
+
+            <div class="dk-info-block">
+                <div class="dk-info-icon">
+                    <span>3</span>
+                </div>
+                <div>
+                    <p>Nos valeurs fondamentales : simplicité, accessibilité, qualité, modernité et fiabilité. Acheter un produit digital doit être simple, c'est pourquoi nous avons adopté un système d'achat direct sans panier ni compte obligatoire.</p>
+                </div>
+            </div>
+
+            <div class="dk-info-block">
+                <div class="dk-info-icon">
+                    <span>4</span>
+                </div>
+                <div>
+                    <p>Basée en France et pleinement conforme au RGPD, Digital Kappa garantit la protection de vos données personnelles et la transparence. Support client réactif disponible pour répondre à toutes vos questions.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>

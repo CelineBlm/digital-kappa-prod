@@ -3526,6 +3526,392 @@ p {
 }
 
 /* ============================================
+   ABOUT PAGE
+   ============================================ */
+
+/* About Hero */
+.dk-about-hero {
+    background: linear-gradient(135deg, #fdf8f0 0%, #fefefe 50%, #f8f4ed 100%);
+    padding: var(--dk-space-12) 0 var(--dk-space-16);
+}
+
+@media (min-width: 1024px) {
+    .dk-about-hero {
+        padding: var(--dk-space-16) 0 var(--dk-space-20);
+    }
+}
+
+.dk-about-hero-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--dk-space-12);
+}
+
+.dk-about-badge {
+    display: inline-block;
+    padding: var(--dk-space-2) var(--dk-space-4);
+    background-color: var(--dk-gold);
+    color: #ffffff;
+    font-size: var(--dk-text-xs);
+    font-weight: 600;
+    border-radius: var(--dk-radius-full);
+    margin-bottom: var(--dk-space-6);
+}
+
+.dk-about-hero-content h1 {
+    font-family: var(--dk-font-heading);
+    font-size: var(--dk-text-3xl);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-4);
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .dk-about-hero-content h1 {
+        font-size: var(--dk-text-4xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .dk-about-hero-content h1 {
+        font-size: var(--dk-text-5xl);
+    }
+}
+
+.dk-about-hero-content p {
+    font-size: var(--dk-text-base);
+    color: var(--dk-text-secondary);
+    line-height: 1.7;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .dk-about-hero-content p {
+        font-size: var(--dk-text-lg);
+    }
+}
+
+/* About Stats */
+.dk-about-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--dk-space-6);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .dk-about-stats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--dk-space-8);
+    }
+}
+
+.dk-about-stat {
+    text-align: center;
+}
+
+.dk-about-stat-value {
+    display: block;
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-2xl);
+    font-weight: 600;
+    color: var(--dk-gold);
+    margin-bottom: var(--dk-space-2);
+}
+
+@media (min-width: 768px) {
+    .dk-about-stat-value {
+        font-size: var(--dk-text-3xl);
+    }
+}
+
+.dk-about-stat-label {
+    display: block;
+    font-size: var(--dk-text-sm);
+    color: var(--dk-text-secondary);
+}
+
+/* About Story */
+.dk-about-story {
+    background-color: var(--dk-bg-white);
+    padding: var(--dk-space-12) 0;
+}
+
+@media (min-width: 1024px) {
+    .dk-about-story {
+        padding: var(--dk-space-20) 0;
+    }
+}
+
+.dk-about-story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--dk-space-10);
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+    .dk-about-story-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--dk-space-16);
+    }
+}
+
+.dk-about-story-content h2 {
+    font-family: var(--dk-font-heading);
+    font-size: var(--dk-text-2xl);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-6);
+}
+
+@media (min-width: 768px) {
+    .dk-about-story-content h2 {
+        font-size: var(--dk-text-3xl);
+    }
+}
+
+.dk-about-story-content p {
+    font-size: var(--dk-text-base);
+    color: var(--dk-text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--dk-space-4);
+}
+
+.dk-about-story-content p:last-child {
+    margin-bottom: 0;
+}
+
+.dk-about-story-image {
+    order: -1;
+}
+
+@media (min-width: 1024px) {
+    .dk-about-story-image {
+        order: 0;
+    }
+}
+
+.dk-about-story-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--dk-radius-2xl);
+    object-fit: cover;
+    aspect-ratio: 4/3;
+}
+
+/* About Values */
+.dk-about-values {
+    background-color: var(--dk-bg-gray-50);
+    padding: var(--dk-space-12) 0;
+}
+
+@media (min-width: 1024px) {
+    .dk-about-values {
+        padding: var(--dk-space-20) 0;
+    }
+}
+
+.dk-about-values-header {
+    text-align: center;
+    margin-bottom: var(--dk-space-10);
+}
+
+.dk-about-values-header h2 {
+    font-family: var(--dk-font-heading);
+    font-size: var(--dk-text-2xl);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-3);
+}
+
+@media (min-width: 768px) {
+    .dk-about-values-header h2 {
+        font-size: var(--dk-text-3xl);
+    }
+}
+
+.dk-about-values-header p {
+    font-size: var(--dk-text-base);
+    color: var(--dk-text-secondary);
+    margin: 0;
+}
+
+.dk-about-values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--dk-space-6);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+    .dk-about-values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .dk-about-values-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--dk-space-8);
+    }
+}
+
+.dk-about-value-card {
+    background-color: var(--dk-bg-white);
+    border-radius: var(--dk-radius-xl);
+    padding: var(--dk-space-6);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dk-about-value-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(210, 163, 11, 0.1);
+    border-radius: var(--dk-radius-lg);
+    margin-bottom: var(--dk-space-4);
+    color: var(--dk-gold);
+}
+
+.dk-about-value-icon i {
+    width: 24px;
+    height: 24px;
+}
+
+.dk-about-value-card h4 {
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-base);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-2);
+}
+
+.dk-about-value-card p {
+    font-size: var(--dk-text-sm);
+    color: var(--dk-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* About Difference */
+.dk-about-difference {
+    background-color: var(--dk-bg-dark);
+    padding: var(--dk-space-12) 0;
+}
+
+@media (min-width: 1024px) {
+    .dk-about-difference {
+        padding: var(--dk-space-16) 0;
+    }
+}
+
+.dk-about-difference h2 {
+    font-family: var(--dk-font-heading);
+    font-size: var(--dk-text-2xl);
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: var(--dk-space-10);
+}
+
+@media (min-width: 768px) {
+    .dk-about-difference h2 {
+        font-size: var(--dk-text-3xl);
+    }
+}
+
+.dk-about-difference-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--dk-space-6);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .dk-about-difference-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--dk-space-8) var(--dk-space-12);
+    }
+}
+
+.dk-about-difference-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--dk-space-4);
+}
+
+.dk-about-difference-check {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.dk-about-difference-check i {
+    width: 20px;
+    height: 20px;
+    color: var(--dk-gold);
+}
+
+.dk-about-difference-item h4 {
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-base);
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: var(--dk-space-1);
+}
+
+.dk-about-difference-item p {
+    font-size: var(--dk-text-sm);
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* About Info */
+.dk-about-info {
+    background-color: var(--dk-bg-gray-50);
+    padding: var(--dk-space-12) 0;
+}
+
+@media (min-width: 1024px) {
+    .dk-about-info {
+        padding: var(--dk-space-16) 0;
+    }
+}
+
+.dk-about-info-header {
+    text-align: center;
+    margin-bottom: var(--dk-space-10);
+}
+
+.dk-about-info-header h2 {
+    font-family: var(--dk-font-heading);
+    font-size: var(--dk-text-xl);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .dk-about-info-header h2 {
+        font-size: var(--dk-text-2xl);
+    }
+}
+
+/* ============================================
    PRINT STYLES
    ============================================ */
 

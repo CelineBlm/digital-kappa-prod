@@ -169,8 +169,9 @@ class DK_Product_Grid extends \Elementor\Widget_Base {
                     if ($products->have_posts()) :
                         while ($products->have_posts()) : $products->the_post();
                             global $product;
-                            $rating = get_field('rating', get_the_ID()) ?: 4.5;
-                            $review_count = get_field('review_count', get_the_ID()) ?: 0;
+                            // Use WooCommerce native rating functions
+                            $rating = $product->get_average_rating() ?: 4.5;
+                            $review_count = $product->get_review_count() ?: 0;
 
                             // Get category
                             $terms = get_the_terms(get_the_ID(), 'product_cat');

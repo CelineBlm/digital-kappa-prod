@@ -42,7 +42,7 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
             [
                 'label' => __('Badge', 'digital-kappa'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => 'Marketplace de produits digitaux',
+                'default' => 'Lancement officiel - Nouveaux produits disponibles',
             ]
         );
 
@@ -51,7 +51,7 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
             [
                 'label' => __('Titre (partie 1)', 'digital-kappa'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => 'Accélérez vos projets avec des',
+                'default' => 'Marketplace de',
             ]
         );
 
@@ -60,7 +60,7 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
             [
                 'label' => __('Titre (highlight)', 'digital-kappa'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => 'ressources digitales',
+                'default' => 'produits digitaux',
             ]
         );
 
@@ -69,7 +69,7 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
             [
                 'label' => __('Titre (partie 2)', 'digital-kappa'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => 'de qualité',
+                'default' => '',
             ]
         );
 
@@ -78,7 +78,7 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
             [
                 'label' => __('Sous-titre', 'digital-kappa'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
-                'default' => 'Découvrez notre collection d\'applications, ebooks et templates soigneusement sélectionnés pour booster votre productivité.',
+                'default' => 'Découvrez une sélection de produits digitaux de qualité : applications mobiles, ebooks et templates pour booster votre productivité. Achat simple en un clic, téléchargement immédiat, accès à vie.',
             ]
         );
 
@@ -87,7 +87,7 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
             [
                 'label' => __('Bouton primaire', 'digital-kappa'),
                 'type' => \Elementor\Controls_Manager::TEXT,
-                'default' => 'Explorer le catalogue',
+                'default' => 'Explorer les produits',
             ]
         );
 
@@ -139,50 +139,91 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
         ?>
-        <section class="bg-gray-50 relative overflow-hidden px-4 lg:px-20 py-12 lg:py-20">
-            <div class="max-w-7xl mx-auto">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <section class="bg-gray-50 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 lg:px-20 py-6">
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
                     <!-- Content -->
-                    <div class="space-y-6 lg:space-y-8">
-                        <div class="inline-flex items-center gap-2 bg-white border border-gray-100 rounded-full px-4 py-2 shadow-sm">
+                    <div class="space-y-6 lg:space-y-8 pt-8">
+                        <!-- Badge pill -->
+                        <div class="inline-flex items-center gap-4 bg-white border border-gray-100 rounded-full px-4 py-2 shadow-sm">
                             <div class="w-2 h-2 bg-dk-primary rounded-full"></div>
                             <p class="text-sm text-gray-900 font-body"><?php echo esc_html($settings['badge_text']); ?></p>
                         </div>
 
-                        <h1 class="text-gray-900 font-heading text-3xl lg:text-5xl leading-tight">
-                            <?php echo esc_html($settings['title_part1']); ?>
-                            <span class="text-dk-primary"> <?php echo esc_html($settings['title_highlight']); ?></span>
-                            <?php echo esc_html($settings['title_part2']); ?>
+                        <!-- Title with two lines -->
+                        <h1 class="font-heading leading-tight">
+                            <span class="block text-4xl lg:text-6xl text-gray-900"><?php echo esc_html($settings['title_part1']); ?></span>
+                            <span class="block text-4xl lg:text-6xl text-dk-primary"><?php echo esc_html($settings['title_highlight']); ?></span>
+                            <?php if (!empty($settings['title_part2'])) : ?>
+                            <span class="block text-4xl lg:text-6xl text-gray-900"><?php echo esc_html($settings['title_part2']); ?></span>
+                            <?php endif; ?>
                         </h1>
 
-                        <p class="text-gray-500 text-lg font-body">
+                        <!-- Subtitle -->
+                        <p class="text-lg font-body leading-relaxed max-w-xl" style="color: rgba(13, 20, 33, 0.7);">
                             <?php echo esc_html($settings['subtitle']); ?>
                         </p>
 
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="<?php echo esc_url($settings['btn_primary_link']['url']); ?>" class="bg-dk-primary text-white px-8 py-4 rounded-xl hover:bg-dk-primary-hover transition-colors text-center font-body font-semibold">
+                        <!-- Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <a href="<?php echo esc_url($settings['btn_primary_link']['url']); ?>" class="bg-dk-primary text-white px-6 py-3.5 rounded-lg hover:bg-dk-primary-hover transition-colors text-center font-body font-semibold">
                                 <?php echo esc_html($settings['btn_primary_text']); ?>
                             </a>
-                            <a href="<?php echo esc_url($settings['btn_secondary_link']['url']); ?>" class="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl hover:border-dk-primary hover:text-dk-primary transition-colors text-center font-body">
+                            <a href="<?php echo esc_url($settings['btn_secondary_link']['url']); ?>" class="bg-white border border-dk-primary text-dk-primary px-6 py-3.5 rounded-lg hover:bg-gray-50 transition-colors text-center font-body font-semibold">
                                 <?php echo esc_html($settings['btn_secondary_text']); ?>
                             </a>
                         </div>
                     </div>
 
-                    <!-- Image -->
-                    <div class="relative">
-                        <div class="rounded-2xl overflow-hidden shadow-2xl">
-                            <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="Digital Kappa Hero" class="w-full h-auto">
+                    <!-- Image Cards Grid -->
+                    <div class="relative hidden lg:block">
+                        <!-- Main card - Applications mobiles -->
+                        <div class="relative rounded-2xl overflow-hidden shadow-xl mb-4" style="border: 1px solid #f0f2f5;">
+                            <?php if (!empty($settings['image']['url'])) : ?>
+                            <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="Applications mobiles" class="w-full h-48 object-cover">
+                            <?php else : ?>
+                            <div class="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600"></div>
+                            <?php endif; ?>
+                            <!-- Gradient overlay -->
+                            <div class="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-900/15 to-transparent"></div>
+                            <!-- Badge -->
+                            <div class="absolute top-4 left-4 bg-dk-primary text-white text-xs font-body font-semibold px-3 py-1.5 rounded-lg">
+                                Populaire
+                            </div>
+                            <!-- Text -->
+                            <div class="absolute bottom-4 left-4">
+                                <h3 class="text-white font-heading text-base">Applications mobiles</h3>
+                                <p class="text-white/70 text-xs font-body">Applications prêtes à l'emploi</p>
+                            </div>
                         </div>
-                        <!-- Decorative elements -->
-                        <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-dk-primary rounded-2xl -z-10 opacity-20"></div>
-                        <div class="absolute -top-6 -right-6 w-32 h-32 bg-dk-primary rounded-full -z-10 opacity-10"></div>
+
+                        <!-- Two smaller cards -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- Ebooks card -->
+                            <div class="relative rounded-2xl overflow-hidden shadow-xl h-56" style="border: 1px solid #f0f2f5;">
+                                <div class="w-full h-full bg-gradient-to-br from-amber-400 to-orange-500"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-900/15 to-transparent"></div>
+                                <div class="absolute bottom-3 left-3">
+                                    <h4 class="text-white font-heading text-sm">Ebooks</h4>
+                                    <p class="text-white/70 text-xs font-body">Guides & formations</p>
+                                </div>
+                            </div>
+                            <!-- Templates card -->
+                            <div class="relative rounded-2xl overflow-hidden shadow-xl h-56" style="border: 1px solid #f0f2f5;">
+                                <div class="w-full h-full bg-gradient-to-br from-teal-400 to-cyan-500"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-900/15 to-transparent"></div>
+                                <div class="absolute bottom-3 left-3">
+                                    <h4 class="text-white font-heading text-sm">Templates</h4>
+                                    <p class="text-white/70 text-xs font-body">Design & code</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Background decorations -->
-            <div class="absolute top-0 right-0 lg:right-1/4 w-64 h-64 bg-dk-primary/5 rounded-full blur-3xl -z-10"></div>
+            <!-- Background blur decoration -->
+            <div class="absolute top-0 left-1/2 w-80 h-80 bg-dk-primary/10 rounded-full blur-3xl -z-10"></div>
         </section>
         <?php
     }

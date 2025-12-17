@@ -27,33 +27,58 @@ get_header();
 </div>
 
 <!-- Hero Section -->
-<section class="dk-section dk-hero dk-hero-light">
-    <div class="dk-hero-blur" style="top: 20%; left: 10%;"></div>
-    <div class="dk-hero-blur" style="bottom: 20%; right: 10%;"></div>
-
+<section class="dk-hero-home">
     <div class="dk-container">
-        <div class="dk-hero-content" style="padding: var(--dk-space-16) 0;">
-            <div class="dk-pill dk-mb-6" style="display: inline-flex;">
-                <span class="dk-pill-dot"></span>
-                <span>La marketplace des créateurs digitaux</span>
+        <div class="dk-hero-grid">
+            <!-- Left Content -->
+            <div class="dk-hero-left">
+                <h1 class="dk-hero-title">
+                    Marketplace de<br>
+                    <span class="dk-hero-title-gold">produits digitaux</span>
+                </h1>
+
+                <p class="dk-hero-description">
+                    Découvrez une sélection de produits digitaux de qualité : applications mobiles, ebooks et templates pour booster votre productivité. Achat simple en un clic, téléchargement immédiat, accès à vie.
+                </p>
+
+                <div class="dk-hero-buttons">
+                    <a href="<?php echo esc_url(home_url('/tous-nos-produits/')); ?>" class="dk-btn dk-btn-primary dk-btn-lg">
+                        Explorer les produits
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/comment-ca-marche/')); ?>" class="dk-btn dk-btn-outline-gold dk-btn-lg">
+                        Comment ça marche
+                    </a>
+                </div>
             </div>
 
-            <h1 style="margin-bottom: var(--dk-space-6);">
-                Vos ressources digitales, prêtes à l'emploi
-            </h1>
-
-            <p class="dk-text-secondary" style="font-size: var(--dk-text-lg); max-width: 768px; margin: 0 auto var(--dk-space-8);">
-                Découvrez notre sélection de produits numériques premium : ebooks, applications et templates. Des ressources de qualité pour accélérer vos projets.
-            </p>
-
-            <div class="dk-cta-buttons">
-                <a href="<?php echo esc_url(home_url('/tous-nos-produits/')); ?>" class="dk-btn dk-btn-primary dk-btn-lg">
-                    <i data-lucide="search"></i>
-                    Découvrir les produits
+            <!-- Right Content - Category Images -->
+            <div class="dk-hero-right">
+                <!-- Applications - Large card on top -->
+                <a href="<?php echo esc_url(home_url('/tous-nos-produits/?category=application')); ?>" class="dk-hero-category-card dk-hero-category-large">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Applications mobiles">
+                    <div class="dk-hero-category-overlay">
+                        <h3 class="dk-hero-category-title">Applications mobiles</h3>
+                        <p class="dk-hero-category-subtitle">Applications prêtes à l'emploi</p>
+                    </div>
                 </a>
-                <a href="<?php echo esc_url(home_url('/comment-ca-marche/')); ?>" class="dk-btn dk-btn-secondary dk-btn-lg">
-                    Comment ça marche
-                </a>
+
+                <!-- Bottom row - Ebooks and Templates -->
+                <div class="dk-hero-category-row">
+                    <a href="<?php echo esc_url(home_url('/tous-nos-produits/?category=ebook')); ?>" class="dk-hero-category-card">
+                        <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80" alt="Ebooks">
+                        <div class="dk-hero-category-overlay">
+                            <h3 class="dk-hero-category-title">Ebooks</h3>
+                            <p class="dk-hero-category-subtitle">Guides & formations</p>
+                        </div>
+                    </a>
+                    <a href="<?php echo esc_url(home_url('/tous-nos-produits/?category=template')); ?>" class="dk-hero-category-card">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Templates">
+                        <div class="dk-hero-category-overlay">
+                            <h3 class="dk-hero-category-title">Templates</h3>
+                            <p class="dk-hero-category-subtitle">Design & code</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -66,7 +66,7 @@ class DK_Header_Search extends \Elementor\Widget_Base {
             </svg>
             <form action="<?php echo esc_url(home_url('/')); ?>" method="get" class="w-full">
                 <input type="hidden" name="post_type" value="product">
-                <input type="text" name="s" class="dk-search-input w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-transparent rounded-lg text-sm font-['Montserrat',sans-serif] focus:bg-white focus:border-[#d2a30b] focus:ring-2 focus:ring-[#d2a30b]/20 transition-all" placeholder="<?php echo esc_attr($settings['placeholder']); ?>">
+                <input type="text" name="s" class="dk-search-input w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-transparent rounded-lg text-sm font-body focus:bg-white focus:border-dk-primary focus:ring-2 focus:ring-dk-primary/20 transition-all" placeholder="<?php echo esc_attr($settings['placeholder']); ?>">
             </form>
             <div class="dk-search-results-container absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 hidden"></div>
         </div>

@@ -68,19 +68,20 @@ function digital_kappa_enqueue_assets() {
         null
     );
 
-    // Tailwind CSS (CDN)
-    wp_enqueue_style(
-        'dk-tailwind',
-        'https://cdn.jsdelivr.net/npm/tailwindcss@3.4.0/dist/tailwind.min.css',
+    // Tailwind Play CDN with custom config
+    wp_enqueue_script(
+        'dk-tailwind-cdn',
+        'https://cdn.tailwindcss.com',
         array(),
-        '3.4.0'
+        null,
+        false
     );
 
     // Digital Kappa Custom Styles
     wp_enqueue_style(
         'dk-custom-styles',
         DK_THEME_URI . '/assets/css/digital-kappa-styles.css',
-        array('dk-tailwind'),
+        array(),
         DK_THEME_VERSION
     );
 
@@ -109,6 +110,35 @@ function digital_kappa_enqueue_assets() {
     ));
 }
 add_action('wp_enqueue_scripts', 'digital_kappa_enqueue_assets');
+
+/**
+ * Add Tailwind config inline
+ */
+function digital_kappa_tailwind_config() {
+    ?>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dk-primary': '#d2a30b',
+                        'dk-primary-hover': '#b8900a',
+                        'dk-dark': '#1a1a1a',
+                        'dk-dark-card': '#2b2d31',
+                        'dk-text': '#4a5565',
+                        'dk-text-muted': '#6a7282',
+                    },
+                    fontFamily: {
+                        'heading': ['Merriweather', 'serif'],
+                        'body': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <?php
+}
+add_action('wp_head', 'digital_kappa_tailwind_config', 1);
 
 /**
  * Register Elementor Widgets
@@ -209,8 +239,8 @@ function dk_ajax_search_products() {
         $html .= '<a href="' . get_permalink() . '" class="flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0">';
         $html .= '<img src="' . wp_get_attachment_image_url($product->get_image_id(), 'thumbnail') . '" alt="' . esc_attr(get_the_title()) . '" class="w-12 h-12 rounded-lg object-cover">';
         $html .= '<div class="flex-1">';
-        $html .= '<p class="text-sm font-medium text-[#1a1a1a]">' . get_the_title() . '</p>';
-        $html .= '<p class="text-sm text-[#d2a30b] font-semibold">' . $product->get_price_html() . '</p>';
+        $html .= '<p class="text-sm font-medium text-gray-900">' . get_the_title() . '</p>';
+        $html .= '<p class="text-sm text-dk-primary font-semibold">' . $product->get_price_html() . '</p>';
         $html .= '</div>';
         $html .= '</a>';
     }

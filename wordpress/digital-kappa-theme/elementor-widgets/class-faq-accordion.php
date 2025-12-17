@@ -149,7 +149,7 @@ class DK_Faq_Accordion extends \Elementor\Widget_Base {
                 <?php foreach ($faqs as $index => $faq) : ?>
                 <div class="dk-faq-item" data-category="<?php echo esc_attr($faq['category']); ?>">
                     <button class="dk-faq-question">
-                        <span class="font-['Montserrat',sans-serif] text-[#0d1421] pr-4"><?php echo esc_html($faq['question']); ?></span>
+                        <span class="font-body text-gray-900 pr-4"><?php echo esc_html($faq['question']); ?></span>
                         <div class="dk-faq-icon flex-shrink-0">
                             <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
                                 <path d="M4.166 10h11.667" stroke="#D2A30B" stroke-width="1.667" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -158,7 +158,7 @@ class DK_Faq_Accordion extends \Elementor\Widget_Base {
                         </div>
                     </button>
                     <div class="dk-faq-answer" style="display: <?php echo $index === 0 ? 'block' : 'none'; ?>">
-                        <p class="text-[#0d1421]/70 leading-relaxed"><?php echo esc_html($faq['answer']); ?></p>
+                        <p class="text-gray-500 leading-relaxed"><?php echo esc_html($faq['answer']); ?></p>
                     </div>
                 </div>
                 <?php endforeach; ?>

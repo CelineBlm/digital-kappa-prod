@@ -81,12 +81,12 @@ class DK_Page_Header extends \Elementor\Widget_Base {
         <section class="bg-gray-50 py-12 lg:py-20 px-4 lg:px-20 border-b border-gray-100">
             <div class="max-w-4xl mx-auto text-center">
                 <?php if ($settings['show_badge'] === 'yes' && !empty($settings['badge_text'])) : ?>
-                <div class="inline-flex items-center gap-2 bg-[rgba(210,163,11,0.1)] rounded-full px-6 py-2 mb-6">
-                    <p class="text-sm text-[#d2a30b] font-['Montserrat',sans-serif]"><?php echo esc_html($settings['badge_text']); ?></p>
+                <div class="inline-flex items-center gap-2 bg-dk-primary/10 rounded-full px-6 py-2 mb-6">
+                    <p class="text-sm text-dk-primary font-body"><?php echo esc_html($settings['badge_text']); ?></p>
                 </div>
                 <?php endif; ?>
-                <h1 class="text-[#1a1a1a] font-['Merriweather',serif] mb-4"><?php echo esc_html($settings['title']); ?></h1>
-                <p class="text-[#4a5565] text-lg lg:text-xl font-['Montserrat',sans-serif]">
+                <h1 class="text-gray-900 font-heading mb-4"><?php echo esc_html($settings['title']); ?></h1>
+                <p class="text-gray-600 text-lg lg:text-xl font-body">
                     <?php echo esc_html($settings['subtitle']); ?>
                 </p>
             </div>

@@ -90,10 +90,10 @@ class DK_Header_Logo extends \Elementor\Widget_Base {
             <img src="<?php echo esc_url($logo_url); ?>" alt="Digital Kappa" style="height: <?php echo esc_attr($height); ?>; width: auto;">
             <?php else : ?>
             <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-[#d2a30b] rounded flex items-center justify-center">
+                <div class="w-8 h-8 bg-dk-primary rounded flex items-center justify-center">
                     <span class="text-white font-bold text-sm">DK</span>
                 </div>
-                <span class="font-['Montserrat',sans-serif] font-semibold text-[#1a1a1a]">Digital Kappa</span>
+                <span class="font-body font-semibold text-gray-900">Digital Kappa</span>
             </div>
             <?php endif; ?>
         </a>

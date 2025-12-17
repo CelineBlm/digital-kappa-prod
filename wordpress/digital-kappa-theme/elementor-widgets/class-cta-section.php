@@ -114,16 +114,16 @@ class DK_Cta_Section extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $bg_class = 'bg-[#2c3340]';
+        $bg_class = 'bg-gray-800';
         $text_class = 'text-white';
         $subtitle_class = 'text-gray-300';
 
         if ($settings['style'] === 'light') {
             $bg_class = 'bg-gray-50';
-            $text_class = 'text-[#1a1a1a]';
-            $subtitle_class = 'text-[#4a5565]';
+            $text_class = 'text-gray-900';
+            $subtitle_class = 'text-gray-600';
         } elseif ($settings['style'] === 'primary') {
-            $bg_class = 'bg-[#d2a30b]';
+            $bg_class = 'bg-dk-primary';
             $text_class = 'text-white';
             $subtitle_class = 'text-white/80';
         }
@@ -131,21 +131,21 @@ class DK_Cta_Section extends \Elementor\Widget_Base {
         <section class="py-12 lg:py-16 px-4 lg:px-20">
             <div class="max-w-4xl mx-auto">
                 <div class="<?php echo esc_attr($bg_class); ?> rounded-3xl p-8 lg:p-12 text-center">
-                    <h2 class="<?php echo esc_attr($text_class); ?> font-['Merriweather',serif] mb-3">
+                    <h2 class="<?php echo esc_attr($text_class); ?> font-heading mb-3">
                         <?php echo esc_html($settings['title']); ?>
                     </h2>
-                    <p class="<?php echo esc_attr($subtitle_class); ?> mb-8 font-['Montserrat',sans-serif]">
+                    <p class="<?php echo esc_attr($subtitle_class); ?> mb-8 font-body">
                         <?php echo esc_html($settings['subtitle']); ?>
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="<?php echo esc_url($settings['btn_primary_link']['url']); ?>" class="bg-[#d2a30b] text-white px-8 py-4 rounded-xl hover:bg-[#b8900a] transition-colors font-['Montserrat',sans-serif] flex items-center justify-center gap-2">
+                        <a href="<?php echo esc_url($settings['btn_primary_link']['url']); ?>" class="bg-dk-primary text-white px-8 py-4 rounded-xl hover:bg-dk-primary-hover transition-colors font-body flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                             </svg>
                             <?php echo esc_html($settings['btn_primary_text']); ?>
                         </a>
-                        <a href="<?php echo esc_url($settings['btn_secondary_link']['url']); ?>" class="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl hover:bg-white/20 transition-colors font-['Montserrat',sans-serif] flex items-center justify-center gap-2">
+                        <a href="<?php echo esc_url($settings['btn_secondary_link']['url']); ?>" class="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl hover:bg-white/20 transition-colors font-body flex items-center justify-center gap-2">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                             </svg>

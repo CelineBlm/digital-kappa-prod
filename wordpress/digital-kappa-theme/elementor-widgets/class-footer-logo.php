@@ -53,12 +53,12 @@ class DK_Footer_Logo extends \Elementor\Widget_Base {
         ?>
         <div class="dk-footer-brand">
             <div class="flex items-center gap-2 mb-4">
-                <div class="w-8 h-8 bg-[#d2a30b] rounded flex items-center justify-center">
+                <div class="w-8 h-8 bg-dk-primary rounded flex items-center justify-center">
                     <span class="text-white font-bold text-sm">DK</span>
                 </div>
-                <h4 class="text-white font-['Montserrat',sans-serif] font-semibold">Digital Kappa</h4>
+                <h4 class="text-white font-body font-semibold">Digital Kappa</h4>
             </div>
-            <p class="text-sm text-gray-400 font-['Montserrat',sans-serif]">
+            <p class="text-sm text-gray-400 font-body">
                 <?php echo esc_html($settings['description']); ?>
             </p>
         </div>

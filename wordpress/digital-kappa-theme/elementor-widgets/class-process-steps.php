@@ -117,7 +117,7 @@ class DK_Process_Steps extends \Elementor\Widget_Base {
                     <div class="relative">
                         <!-- Connector line - desktop only -->
                         <?php if ($index < count($steps) - 1) : ?>
-                        <div class="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-[#d2a30b] to-transparent -translate-x-1/2 z-0"></div>
+                        <div class="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gradient-to-r from-dk-primary to-transparent -translate-x-1/2 z-0"></div>
                         <?php endif; ?>
 
                         <div class="relative z-10 text-center">
@@ -125,13 +125,13 @@ class DK_Process_Steps extends \Elementor\Widget_Base {
                                 <?php echo $icons[$step['icon']] ?? $icons['search']; ?>
                             </div>
 
-                            <div class="bg-[#d2a30b] w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-6">
-                                <span class="text-white font-['Montserrat',sans-serif]"><?php echo $index + 1; ?></span>
+                            <div class="bg-dk-primary w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <span class="text-white font-body"><?php echo $index + 1; ?></span>
                             </div>
 
-                            <h3 class="font-['Merriweather',serif] text-[#0d1421] mb-4"><?php echo esc_html($step['title']); ?></h3>
+                            <h3 class="font-heading text-gray-900 mb-4"><?php echo esc_html($step['title']); ?></h3>
 
-                            <p class="text-[rgba(13,20,33,0.7)] font-['Montserrat',sans-serif]"><?php echo esc_html($step['description']); ?></p>
+                            <p class="text-gray-500 font-body"><?php echo esc_html($step['description']); ?></p>
                         </div>
                     </div>
                     <?php endforeach; ?>

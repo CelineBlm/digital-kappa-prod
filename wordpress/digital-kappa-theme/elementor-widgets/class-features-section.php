@@ -121,11 +121,11 @@ class DK_Features_Section extends \Elementor\Widget_Base {
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                     <?php foreach ($settings['features'] as $feature) : ?>
                     <div class="text-center lg:text-left">
-                        <div class="w-12 h-12 bg-[rgba(210,163,11,0.1)] rounded-xl flex items-center justify-center mx-auto lg:mx-0 mb-4 text-[#d2a30b]">
+                        <div class="w-12 h-12 bg-dk-primary/10 rounded-xl flex items-center justify-center mx-auto lg:mx-0 mb-4 text-dk-primary">
                             <?php echo $icons[$feature['icon']] ?? $icons['download']; ?>
                         </div>
-                        <h3 class="font-['Merriweather',serif] text-[#0d1421] text-base lg:text-lg mb-2"><?php echo esc_html($feature['title']); ?></h3>
-                        <p class="text-sm text-[rgba(13,20,33,0.7)] font-['Montserrat',sans-serif]"><?php echo esc_html($feature['description']); ?></p>
+                        <h3 class="font-heading text-gray-900 text-base lg:text-lg mb-2"><?php echo esc_html($feature['title']); ?></h3>
+                        <p class="text-sm text-gray-500 font-body"><?php echo esc_html($feature['description']); ?></p>
                     </div>
                     <?php endforeach; ?>
                 </div>

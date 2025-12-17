@@ -27,299 +27,227 @@ get_header();
 </div>
 
 <!-- Hero Section -->
-<section class="dk-section dk-hero dk-hero-light">
+<section class="dk-faq-hero">
     <div class="dk-container">
-        <div class="dk-hero-content">
-            <span class="dk-badge dk-badge-gold-light dk-mb-4" style="padding: var(--dk-space-2) var(--dk-space-6); border-radius: var(--dk-radius-full);">
-                Support
-            </span>
+        <div class="dk-faq-hero-content">
+            <span class="dk-faq-badge">Aide & Support</span>
             <h1>Questions fréquentes</h1>
-            <p class="dk-text-secondary" style="font-size: var(--dk-text-lg); max-width: 768px; margin: 0 auto;">
-                Trouvez rapidement les réponses à vos questions sur Digital Kappa, nos produits et notre service client.
-            </p>
+            <p>Trouvez rapidement les réponses à vos questions</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="dk-faq-tabs">
+            <button class="dk-faq-tab active" data-filter="all">Toutes</button>
+            <button class="dk-faq-tab" data-filter="general">Général</button>
+            <button class="dk-faq-tab" data-filter="paiement">Paiement</button>
+            <button class="dk-faq-tab" data-filter="produits">Produits</button>
+            <button class="dk-faq-tab" data-filter="support">Support</button>
         </div>
     </div>
 </section>
 
-<!-- FAQ Categories -->
-<section class="dk-section dk-section-light" style="padding-top: 0;">
-    <div class="dk-container">
-        <div class="dk-grid dk-grid-4" style="max-width: 900px; margin: 0 auto var(--dk-space-12);">
-            <a href="#achat" class="dk-card-feature dk-text-center" style="text-decoration: none;">
-                <div class="dk-card-feature-icon" style="margin: 0 auto var(--dk-space-3);">
-                    <i data-lucide="shopping-cart"></i>
-                </div>
-                <h4 style="font-size: var(--dk-text-sm); margin: 0;">Achat</h4>
-            </a>
-            <a href="#telechargement" class="dk-card-feature dk-text-center" style="text-decoration: none;">
-                <div class="dk-card-feature-icon" style="margin: 0 auto var(--dk-space-3);">
-                    <i data-lucide="download"></i>
-                </div>
-                <h4 style="font-size: var(--dk-text-sm); margin: 0;">Téléchargement</h4>
-            </a>
-            <a href="#paiement" class="dk-card-feature dk-text-center" style="text-decoration: none;">
-                <div class="dk-card-feature-icon" style="margin: 0 auto var(--dk-space-3);">
-                    <i data-lucide="credit-card"></i>
-                </div>
-                <h4 style="font-size: var(--dk-text-sm); margin: 0;">Paiement</h4>
-            </a>
-            <a href="#support" class="dk-card-feature dk-text-center" style="text-decoration: none;">
-                <div class="dk-card-feature-icon" style="margin: 0 auto var(--dk-space-3);">
-                    <i data-lucide="headphones"></i>
-                </div>
-                <h4 style="font-size: var(--dk-text-sm); margin: 0;">Support</h4>
-            </a>
-        </div>
-    </div>
-</section>
+<!-- FAQ Content -->
+<section class="dk-faq-content">
+    <div class="dk-container dk-container-narrow">
 
-<!-- FAQ Sections -->
-<section class="dk-section dk-section-gray">
-    <div class="dk-container" style="max-width: 900px;">
+        <!-- Général Section -->
+        <div class="dk-faq-section" data-category="general">
+            <h3 class="dk-faq-section-title">Général</h3>
 
-        <!-- Achat Section -->
-        <div id="achat" class="dk-mb-12">
-            <div class="dk-flex dk-items-center dk-gap-4 dk-mb-6">
-                <div class="dk-card-feature-icon">
-                    <i data-lucide="shopping-cart"></i>
-                </div>
-                <h2 style="margin: 0;">Achat et commande</h2>
-            </div>
-
-            <div class="dk-accordion">
-                <div class="dk-accordion-item active">
-                    <button class="dk-accordion-trigger">
-                        Comment passer une commande ?
-                        <i data-lucide="chevron-down"></i>
+            <div class="dk-faq-accordion">
+                <div class="dk-faq-item active">
+                    <button class="dk-faq-trigger">
+                        <span>Qu'est-ce que Digital Kappa ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Pour passer commande, cliquez sur le bouton "Acheter maintenant" sur la page du produit qui vous intéresse. Vous serez redirigé vers notre page de paiement sécurisée où vous pourrez entrer vos informations (email, nom) et procéder au paiement. Aucune création de compte n'est nécessaire.</p>
+                    <div class="dk-faq-answer">
+                        <p>Digital Kappa est une marketplace de produits digitaux proposant des applications mobiles, des ebooks et des templates. Notre mission est de vous fournir des ressources numériques de qualité, simples et prêtes à l'emploi pour gagner du temps dans vos projets.</p>
                     </div>
                 </div>
 
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Dois-je créer un compte pour acheter ?
-                        <i data-lucide="chevron-down"></i>
+                <div class="dk-faq-item">
+                    <button class="dk-faq-trigger">
+                        <span>Comment fonctionne le téléchargement ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Non, aucune création de compte n'est requise. Vous pouvez effectuer votre achat en tant qu'invité en fournissant simplement votre adresse email (pour recevoir le lien de téléchargement) et vos informations de paiement.</p>
+                    <div class="dk-faq-answer">
+                        <p>Après votre achat, vous recevez instantanément un email contenant un lien de téléchargement sécurisé. Cliquez sur le lien pour télécharger votre produit. Ce lien reste valable à vie et vous pouvez télécharger votre produit autant de fois que nécessaire.</p>
                     </div>
                 </div>
 
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Comment savoir si ma commande a été validée ?
-                        <i data-lucide="chevron-down"></i>
+                <div class="dk-faq-item">
+                    <button class="dk-faq-trigger">
+                        <span>Puis-je télécharger mes produits plusieurs fois ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Dès que votre paiement est confirmé, vous recevez automatiquement un email de confirmation à l'adresse fournie lors de l'achat. Cet email contient le récapitulatif de votre commande et le lien de téléchargement de votre produit.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Téléchargement Section -->
-        <div id="telechargement" class="dk-mb-12">
-            <div class="dk-flex dk-items-center dk-gap-4 dk-mb-6">
-                <div class="dk-card-feature-icon">
-                    <i data-lucide="download"></i>
-                </div>
-                <h2 style="margin: 0;">Téléchargement</h2>
-            </div>
-
-            <div class="dk-accordion">
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Comment télécharger mon produit ?
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="dk-accordion-content">
-                        <p>Après votre achat, vous recevez un email contenant un lien de téléchargement sécurisé. Cliquez simplement sur ce lien pour télécharger votre produit. Le lien reste valable indéfiniment.</p>
-                    </div>
-                </div>
-
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Combien de fois puis-je télécharger mon produit ?
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="dk-accordion-content">
-                        <p>Vous pouvez télécharger votre produit autant de fois que vous le souhaitez. Les liens de téléchargement n'ont pas de limite de nombre de téléchargements et n'expirent jamais.</p>
-                    </div>
-                </div>
-
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Je n'ai pas reçu mon email de téléchargement, que faire ?
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="dk-accordion-content">
-                        <p>Vérifiez d'abord votre dossier spam/indésirables. Si vous ne trouvez pas l'email après quelques minutes, contactez notre support à support@digitalkappa.com avec votre numéro de commande ou l'adresse email utilisée lors de l'achat. Nous vous renverrons le lien dans les plus brefs délais.</p>
-                    </div>
-                </div>
-
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Dans quels formats sont disponibles les produits ?
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="dk-accordion-content">
-                        <p>Les formats varient selon le type de produit. Les ebooks sont généralement disponibles en PDF, EPUB et MOBI. Les templates incluent les fichiers sources (Figma, code source). Les applications incluent le code source complet et la documentation. Les formats disponibles sont toujours indiqués sur la page du produit.</p>
+                    <div class="dk-faq-answer">
+                        <p>Oui, absolument ! Vos liens de téléchargement n'ont pas de limite. Vous pouvez télécharger vos produits autant de fois que vous le souhaitez, sur n'importe quel appareil.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Paiement Section -->
-        <div id="paiement" class="dk-mb-12">
-            <div class="dk-flex dk-items-center dk-gap-4 dk-mb-6">
-                <div class="dk-card-feature-icon">
-                    <i data-lucide="credit-card"></i>
+        <div class="dk-faq-section" data-category="paiement">
+            <h3 class="dk-faq-section-title">Paiement</h3>
+
+            <div class="dk-faq-accordion">
+                <div class="dk-faq-item active">
+                    <button class="dk-faq-trigger">
+                        <span>Quels moyens de paiement acceptez-vous ?</span>
+                        <i data-lucide="plus"></i>
+                    </button>
+                    <div class="dk-faq-answer">
+                        <p>Nous acceptons les cartes bancaires (Visa, Mastercard, American Express), PayPal, et les virements bancaires. Tous les paiements sont sécurisés via notre plateforme de paiement certifiée.</p>
+                    </div>
                 </div>
-                <h2 style="margin: 0;">Paiement et facturation</h2>
+
+                <div class="dk-faq-item">
+                    <button class="dk-faq-trigger">
+                        <span>Les prix sont-ils TTC ?</span>
+                        <i data-lucide="plus"></i>
+                    </button>
+                    <div class="dk-faq-answer">
+                        <p>Oui, tous les prix affichés sur Digital Kappa sont TTC (Toutes Taxes Comprises). Le montant de la TVA est détaillé sur votre facture.</p>
+                    </div>
+                </div>
+
+                <div class="dk-faq-item">
+                    <button class="dk-faq-trigger">
+                        <span>Puis-je obtenir une facture ?</span>
+                        <i data-lucide="plus"></i>
+                    </button>
+                    <div class="dk-faq-answer">
+                        <p>Oui, une facture est automatiquement générée et envoyée par email après chaque achat. Si vous avez besoin d'informations spécifiques sur la facture, contactez notre support.</p>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <div class="dk-accordion">
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Le paiement est-il sécurisé ?
-                        <i data-lucide="chevron-down"></i>
+        <!-- Produits Section -->
+        <div class="dk-faq-section" data-category="produits">
+            <h3 class="dk-faq-section-title">Produits</h3>
+
+            <div class="dk-faq-accordion">
+                <div class="dk-faq-item active">
+                    <button class="dk-faq-trigger">
+                        <span>Vos produits sont-ils compatibles avec Mac et PC ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Absolument. Tous nos paiements sont traités via des systèmes sécurisés conformes aux normes PCI-DSS (Stripe). Nous n'avons jamais accès à vos données bancaires qui sont entièrement cryptées via SSL.</p>
+                    <div class="dk-faq-answer">
+                        <p>La majorité de nos produits sont compatibles avec les deux systèmes. Les spécifications de compatibilité sont clairement indiquées sur chaque fiche produit.</p>
                     </div>
                 </div>
 
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Quels moyens de paiement acceptez-vous ?
-                        <i data-lucide="chevron-down"></i>
+                <div class="dk-faq-item">
+                    <button class="dk-faq-trigger">
+                        <span>Proposez-vous des mises à jour pour les produits ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Nous acceptons les cartes bancaires (Visa, Mastercard, American Express) et PayPal. Tous les paiements sont traités de manière sécurisée via notre partenaire Stripe.</p>
+                    <div class="dk-faq-answer">
+                        <p>Oui, toutes les mises à jour mineures sont incluses gratuitement. Vous recevrez un email lorsqu'une nouvelle version de votre produit est disponible avec un nouveau lien de téléchargement.</p>
                     </div>
                 </div>
 
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Puis-je obtenir une facture ?
-                        <i data-lucide="chevron-down"></i>
+                <div class="dk-faq-item">
+                    <button class="dk-faq-trigger">
+                        <span>Puis-je utiliser les produits à des fins commerciales ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Oui, une facture est automatiquement générée et envoyée avec l'email de confirmation de commande. Si vous avez besoin d'une facture avec des informations spécifiques (nom d'entreprise, TVA), contactez notre support.</p>
-                    </div>
-                </div>
-
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Les prix incluent-ils la TVA ?
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="dk-accordion-content">
-                        <p>Oui, tous les prix affichés sur Digital Kappa incluent la TVA applicable au taux en vigueur (20% pour la France). Le montant de la TVA est détaillé sur votre facture.</p>
-                    </div>
-                </div>
-
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Comment obtenir un remboursement ?
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="dk-accordion-content">
-                        <p>Nous offrons une garantie satisfait ou remboursé de 14 jours. Si le produit ne correspond pas à vos attentes, envoyez un email à support@digitalkappa.com avec votre numéro de commande et les raisons de votre insatisfaction. Le remboursement sera effectué dans un délai de 7 jours ouvrés.</p>
+                    <div class="dk-faq-answer">
+                        <p>Cela dépend de la licence du produit. Chaque produit indique clairement si une licence commerciale est incluse ou disponible. Consultez les détails de la licence sur la page du produit.</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Support Section -->
-        <div id="support">
-            <div class="dk-flex dk-items-center dk-gap-4 dk-mb-6">
-                <div class="dk-card-feature-icon">
-                    <i data-lucide="headphones"></i>
-                </div>
-                <h2 style="margin: 0;">Support et assistance</h2>
-            </div>
+        <div class="dk-faq-section" data-category="support">
+            <h3 class="dk-faq-section-title">Support</h3>
 
-            <div class="dk-accordion">
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Comment contacter le support ?
-                        <i data-lucide="chevron-down"></i>
+            <div class="dk-faq-accordion">
+                <div class="dk-faq-item active">
+                    <button class="dk-faq-trigger">
+                        <span>Comment obtenir de l'aide ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Vous pouvez nous contacter par email à support@digitalkappa.com ou via notre page de contact. Notre équipe répond généralement dans un délai de 48 heures ouvrées.</p>
+                    <div class="dk-faq-answer">
+                        <p>Notre équipe support est disponible par email à support@digitalkappa.com. Nous répondons généralement sous 24h ouvrées. Vous pouvez également consulter notre documentation en ligne.</p>
                     </div>
                 </div>
 
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Le support technique est-il inclus ?
-                        <i data-lucide="chevron-down"></i>
+                <div class="dk-faq-item">
+                    <button class="dk-faq-trigger">
+                        <span>Proposez-vous un support technique ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Oui, tous nos produits incluent un support technique par email. Nous vous aidons pour les questions d'installation, de compatibilité et d'utilisation du produit. La durée du support varie selon le produit (généralement 3 à 6 mois).</p>
+                    <div class="dk-faq-answer">
+                        <p>Oui, tous nos produits incluent un support technique par email. Nous vous aidons pour les questions d'installation, de compatibilité et d'utilisation du produit.</p>
                     </div>
                 </div>
 
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Les mises à jour sont-elles gratuites ?
-                        <i data-lucide="chevron-down"></i>
+                <div class="dk-faq-item">
+                    <button class="dk-faq-trigger">
+                        <span>Quelle est votre politique de remboursement ?</span>
+                        <i data-lucide="plus"></i>
                     </button>
-                    <div class="dk-accordion-content">
-                        <p>Oui, toutes les mises à jour mineures (corrections de bugs, améliorations) sont incluses gratuitement et envoyées automatiquement par email. Les mises à jour majeures (nouvelles versions) peuvent faire l'objet d'un tarif préférentiel pour les clients existants.</p>
-                    </div>
-                </div>
-
-                <div class="dk-accordion-item">
-                    <button class="dk-accordion-trigger">
-                        Quelle est la licence d'utilisation des produits ?
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="dk-accordion-content">
-                        <p>Chaque achat vous confère une licence d'utilisation non exclusive et non transférable. Selon le produit, la licence peut être personnelle (usage personnel uniquement) ou commerciale (utilisation dans des projets clients). Les détails de la licence sont indiqués sur chaque page produit.</p>
+                    <div class="dk-faq-answer">
+                        <p>Nous offrons une garantie satisfait ou remboursé de 14 jours sur tous nos produits. Si vous n'êtes pas satisfait, contactez notre support pour obtenir un remboursement intégral.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
-</section>
-
-<!-- Contact CTA -->
-<section class="dk-section dk-section-light">
-    <div class="dk-container">
-        <div style="background: linear-gradient(135deg, var(--dk-bg-dark), #3a3d42); border-radius: var(--dk-radius-2xl); padding: var(--dk-space-12); text-align: center; max-width: 800px; margin: 0 auto;">
-            <div class="dk-card-feature-icon" style="margin: 0 auto var(--dk-space-4); background: rgba(210, 163, 11, 0.2);">
-                <i data-lucide="message-circle" style="color: var(--dk-gold);"></i>
-            </div>
-            <h2 style="color: #fff; margin-bottom: var(--dk-space-4);">Vous n'avez pas trouvé votre réponse ?</h2>
-            <p style="color: rgba(255,255,255,0.7); margin-bottom: var(--dk-space-6);">Notre équipe est disponible pour répondre à toutes vos questions.</p>
-            <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="dk-btn dk-btn-primary dk-btn-lg">
+        <!-- Contact CTA -->
+        <div class="dk-faq-cta">
+            <h3>Vous ne trouvez pas votre réponse ?</h3>
+            <p>Notre équipe est là pour vous aider</p>
+            <a href="mailto:contact@digitalkappa.com" class="dk-btn dk-btn-primary">
                 <i data-lucide="mail"></i>
-                Nous contacter
+                Envoyer un email
             </a>
         </div>
+
     </div>
 </section>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Accordion functionality
-    const accordionItems = document.querySelectorAll('.dk-accordion-item');
-    accordionItems.forEach(item => {
-        const trigger = item.querySelector('.dk-accordion-trigger');
+    // FAQ Accordion functionality
+    const faqItems = document.querySelectorAll('.dk-faq-item');
+    faqItems.forEach(item => {
+        const trigger = item.querySelector('.dk-faq-trigger');
         trigger.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
             // Close all items in same accordion
-            const accordion = item.closest('.dk-accordion');
-            accordion.querySelectorAll('.dk-accordion-item').forEach(i => i.classList.remove('active'));
+            const accordion = item.closest('.dk-faq-accordion');
+            accordion.querySelectorAll('.dk-faq-item').forEach(i => i.classList.remove('active'));
             // Open clicked item if it wasn't active
             if (!isActive) {
                 item.classList.add('active');
             }
+        });
+    });
+
+    // Filter tabs functionality
+    const tabs = document.querySelectorAll('.dk-faq-tab');
+    const sections = document.querySelectorAll('.dk-faq-section');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Update active tab
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Filter sections
+            const filter = tab.dataset.filter;
+            sections.forEach(section => {
+                if (filter === 'all' || section.dataset.category === filter) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
         });
     });
 });

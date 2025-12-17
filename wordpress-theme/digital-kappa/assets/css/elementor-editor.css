@@ -1,0 +1,99 @@
+/**
+ * Digital Kappa - Elementor Editor Styles
+ *
+ * These styles are loaded in the Elementor editor
+ *
+ * @package Digital_Kappa
+ */
+
+/* ==========================================================================
+   Typography Preview
+   ========================================================================== */
+
+.elementor-editor-active h1,
+.elementor-editor-active h2,
+.elementor-editor-active h3,
+.elementor-editor-active h4 {
+    font-family: 'Merriweather', serif;
+}
+
+.elementor-editor-active body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* ==========================================================================
+   Color Swatches
+   ========================================================================== */
+
+.elementor-picker__swatch[data-value="#d2a30b"]::before {
+    content: 'Gold';
+}
+
+.elementor-picker__swatch[data-value="#b8900a"]::before {
+    content: 'Gold Hover';
+}
+
+/* ==========================================================================
+   Widget Preview Styles
+   ========================================================================== */
+
+/* Product Card Widget */
+.elementor-widget-dk-product-card .elementor-widget-container {
+    padding: var(--dk-space-4);
+}
+
+/* Feature Card Widget */
+.elementor-widget-dk-feature-card .elementor-widget-container {
+    text-align: center;
+}
+
+/* ==========================================================================
+   Section Indicators
+   ========================================================================== */
+
+.elementor-section[data-element_type="section"]::before {
+    border-color: var(--dk-gold) !important;
+}
+
+.elementor-section.elementor-section-dk-dark {
+    background: var(--dk-bg-dark);
+}
+
+.elementor-section.elementor-section-dk-light {
+    background: var(--dk-bg-light);
+}
+
+/* ==========================================================================
+   Navigator Labels
+   ========================================================================== */
+
+.elementor-navigator__item[data-element_type="widget"] .elementor-navigator__element__title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+}
+
+/* ==========================================================================
+   Panel Styles
+   ========================================================================== */
+
+#elementor-panel-category-digital-kappa {
+    border-left: 3px solid var(--dk-gold);
+}
+
+#elementor-panel-category-digital-kappa .elementor-panel-category-title {
+    color: var(--dk-gold);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Responsive Previews
+   ========================================================================== */
+
+.elementor-device-tablet .dk-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.elementor-device-mobile .dk-grid-3,
+.elementor-device-mobile .dk-grid-2 {
+    grid-template-columns: 1fr;
+}

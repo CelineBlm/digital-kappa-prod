@@ -26,204 +26,172 @@ get_header();
     </main>
 </div>
 
-<!-- Header de confirmation -->
-<section style="background: var(--dk-bg-white); border-bottom: 1px solid rgba(0,0,0,0.05);">
-    <div class="dk-container" style="max-width: 900px; padding: var(--dk-space-12) var(--dk-space-4);">
-        <div class="dk-text-center">
+<!-- Confirmation Hero -->
+<section class="dk-confirm-hero">
+    <div class="dk-container dk-container-confirm">
+        <div class="dk-confirm-hero-content">
             <!-- Success Icon -->
-            <div class="dk-success-icon">
-                <i data-lucide="check-circle"></i>
+            <div class="dk-confirm-success-icon">
+                <i data-lucide="check"></i>
             </div>
 
             <!-- Title -->
-            <h1 style="margin-bottom: var(--dk-space-2);">Commande confirmée !</h1>
+            <h1 class="dk-confirm-title">Commande confirmée !</h1>
 
-            <!-- Message -->
-            <p class="dk-text-secondary" style="font-size: var(--dk-text-lg);">
-                Merci pour votre achat. Votre commande a été traitée avec succès.
-            </p>
+            <!-- Subtitle -->
+            <p class="dk-confirm-subtitle">Merci pour votre achat. Votre commande a été traitée avec succès.</p>
 
-            <!-- Order Number -->
-            <div style="display: inline-flex; align-items: center; gap: var(--dk-space-2); background: rgba(210, 163, 11, 0.1); padding: var(--dk-space-2) var(--dk-space-4); border-radius: var(--dk-radius-lg); margin-top: var(--dk-space-6);">
-                <i data-lucide="file-text" style="width: 20px; height: 20px; color: var(--dk-gold);"></i>
-                <span style="font-size: var(--dk-text-sm); font-weight: 600; color: var(--dk-gold);">
-                    Commande n° DK-<?php echo time(); ?>
-                </span>
+            <!-- Order Number Badge -->
+            <div class="dk-confirm-order-badge">
+                <i data-lucide="file-text"></i>
+                <span>Commande n° DK-1766007372378</span>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Main Content -->
-<section class="dk-section dk-section-gray">
-    <div class="dk-container" style="max-width: 900px;">
-        <div class="dk-grid" style="grid-template-columns: 2fr 1fr; gap: var(--dk-space-8);">
-
-            <!-- Main Column -->
-            <div style="display: flex; flex-direction: column; gap: var(--dk-space-8);">
-
-                <!-- Email Confirmation -->
-                <div style="background: var(--dk-bg-white); border: 1px solid rgba(0,0,0,0.05); border-radius: var(--dk-radius-2xl); padding: var(--dk-space-6); box-shadow: var(--dk-shadow-sm);">
-                    <div class="dk-flex dk-items-center dk-gap-4">
-                        <div style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: #dbeafe; border-radius: var(--dk-radius-xl);">
-                            <i data-lucide="mail" style="width: 24px; height: 24px; color: #2563eb;"></i>
+<section class="dk-confirm-main">
+    <div class="dk-container dk-container-confirm">
+        <div class="dk-confirm-grid">
+            <!-- Left Column -->
+            <div class="dk-confirm-left">
+                <!-- Email Confirmation Card -->
+                <div class="dk-confirm-card">
+                    <div class="dk-confirm-email-row">
+                        <div class="dk-confirm-email-icon">
+                            <i data-lucide="mail"></i>
                         </div>
-                        <div style="flex: 1;">
-                            <h3 style="margin-bottom: var(--dk-space-1);">Email de confirmation envoyé</h3>
-                            <p class="dk-text-secondary" style="font-size: var(--dk-text-sm); margin: 0;">
-                                Un email de confirmation a été envoyé à <strong>client@example.com</strong> avec le récapitulatif de votre commande et les liens de téléchargement.
-                            </p>
+                        <div class="dk-confirm-email-content">
+                            <h3 class="dk-confirm-email-title">Email de confirmation envoyé</h3>
+                            <p class="dk-confirm-email-text">Un email de confirmation a été envoyé à <strong>client@example.com</strong> avec le récapitulatif de votre commande et les liens de téléchargement.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Products -->
-                <div style="background: var(--dk-bg-white); border: 1px solid rgba(0,0,0,0.05); border-radius: var(--dk-radius-2xl); padding: var(--dk-space-6); box-shadow: var(--dk-shadow-sm);">
-                    <h2 style="font-size: var(--dk-text-lg); margin-bottom: var(--dk-space-6);">Vos produits</h2>
+                <!-- Products Card -->
+                <div class="dk-confirm-card">
+                    <h2 class="dk-confirm-card-title">Vos produits</h2>
 
-                    <div style="background: var(--dk-bg-gray-50); border: 1px solid rgba(0,0,0,0.05); border-radius: var(--dk-radius-xl); padding: var(--dk-space-4);">
-                        <div class="dk-flex dk-items-center dk-justify-between">
-                            <div>
-                                <h3 style="margin-bottom: var(--dk-space-1);">Guide du développeur moderne</h3>
-                                <p class="dk-text-secondary" style="font-size: var(--dk-text-sm); margin: 0;">Prix : 59 €</p>
-                            </div>
-                            <a href="#" class="dk-btn dk-btn-primary dk-btn-sm">
-                                <i data-lucide="download" style="width: 16px; height: 16px;"></i>
-                                Télécharger
-                            </a>
+                    <div class="dk-confirm-product-row">
+                        <div class="dk-confirm-product-info">
+                            <h3 class="dk-confirm-product-name">Design System Pro</h3>
+                            <p class="dk-confirm-product-price">Prix : 149 €</p>
                         </div>
+                        <a href="#" class="dk-btn dk-btn-primary dk-btn-sm">
+                            <i data-lucide="download"></i>
+                            Télécharger
+                        </a>
                     </div>
 
-                    <!-- Download Info -->
-                    <div style="background: #dbeafe; border-radius: var(--dk-radius-lg); padding: var(--dk-space-4); margin-top: var(--dk-space-6);">
-                        <div class="dk-flex dk-gap-3">
-                            <i data-lucide="download" style="width: 20px; height: 20px; color: #2563eb; flex-shrink: 0;"></i>
-                            <div style="font-size: var(--dk-text-sm); color: #1e3a5f;">
-                                <p style="font-weight: 600; margin-bottom: var(--dk-space-1);">Accès à vie à vos téléchargements</p>
-                                <p style="margin: 0; color: #1e40af;">
-                                    Vous pouvez télécharger vos produits autant de fois que vous le souhaitez. Les liens n'expirent jamais et vous recevrez toutes les futures mises à jour gratuitement.
-                                </p>
-                            </div>
+                    <!-- Download Info Box -->
+                    <div class="dk-confirm-download-info">
+                        <i data-lucide="cloud-download"></i>
+                        <div class="dk-confirm-download-text">
+                            <p class="dk-confirm-download-title">Accès à vie à vos téléchargements</p>
+                            <p class="dk-confirm-download-desc">Vous pouvez télécharger vos produits autant de fois que vous le souhaitez. Les liens n'expirent jamais et vous recevrez toutes les futures mises à jour gratuitement.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Next Steps -->
-                <div style="background: var(--dk-bg-white); border: 1px solid rgba(0,0,0,0.05); border-radius: var(--dk-radius-2xl); padding: var(--dk-space-6); box-shadow: var(--dk-shadow-sm);">
-                    <h2 style="font-size: var(--dk-text-lg); margin-bottom: var(--dk-space-6);">Prochaines étapes</h2>
+                <!-- Next Steps Card -->
+                <div class="dk-confirm-card">
+                    <h2 class="dk-confirm-card-title">Prochaines étapes</h2>
 
-                    <div style="display: flex; flex-direction: column; gap: var(--dk-space-4);">
-                        <div class="dk-flex dk-gap-4">
-                            <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: var(--dk-gold); color: #fff; border-radius: var(--dk-radius-full); font-weight: 600; font-size: var(--dk-text-sm); flex-shrink: 0;">
-                                1
-                            </div>
-                            <div>
-                                <h3 style="margin-bottom: var(--dk-space-1);">Consultez votre email</h3>
-                                <p class="dk-text-secondary" style="font-size: var(--dk-text-sm); margin: 0;">
-                                    Un email de confirmation avec tous les détails et liens de téléchargement vous a été envoyé.
-                                </p>
+                    <div class="dk-confirm-steps">
+                        <div class="dk-confirm-step">
+                            <div class="dk-confirm-step-number">1</div>
+                            <div class="dk-confirm-step-content">
+                                <h3 class="dk-confirm-step-title">Consultez votre email</h3>
+                                <p class="dk-confirm-step-text">Un email de confirmation avec tous les détails et liens de téléchargement vous a été envoyé.</p>
                             </div>
                         </div>
 
-                        <div class="dk-flex dk-gap-4">
-                            <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: var(--dk-gold); color: #fff; border-radius: var(--dk-radius-full); font-weight: 600; font-size: var(--dk-text-sm); flex-shrink: 0;">
-                                2
-                            </div>
-                            <div>
-                                <h3 style="margin-bottom: var(--dk-space-1);">Téléchargez vos produits</h3>
-                                <p class="dk-text-secondary" style="font-size: var(--dk-text-sm); margin: 0;">
-                                    Cliquez sur les boutons de téléchargement ci-dessus ou utilisez les liens dans votre email.
-                                </p>
+                        <div class="dk-confirm-step">
+                            <div class="dk-confirm-step-number">2</div>
+                            <div class="dk-confirm-step-content">
+                                <h3 class="dk-confirm-step-title">Téléchargez vos produits</h3>
+                                <p class="dk-confirm-step-text">Cliquez sur les boutons de téléchargement ci-dessus ou utilisez les liens dans votre email.</p>
                             </div>
                         </div>
 
-                        <div class="dk-flex dk-gap-4">
-                            <div style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: var(--dk-gold); color: #fff; border-radius: var(--dk-radius-full); font-weight: 600; font-size: var(--dk-text-sm); flex-shrink: 0;">
-                                3
-                            </div>
-                            <div>
-                                <h3 style="margin-bottom: var(--dk-space-1);">Commencez à utiliser</h3>
-                                <p class="dk-text-secondary" style="font-size: var(--dk-text-sm); margin: 0;">
-                                    Suivez la documentation incluse pour démarrer rapidement avec vos nouveaux produits.
-                                </p>
+                        <div class="dk-confirm-step">
+                            <div class="dk-confirm-step-number">3</div>
+                            <div class="dk-confirm-step-content">
+                                <h3 class="dk-confirm-step-title">Commencez à utiliser</h3>
+                                <p class="dk-confirm-step-text">Suivez la documentation incluse pour démarrer rapidement avec vos nouveaux produits.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Sidebar -->
-            <div style="display: flex; flex-direction: column; gap: var(--dk-space-6);">
+            <!-- Right Column -->
+            <div class="dk-confirm-right">
+                <!-- Order Summary Card -->
+                <div class="dk-confirm-card">
+                    <h3 class="dk-confirm-summary-title">Récapitulatif</h3>
 
-                <!-- Order Summary -->
-                <div style="background: var(--dk-bg-white); border: 1px solid rgba(0,0,0,0.05); border-radius: var(--dk-radius-2xl); padding: var(--dk-space-6); box-shadow: var(--dk-shadow-sm);">
-                    <h3 style="margin-bottom: var(--dk-space-4);">Récapitulatif</h3>
-
-                    <div style="border-bottom: 1px solid var(--dk-border-gray); padding-bottom: var(--dk-space-4); margin-bottom: var(--dk-space-4);">
-                        <div class="dk-flex dk-justify-between dk-mb-3" style="font-size: var(--dk-text-sm);">
-                            <span class="dk-text-secondary">Commande n°</span>
-                            <span style="font-weight: 600;">DK-<?php echo time(); ?></span>
+                    <div class="dk-confirm-summary-rows">
+                        <div class="dk-confirm-summary-row">
+                            <span class="dk-confirm-summary-label">Commande n°</span>
+                            <span class="dk-confirm-summary-value">DK-176600737<br>2378</span>
                         </div>
-                        <div class="dk-flex dk-justify-between dk-mb-3" style="font-size: var(--dk-text-sm);">
-                            <span class="dk-text-secondary">Date</span>
-                            <span style="font-weight: 600;"><?php echo date_i18n('j F Y, H:i'); ?></span>
+                        <div class="dk-confirm-summary-row">
+                            <span class="dk-confirm-summary-label">Date</span>
+                            <span class="dk-confirm-summary-value">17 décembre 2025 à<br>22:36</span>
                         </div>
-                        <div class="dk-flex dk-justify-between" style="font-size: var(--dk-text-sm);">
-                            <span class="dk-text-secondary">Email</span>
-                            <span style="font-weight: 600; max-width: 150px; overflow: hidden; text-overflow: ellipsis;">client@example.com</span>
+                        <div class="dk-confirm-summary-row">
+                            <span class="dk-confirm-summary-label">Email</span>
+                            <span class="dk-confirm-summary-value"></span>
                         </div>
                     </div>
 
-                    <div class="dk-flex dk-justify-between">
-                        <span style="font-weight: 600;">Total</span>
-                        <span style="font-size: var(--dk-text-2xl); font-weight: 700; color: var(--dk-gold);">59 €</span>
+                    <div class="dk-confirm-summary-total">
+                        <span class="dk-confirm-total-label">Total</span>
+                        <span class="dk-confirm-total-value">149 €</span>
                     </div>
                 </div>
 
-                <!-- Support -->
-                <div style="background: var(--dk-bg-white); border: 1px solid rgba(0,0,0,0.05); border-radius: var(--dk-radius-2xl); padding: var(--dk-space-6); box-shadow: var(--dk-shadow-sm);">
-                    <div style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: #f3e8ff; border-radius: var(--dk-radius-xl); margin-bottom: var(--dk-space-4);">
-                        <i data-lucide="help-circle" style="width: 24px; height: 24px; color: #9333ea;"></i>
+                <!-- Support Card -->
+                <div class="dk-confirm-card dk-confirm-support-card">
+                    <div class="dk-confirm-support-icon">
+                        <i data-lucide="help-circle"></i>
                     </div>
-
-                    <h3 style="margin-bottom: var(--dk-space-2);">Besoin d'aide ?</h3>
-                    <p class="dk-text-secondary" style="font-size: var(--dk-text-sm); margin-bottom: var(--dk-space-4);">
-                        Notre équipe support est là pour vous aider.
-                    </p>
-
-                    <a href="mailto:support@digitalkappa.com" class="dk-btn dk-btn-secondary dk-btn-sm dk-btn-full">
-                        <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                    <h3 class="dk-confirm-support-title">Besoin d'aide ?</h3>
+                    <p class="dk-confirm-support-text">Notre équipe support est là pour vous aider.</p>
+                    <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="dk-btn dk-btn-outline dk-btn-sm dk-btn-full">
+                        <i data-lucide="mail"></i>
                         Contacter le support
                     </a>
                 </div>
 
                 <!-- Guarantees -->
-                <div style="background: var(--dk-bg-gray-50); border: 1px solid rgba(0,0,0,0.05); border-radius: var(--dk-radius-2xl); padding: var(--dk-space-6);">
-                    <h3 style="font-size: var(--dk-text-sm); font-weight: 600; margin-bottom: var(--dk-space-4);">Vos garanties</h3>
-
-                    <div style="display: flex; flex-direction: column; gap: var(--dk-space-3); font-size: var(--dk-text-sm); color: var(--dk-text-secondary);">
-                        <div class="dk-flex dk-items-center dk-gap-2">
-                            <i data-lucide="check-circle" style="width: 16px; height: 16px; color: #16a34a;"></i>
+                <div class="dk-confirm-guarantees">
+                    <h3 class="dk-confirm-guarantees-title">Vos garanties</h3>
+                    <ul class="dk-confirm-guarantees-list">
+                        <li>
+                            <i data-lucide="check"></i>
                             <span>Téléchargements illimités</span>
-                        </div>
-                        <div class="dk-flex dk-items-center dk-gap-2">
-                            <i data-lucide="check-circle" style="width: 16px; height: 16px; color: #16a34a;"></i>
+                        </li>
+                        <li>
+                            <i data-lucide="check"></i>
                             <span>Mises à jour gratuites</span>
-                        </div>
-                        <div class="dk-flex dk-items-center dk-gap-2">
-                            <i data-lucide="check-circle" style="width: 16px; height: 16px; color: #16a34a;"></i>
+                        </li>
+                        <li>
+                            <i data-lucide="check"></i>
                             <span>Support technique inclus</span>
-                        </div>
-                        <div class="dk-flex dk-items-center dk-gap-2">
-                            <i data-lucide="check-circle" style="width: 16px; height: 16px; color: #16a34a;"></i>
+                        </li>
+                        <li>
+                            <i data-lucide="check"></i>
                             <span>Satisfait ou remboursé 14 jours</span>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- Return Button -->
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="dk-btn dk-btn-primary dk-btn-full">
-                    <i data-lucide="home" style="width: 20px; height: 20px;"></i>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="dk-btn dk-btn-primary dk-btn-full dk-confirm-return-btn">
+                    <i data-lucide="home"></i>
                     Retour à l'accueil
                 </a>
             </div>
@@ -236,19 +204,11 @@ get_header();
     <div class="dk-cta-content">
         <h2>Découvrez nos autres produits</h2>
         <p>Explorez notre catalogue complet de produits digitaux premium</p>
-        <a href="<?php echo esc_url(home_url('/tous-nos-produits/')); ?>" class="dk-btn dk-btn-outline-white dk-btn-lg">
+        <a href="<?php echo esc_url(home_url('/tous-nos-produits/')); ?>" class="dk-btn dk-btn-outline-white">
             Voir tous les produits
         </a>
     </div>
 </section>
-
-<style>
-@media (max-width: 1023px) {
-    .dk-grid[style*="grid-template-columns: 2fr 1fr"] {
-        grid-template-columns: 1fr !important;
-    }
-}
-</style>
 
 <?php
 get_footer();

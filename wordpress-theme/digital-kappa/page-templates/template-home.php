@@ -12,22 +12,22 @@ get_header();
 $is_elementor = digital_kappa_is_elementor_page();
 ?>
 
-<?php if ($is_elementor) : ?>
-    <!-- Elementor Content -->
-    <div id="primary" class="dk-content-area">
-        <main id="main" class="dk-site-main">
-            <?php
-            while (have_posts()) :
-                the_post();
-                the_content();
-            endwhile;
-            ?>
-        </main>
-    </div>
-<?php else : ?>
-    <!-- Default Theme Content -->
+<!-- Elementor Content Area (always present for Elementor detection) -->
+<div id="primary" class="dk-content-area">
+    <main id="main" class="dk-site-main">
+        <?php
+        while (have_posts()) :
+            the_post();
+            the_content();
+        endwhile;
+        ?>
+    </main>
+</div>
 
-    <!-- Hero Section -->
+<?php if (!$is_elementor) : ?>
+<!-- Default Theme Content (shown only when NOT using Elementor) -->
+
+<!-- Hero Section -->
     <section class="dk-hero-home">
         <div class="dk-container">
             <div class="dk-hero-grid">

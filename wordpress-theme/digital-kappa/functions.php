@@ -207,6 +207,38 @@ function digital_kappa_elementor_support() {
 add_action('after_setup_theme', 'digital_kappa_elementor_support');
 
 /**
+ * Check if current page is built with Elementor
+ *
+ * @param int|null $post_id Post ID (optional, defaults to current post)
+ * @return bool True if page is built with Elementor
+ */
+function digital_kappa_is_elementor_page($post_id = null) {
+    if (!$post_id) {
+        $post_id = get_the_ID();
+    }
+
+    if (!$post_id) {
+        return false;
+    }
+
+    // Check if Elementor is loaded
+    if (!did_action('elementor/loaded')) {
+        return false;
+    }
+
+    // Check if this page was built with Elementor
+    $elementor_data = get_post_meta($post_id, '_elementor_data', true);
+    $elementor_edit_mode = get_post_meta($post_id, '_elementor_edit_mode', true);
+
+    // Return true if page has Elementor data and is not empty
+    if ($elementor_edit_mode === 'builder' && !empty($elementor_data) && $elementor_data !== '[]') {
+        return true;
+    }
+
+    return false;
+}
+
+/**
  * Create pages on theme activation
  */
 function digital_kappa_create_pages() {

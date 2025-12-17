@@ -7,24 +7,18 @@
  */
 
 get_header();
+
+// Check if page is built with Elementor
+$is_elementor = digital_kappa_is_elementor_page();
 ?>
 
-<div id="primary" class="dk-content-area">
-    <main id="main" class="dk-site-main">
-        <?php
-        while (have_posts()) :
-            the_post();
-            ?>
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                <div class="dk-entry-content">
-                    <?php the_content(); ?>
-                </div>
-            </article>
-            <?php
-        endwhile;
-        ?>
-    </main>
-</div>
+<?php if ($is_elementor) : ?>
+    <div id="primary" class="dk-content-area">
+        <main id="main" class="dk-site-main">
+            <?php while (have_posts()) : the_post(); the_content(); endwhile; ?>
+        </main>
+    </div>
+<?php else : ?>
 
 <!-- Hero Section -->
 <section class="dk-section dk-hero dk-hero-light" style="padding-top: var(--dk-space-12); padding-bottom: var(--dk-space-8);">
@@ -105,6 +99,8 @@ get_header();
 
     </div>
 </section>
+
+<?php endif; ?>
 
 <?php
 get_footer();

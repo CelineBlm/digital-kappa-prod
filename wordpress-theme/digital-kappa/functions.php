@@ -343,10 +343,8 @@ function digital_kappa_create_pages() {
                     update_post_meta($page_id, '_elementor_edit_mode', 'builder');
                     update_post_meta($page_id, '_elementor_template_type', 'wp-page');
                     update_post_meta($page_id, '_elementor_version', '3.33.0');
-                    update_post_meta($page_id, '_elementor_page_settings', wp_slash(wp_json_encode(array(
-                        'hide_title' => '',
-                        'template' => 'elementor_header_footer',
-                    ))));
+                    // Page settings must be an array, not JSON
+                    update_post_meta($page_id, '_elementor_page_settings', array());
 
                     // Clear Elementor cache for this page
                     delete_post_meta($page_id, '_elementor_css');
@@ -864,10 +862,8 @@ function digital_kappa_regenerate_elementor_data() {
                 update_post_meta($page->ID, '_elementor_edit_mode', 'builder');
                 update_post_meta($page->ID, '_elementor_template_type', 'wp-page');
                 update_post_meta($page->ID, '_elementor_version', '3.33.0');
-                update_post_meta($page->ID, '_elementor_page_settings', wp_slash(wp_json_encode(array(
-                    'hide_title' => '',
-                    'template' => 'elementor_header_footer',
-                ))));
+                // Page settings must be an array, not JSON
+                update_post_meta($page->ID, '_elementor_page_settings', array());
                 delete_post_meta($page->ID, '_elementor_css');
                 delete_post_meta($page->ID, '_elementor_page_assets');
 

@@ -9,6 +9,23 @@
 get_header();
 ?>
 
+<div id="primary" class="dk-content-area">
+    <main id="main" class="dk-site-main">
+        <?php
+        while (have_posts()) :
+            the_post();
+            ?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <div class="dk-entry-content">
+                    <?php the_content(); ?>
+                </div>
+            </article>
+            <?php
+        endwhile;
+        ?>
+    </main>
+</div>
+
 <!-- Main Checkout Section -->
 <section class="dk-section dk-section-light">
     <div class="dk-container" style="max-width: 1100px;">

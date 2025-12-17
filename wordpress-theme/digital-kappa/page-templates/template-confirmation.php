@@ -9,6 +9,23 @@
 get_header();
 ?>
 
+<div id="primary" class="dk-content-area">
+    <main id="main" class="dk-site-main">
+        <?php
+        while (have_posts()) :
+            the_post();
+            ?>
+            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <div class="dk-entry-content">
+                    <?php the_content(); ?>
+                </div>
+            </article>
+            <?php
+        endwhile;
+        ?>
+    </main>
+</div>
+
 <!-- Header de confirmation -->
 <section style="background: var(--dk-bg-white); border-bottom: 1px solid rgba(0,0,0,0.05);">
     <div class="dk-container" style="max-width: 900px; padding: var(--dk-space-12) var(--dk-space-4);">

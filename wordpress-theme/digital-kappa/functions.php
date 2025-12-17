@@ -247,66 +247,69 @@ function digital_kappa_create_pages() {
         return;
     }
 
+    // Include Elementor templates
+    require_once DIGITAL_KAPPA_DIR . '/inc/elementor-templates.php';
+
     $pages = array(
         'accueil' => array(
             'title' => 'Accueil',
             'template' => 'page-templates/template-home.php',
-            'content' => digital_kappa_get_page_content('home'),
+            'elementor_type' => 'home',
         ),
         'tous-nos-produits' => array(
             'title' => 'Tous nos produits',
             'template' => 'page-templates/template-all-products.php',
-            'content' => digital_kappa_get_page_content('all-products'),
+            'elementor_type' => 'all-products',
         ),
         'comment-ca-marche' => array(
             'title' => 'Comment ça marche',
             'template' => 'page-templates/template-how-it-works.php',
-            'content' => digital_kappa_get_page_content('how-it-works'),
+            'elementor_type' => 'how-it-works',
         ),
         'faq' => array(
             'title' => 'FAQ',
             'template' => 'page-templates/template-faq.php',
-            'content' => digital_kappa_get_page_content('faq'),
+            'elementor_type' => 'faq',
         ),
         'a-propos' => array(
             'title' => 'À propos',
             'template' => 'page-templates/template-about.php',
-            'content' => digital_kappa_get_page_content('about'),
+            'elementor_type' => 'about',
         ),
         'contact' => array(
             'title' => 'Contact',
             'template' => 'page-templates/template-contact.php',
-            'content' => digital_kappa_get_page_content('contact'),
+            'elementor_type' => 'contact',
         ),
         'fiche-produit' => array(
             'title' => 'Fiche produit',
             'template' => 'page-templates/template-product-detail.php',
-            'content' => digital_kappa_get_page_content('product-detail'),
+            'elementor_type' => 'product-detail',
         ),
         'checkout' => array(
             'title' => 'Checkout',
             'template' => 'page-templates/template-checkout.php',
-            'content' => digital_kappa_get_page_content('checkout'),
+            'elementor_type' => 'checkout',
         ),
         'confirmation' => array(
             'title' => 'Confirmation de commande',
             'template' => 'page-templates/template-confirmation.php',
-            'content' => digital_kappa_get_page_content('confirmation'),
+            'elementor_type' => 'confirmation',
         ),
         'cgv' => array(
             'title' => 'Conditions Générales de Vente',
             'template' => 'page-templates/template-cgv.php',
-            'content' => digital_kappa_get_page_content('cgv'),
+            'elementor_type' => 'cgv',
         ),
         'mentions-legales' => array(
             'title' => 'Mentions Légales',
             'template' => 'page-templates/template-mentions-legales.php',
-            'content' => digital_kappa_get_page_content('mentions-legales'),
+            'elementor_type' => 'mentions-legales',
         ),
         'politique-de-confidentialite' => array(
             'title' => 'Politique de confidentialité',
             'template' => 'page-templates/template-privacy.php',
-            'content' => digital_kappa_get_page_content('privacy'),
+            'elementor_type' => 'privacy',
         ),
     );
 
@@ -318,7 +321,7 @@ function digital_kappa_create_pages() {
             $page_id = wp_insert_post(array(
                 'post_title'     => $page_data['title'],
                 'post_name'      => $slug,
-                'post_content'   => $page_data['content'],
+                'post_content'   => '',
                 'post_status'    => 'publish',
                 'post_type'      => 'page',
                 'post_author'    => 1,
@@ -326,7 +329,17 @@ function digital_kappa_create_pages() {
             ));
 
             if ($page_id && !is_wp_error($page_id)) {
+                // Set page template
                 update_post_meta($page_id, '_wp_page_template', $page_data['template']);
+
+                // Set Elementor data
+                $elementor_data = digital_kappa_get_elementor_template($page_data['elementor_type']);
+                if (!empty($elementor_data)) {
+                    update_post_meta($page_id, '_elementor_data', wp_json_encode($elementor_data));
+                    update_post_meta($page_id, '_elementor_edit_mode', 'builder');
+                    update_post_meta($page_id, '_elementor_template_type', 'wp-page');
+                    update_post_meta($page_id, '_elementor_version', '3.18.0');
+                }
 
                 // Set home page as front page
                 if ($slug === 'accueil') {

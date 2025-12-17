@@ -335,23 +335,27 @@ function digital_kappa_create_pages() {
                 // Set Elementor data
                 $elementor_data = digital_kappa_get_elementor_template($page_data['elementor_type']);
                 if (!empty($elementor_data)) {
-                    // Encode the data as JSON string
-                    $json_data = wp_json_encode($elementor_data);
+                    // Encode the data as JSON string with proper slashing for Elementor
+                    $json_data = wp_slash(wp_json_encode($elementor_data));
 
                     // Update all necessary Elementor meta fields
                     update_post_meta($page_id, '_elementor_data', $json_data);
                     update_post_meta($page_id, '_elementor_edit_mode', 'builder');
                     update_post_meta($page_id, '_elementor_template_type', 'wp-page');
                     update_post_meta($page_id, '_elementor_version', '3.33.0');
-                    update_post_meta($page_id, '_elementor_css', '');
+                    update_post_meta($page_id, '_elementor_page_settings', wp_slash(wp_json_encode(array(
+                        'hide_title' => '',
+                        'template' => 'elementor_header_footer',
+                    ))));
 
                     // Clear Elementor cache for this page
+                    delete_post_meta($page_id, '_elementor_css');
                     delete_post_meta($page_id, '_elementor_page_assets');
 
-                    // Update post content with a placeholder to indicate Elementor content
+                    // Update post content - empty for Elementor
                     wp_update_post(array(
                         'ID' => $page_id,
-                        'post_content' => '<!-- wp:paragraph --><p>Cette page est construite avec Elementor.</p><!-- /wp:paragraph -->',
+                        'post_content' => '',
                     ));
                 }
 
@@ -855,13 +859,23 @@ function digital_kappa_regenerate_elementor_data() {
         if ($page) {
             $elementor_data = digital_kappa_get_elementor_template($elementor_type);
             if (!empty($elementor_data)) {
-                $json_data = wp_json_encode($elementor_data);
+                $json_data = wp_slash(wp_json_encode($elementor_data));
                 update_post_meta($page->ID, '_elementor_data', $json_data);
                 update_post_meta($page->ID, '_elementor_edit_mode', 'builder');
                 update_post_meta($page->ID, '_elementor_template_type', 'wp-page');
                 update_post_meta($page->ID, '_elementor_version', '3.33.0');
-                update_post_meta($page->ID, '_elementor_css', '');
+                update_post_meta($page->ID, '_elementor_page_settings', wp_slash(wp_json_encode(array(
+                    'hide_title' => '',
+                    'template' => 'elementor_header_footer',
+                ))));
+                delete_post_meta($page->ID, '_elementor_css');
                 delete_post_meta($page->ID, '_elementor_page_assets');
+
+                // Clear post content
+                wp_update_post(array(
+                    'ID' => $page->ID,
+                    'post_content' => '',
+                ));
             }
         }
     }

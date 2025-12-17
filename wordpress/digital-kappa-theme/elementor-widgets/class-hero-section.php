@@ -122,14 +122,101 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'image',
+        $this->end_controls_section();
+
+        // Images Section for Category Cards
+        $this->start_controls_section(
+            'images_section',
             [
-                'label' => __('Image', 'digital-kappa'),
+                'label' => __('Images des catégories', 'digital-kappa'),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->add_control(
+            'image_applications',
+            [
+                'label' => __('Image Applications', 'digital-kappa'),
                 'type' => \Elementor\Controls_Manager::MEDIA,
                 'default' => [
                     'url' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
                 ],
+            ]
+        );
+
+        $this->add_control(
+            'label_applications',
+            [
+                'label' => __('Label Applications', 'digital-kappa'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Applications mobiles',
+            ]
+        );
+
+        $this->add_control(
+            'sublabel_applications',
+            [
+                'label' => __('Sous-label Applications', 'digital-kappa'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Applications prêtes à l\'emploi',
+            ]
+        );
+
+        $this->add_control(
+            'image_ebooks',
+            [
+                'label' => __('Image Ebooks', 'digital-kappa'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => [
+                    'url' => 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=300&fit=crop',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'label_ebooks',
+            [
+                'label' => __('Label Ebooks', 'digital-kappa'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Ebooks',
+            ]
+        );
+
+        $this->add_control(
+            'sublabel_ebooks',
+            [
+                'label' => __('Sous-label Ebooks', 'digital-kappa'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Guides & formations',
+            ]
+        );
+
+        $this->add_control(
+            'image_templates',
+            [
+                'label' => __('Image Templates', 'digital-kappa'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'default' => [
+                    'url' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'label_templates',
+            [
+                'label' => __('Label Templates', 'digital-kappa'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Templates',
+            ]
+        );
+
+        $this->add_control(
+            'sublabel_templates',
+            [
+                'label' => __('Sous-label Templates', 'digital-kappa'),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'Design & code',
             ]
         );
 
@@ -177,10 +264,10 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
 
                     <!-- Image Cards Grid -->
                     <div class="relative hidden lg:block">
-                        <!-- Main card - Applications mobiles -->
-                        <div class="relative rounded-2xl overflow-hidden shadow-xl mb-4" style="border: 1px solid #f0f2f5;">
-                            <?php if (!empty($settings['image']['url'])) : ?>
-                            <img src="<?php echo esc_url($settings['image']['url']); ?>" alt="Applications mobiles" class="w-full h-48 object-cover">
+                        <!-- Main card - Applications -->
+                        <a href="<?php echo esc_url(home_url('/categorie-produit/applications/')); ?>" class="block relative rounded-2xl overflow-hidden shadow-xl mb-4 group" style="border: 1px solid #f0f2f5;">
+                            <?php if (!empty($settings['image_applications']['url'])) : ?>
+                            <img src="<?php echo esc_url($settings['image_applications']['url']); ?>" alt="<?php echo esc_attr($settings['label_applications']); ?>" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                             <?php else : ?>
                             <div class="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600"></div>
                             <?php endif; ?>
@@ -192,31 +279,39 @@ class DK_Hero_Section extends \Elementor\Widget_Base {
                             </div>
                             <!-- Text -->
                             <div class="absolute bottom-4 left-4">
-                                <h3 class="text-white font-heading text-base">Applications mobiles</h3>
-                                <p class="text-white/70 text-xs font-body">Applications prêtes à l'emploi</p>
+                                <h3 class="text-white font-heading text-base"><?php echo esc_html($settings['label_applications']); ?></h3>
+                                <p class="text-white/70 text-xs font-body"><?php echo esc_html($settings['sublabel_applications']); ?></p>
                             </div>
-                        </div>
+                        </a>
 
                         <!-- Two smaller cards -->
                         <div class="grid grid-cols-2 gap-4">
                             <!-- Ebooks card -->
-                            <div class="relative rounded-2xl overflow-hidden shadow-xl h-56" style="border: 1px solid #f0f2f5;">
+                            <a href="<?php echo esc_url(home_url('/categorie-produit/ebooks/')); ?>" class="block relative rounded-2xl overflow-hidden shadow-xl h-56 group" style="border: 1px solid #f0f2f5;">
+                                <?php if (!empty($settings['image_ebooks']['url'])) : ?>
+                                <img src="<?php echo esc_url($settings['image_ebooks']['url']); ?>" alt="<?php echo esc_attr($settings['label_ebooks']); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <?php else : ?>
                                 <div class="w-full h-full bg-gradient-to-br from-amber-400 to-orange-500"></div>
+                                <?php endif; ?>
                                 <div class="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-900/15 to-transparent"></div>
                                 <div class="absolute bottom-3 left-3">
-                                    <h4 class="text-white font-heading text-sm">Ebooks</h4>
-                                    <p class="text-white/70 text-xs font-body">Guides & formations</p>
+                                    <h4 class="text-white font-heading text-sm"><?php echo esc_html($settings['label_ebooks']); ?></h4>
+                                    <p class="text-white/70 text-xs font-body"><?php echo esc_html($settings['sublabel_ebooks']); ?></p>
                                 </div>
-                            </div>
+                            </a>
                             <!-- Templates card -->
-                            <div class="relative rounded-2xl overflow-hidden shadow-xl h-56" style="border: 1px solid #f0f2f5;">
+                            <a href="<?php echo esc_url(home_url('/categorie-produit/templates/')); ?>" class="block relative rounded-2xl overflow-hidden shadow-xl h-56 group" style="border: 1px solid #f0f2f5;">
+                                <?php if (!empty($settings['image_templates']['url'])) : ?>
+                                <img src="<?php echo esc_url($settings['image_templates']['url']); ?>" alt="<?php echo esc_attr($settings['label_templates']); ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <?php else : ?>
                                 <div class="w-full h-full bg-gradient-to-br from-teal-400 to-cyan-500"></div>
+                                <?php endif; ?>
                                 <div class="absolute inset-0 bg-gradient-to-b from-gray-900/60 via-gray-900/15 to-transparent"></div>
                                 <div class="absolute bottom-3 left-3">
-                                    <h4 class="text-white font-heading text-sm">Templates</h4>
-                                    <p class="text-white/70 text-xs font-body">Design & code</p>
+                                    <h4 class="text-white font-heading text-sm"><?php echo esc_html($settings['label_templates']); ?></h4>
+                                    <p class="text-white/70 text-xs font-body"><?php echo esc_html($settings['sublabel_templates']); ?></p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

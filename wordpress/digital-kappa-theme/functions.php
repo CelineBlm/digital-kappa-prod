@@ -274,3 +274,95 @@ function dk_body_classes($classes) {
     return $classes;
 }
 add_filter('body_class', 'dk_body_classes');
+
+/**
+ * Create default pages on theme activation
+ */
+function dk_create_default_pages() {
+    $pages = array(
+        'tous-les-produits' => array(
+            'title'   => 'Tous les produits',
+            'content' => '[dk_product_grid]',
+        ),
+        'comment-ca-marche' => array(
+            'title'   => 'Comment ça marche',
+            'content' => '<!-- Elementor widget: DK Process Steps -->',
+        ),
+        'faq' => array(
+            'title'   => 'FAQ',
+            'content' => '<!-- Elementor widget: DK FAQ Accordion -->',
+        ),
+        'a-propos' => array(
+            'title'   => 'À propos',
+            'content' => '<p>Bienvenue sur Digital Kappa, votre marketplace de produits digitaux de qualité.</p>',
+        ),
+        'cgv' => array(
+            'title'   => 'Conditions Générales de Vente',
+            'content' => '<h2>Conditions Générales de Vente</h2><p>Veuillez lire attentivement ces conditions.</p>',
+        ),
+        'confidentialite' => array(
+            'title'   => 'Politique de Confidentialité',
+            'content' => '<h2>Politique de Confidentialité</h2><p>Votre vie privée est importante pour nous.</p>',
+        ),
+        'blog' => array(
+            'title'   => 'Blog',
+            'content' => '<!-- Blog posts will appear here -->',
+        ),
+    );
+
+    foreach ($pages as $slug => $page_data) {
+        // Check if page already exists
+        $existing_page = get_page_by_path($slug);
+
+        if (!$existing_page) {
+            wp_insert_post(array(
+                'post_title'   => $page_data['title'],
+                'post_name'    => $slug,
+                'post_content' => $page_data['content'],
+                'post_status'  => 'publish',
+                'post_type'    => 'page',
+            ));
+        }
+    }
+
+    // Create WooCommerce product categories
+    if (function_exists('wc_get_product')) {
+        $categories = array(
+            'ebooks' => 'Ebooks',
+            'applications' => 'Applications',
+            'templates' => 'Templates',
+        );
+
+        foreach ($categories as $slug => $name) {
+            if (!term_exists($slug, 'product_cat')) {
+                wp_insert_term($name, 'product_cat', array('slug' => $slug));
+            }
+        }
+    }
+}
+add_action('after_switch_theme', 'dk_create_default_pages');
+
+/**
+ * Also run on init once if pages don't exist (for existing installs)
+ */
+function dk_maybe_create_pages() {
+    if (get_option('dk_pages_created') !== 'yes') {
+        dk_create_default_pages();
+        update_option('dk_pages_created', 'yes');
+    }
+}
+add_action('init', 'dk_maybe_create_pages', 20);
+
+/**
+ * Setup WooCommerce shop page
+ */
+function dk_setup_woocommerce_pages() {
+    // Set "Tous les produits" as the shop page if WooCommerce is active
+    if (class_exists('WooCommerce')) {
+        $shop_page = get_page_by_path('tous-les-produits');
+        if ($shop_page && get_option('woocommerce_shop_page_id') != $shop_page->ID) {
+            update_option('woocommerce_shop_page_id', $shop_page->ID);
+        }
+    }
+}
+add_action('init', 'dk_setup_woocommerce_pages', 25);

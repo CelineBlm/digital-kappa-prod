@@ -1,0 +1,164 @@
+/**
+ * Digital Kappa Setup - Admin Styles
+ */
+
+.dk-setup-wrap {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.dk-setup-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.dk-setup-intro h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+.dk-setup-intro ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 30px;
+}
+
+.dk-setup-intro ul li {
+    padding: 10px 0;
+    font-size: 16px;
+    color: #4a5565;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dk-setup-intro ul li:last-child {
+    border-bottom: none;
+}
+
+.dk-setup-actions {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.dk-setup-actions .button-hero {
+    padding: 15px 40px !important;
+    font-size: 18px !important;
+    height: auto !important;
+    background: #d2a30b !important;
+    border-color: #b8900a !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease;
+}
+
+.dk-setup-actions .button-hero:hover {
+    background: #b8900a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(210, 163, 11, 0.3);
+}
+
+/* Progress */
+.dk-setup-progress {
+    margin: 30px 0;
+}
+
+.dk-progress-bar {
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.dk-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d2a30b, #f5c842);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.dk-progress-status {
+    text-align: center;
+    margin-top: 15px;
+    color: #4a5565;
+    font-size: 14px;
+}
+
+/* Complete */
+.dk-setup-complete {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.dk-setup-complete .dashicons-yes-alt {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    color: #22c55e;
+    margin-bottom: 20px;
+}
+
+.dk-setup-complete h2 {
+    font-size: 28px;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.dk-setup-complete > p {
+    color: #4a5565;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.dk-setup-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dk-setup-links .button {
+    padding: 10px 20px !important;
+    height: auto !important;
+    border-radius: 6px !important;
+}
+
+.dk-setup-links .button-primary {
+    background: #d2a30b !important;
+    border-color: #b8900a !important;
+}
+
+.dk-setup-links .button-primary:hover {
+    background: #b8900a !important;
+}
+
+.dk-reset-notice {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.dk-reset-notice .button-link-delete {
+    color: #dc2626;
+    text-decoration: none;
+}
+
+.dk-reset-notice .button-link-delete:hover {
+    color: #b91c1c;
+}
+
+/* Responsive */
+@media (max-width: 782px) {
+    .dk-setup-wrap {
+        margin: 20px;
+    }
+
+    .dk-setup-container {
+        padding: 20px;
+    }
+
+    .dk-setup-links {
+        flex-direction: column;
+    }
+}

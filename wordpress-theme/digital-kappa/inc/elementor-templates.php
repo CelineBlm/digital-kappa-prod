@@ -37,101 +37,156 @@ function digital_kappa_get_elementor_template($page_type) {
 }
 
 /**
- * Helper function to create a section
+ * Generate unique ID for Elementor elements (7 characters)
  */
-function dk_section($id, $content, $settings = array()) {
+function dk_uid() {
+    return substr(str_shuffle('abcdefghijklmnopqrstuvwxyz0123456789'), 0, 7);
+}
+
+/**
+ * Create a section element
+ */
+function dk_section($elements, $settings = array()) {
     $default_settings = array(
-        'background_background' => '',
-        'padding' => array('top' => '80', 'bottom' => '80', 'unit' => 'px'),
+        'layout' => 'boxed',
+        'content_width' => array('unit' => 'px', 'size' => 1200),
     );
 
     return array(
-        'id' => $id,
+        'id' => dk_uid(),
         'elType' => 'section',
         'settings' => array_merge($default_settings, $settings),
-        'elements' => $content,
+        'elements' => $elements,
+        'isInner' => false,
     );
 }
 
 /**
- * Helper function to create a column
+ * Create a column element
  */
-function dk_column($id, $content, $size = 100) {
+function dk_column($elements, $width = 100) {
     return array(
-        'id' => $id,
+        'id' => dk_uid(),
         'elType' => 'column',
-        'settings' => array('_column_size' => $size),
-        'elements' => $content,
+        'settings' => array(
+            '_column_size' => $width,
+            '_inline_size' => $width,
+        ),
+        'elements' => $elements,
+        'isInner' => false,
     );
 }
 
 /**
- * Helper function to create a heading widget
+ * Create a heading widget
  */
-function dk_heading($id, $title, $settings = array()) {
+function dk_heading($title, $tag = 'h2', $settings = array()) {
     $default_settings = array(
         'title' => $title,
-        'header_size' => 'h2',
+        'header_size' => $tag,
         'align' => 'left',
     );
 
     return array(
-        'id' => $id,
+        'id' => dk_uid(),
         'elType' => 'widget',
-        'widgetType' => 'heading',
         'settings' => array_merge($default_settings, $settings),
+        'elements' => array(),
+        'widgetType' => 'heading',
     );
 }
 
 /**
- * Helper function to create a text widget
+ * Create a text editor widget
  */
-function dk_text($id, $content, $settings = array()) {
+function dk_text($content, $settings = array()) {
+    $default_settings = array(
+        'editor' => $content,
+    );
+
     return array(
-        'id' => $id,
+        'id' => dk_uid(),
         'elType' => 'widget',
+        'settings' => array_merge($default_settings, $settings),
+        'elements' => array(),
         'widgetType' => 'text-editor',
-        'settings' => array_merge(array('editor' => $content), $settings),
     );
 }
 
 /**
- * Helper function to create a button widget
+ * Create a button widget
  */
-function dk_button($id, $text, $link = '#', $settings = array()) {
+function dk_button($text, $link = '#', $settings = array()) {
     $default_settings = array(
         'text' => $text,
-        'link' => array('url' => $link),
+        'link' => array(
+            'url' => $link,
+            'is_external' => '',
+            'nofollow' => '',
+        ),
         'button_type' => 'default',
+        'background_color' => '#d2a30b',
     );
 
     return array(
-        'id' => $id,
+        'id' => dk_uid(),
         'elType' => 'widget',
-        'widgetType' => 'button',
         'settings' => array_merge($default_settings, $settings),
+        'elements' => array(),
+        'widgetType' => 'button',
     );
 }
 
 /**
- * Helper function to create an image widget
+ * Create an image widget
  */
-function dk_image($id, $url, $settings = array()) {
+function dk_image($url, $settings = array()) {
+    $default_settings = array(
+        'image' => array(
+            'url' => $url,
+            'id' => '',
+        ),
+        'image_size' => 'full',
+    );
+
     return array(
-        'id' => $id,
+        'id' => dk_uid(),
         'elType' => 'widget',
+        'settings' => array_merge($default_settings, $settings),
+        'elements' => array(),
         'widgetType' => 'image',
-        'settings' => array_merge(array(
-            'image' => array('url' => $url),
-        ), $settings),
     );
 }
 
 /**
- * Generate unique ID for Elementor elements
+ * Create a spacer widget
  */
-function dk_uid() {
-    return substr(md5(uniqid(mt_rand(), true)), 0, 7);
+function dk_spacer($size = 50) {
+    return array(
+        'id' => dk_uid(),
+        'elType' => 'widget',
+        'settings' => array(
+            'space' => array(
+                'unit' => 'px',
+                'size' => $size,
+            ),
+        ),
+        'elements' => array(),
+        'widgetType' => 'spacer',
+    );
+}
+
+/**
+ * Create a divider widget
+ */
+function dk_divider($settings = array()) {
+    return array(
+        'id' => dk_uid(),
+        'elType' => 'widget',
+        'settings' => $settings,
+        'elements' => array(),
+        'widgetType' => 'divider',
+    );
 }
 
 // ============================================
@@ -144,85 +199,120 @@ function dk_uid() {
 function digital_kappa_elementor_home() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Marketplace de<br><span style="color: #d2a30b; font-style: italic;">produits digitaux</span>', array(
-                    'header_size' => 'h1',
-                    'align' => 'left',
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Marketplace de produits digitaux', 'h1', array(
+                    'title_color' => '#1a1a1a',
                 )),
-                dk_text(dk_uid(), '<p>Découvrez une sélection de produits digitaux de qualité : applications mobiles, ebooks et templates pour booster votre productivité. Achat simple en un clic, téléchargement immédiat, accès à vie.</p>'),
-                dk_button(dk_uid(), 'Explorer les produits', '/tous-nos-produits/', array(
-                    'button_type' => 'default',
-                    'background_color' => '#d2a30b',
-                )),
+                dk_text('<p style="font-size: 18px; color: #666; line-height: 1.8;">Découvrez une sélection de produits digitaux de qualité : applications mobiles, ebooks et templates pour booster votre productivité. Achat simple en un clic, téléchargement immédiat, accès à vie.</p>'),
+                dk_spacer(20),
+                dk_button('Explorer les produits', '/tous-nos-produits/'),
             ), 50),
-            dk_column(dk_uid(), array(
-                dk_image(dk_uid(), 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80'),
+            dk_column(array(
+                dk_image('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80'),
             ), 50),
         ), array(
             'background_background' => 'classic',
             'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '100',
+                'right' => '0',
+                'bottom' => '100',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
         // Benefits Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Simplicité', array('header_size' => 'h4')),
-                dk_text(dk_uid(), '<p>Interface intuitive pour trouver rapidement le produit idéal</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Simplicité', 'h4', array('align' => 'center')),
+                dk_text('<p style="text-align: center;">Interface intuitive pour trouver rapidement le produit idéal</p>'),
             ), 25),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Fiabilité', array('header_size' => 'h4')),
-                dk_text(dk_uid(), '<p>Produits testés et vérifiés avant chaque publication</p>'),
+            dk_column(array(
+                dk_heading('Fiabilité', 'h4', array('align' => 'center')),
+                dk_text('<p style="text-align: center;">Produits testés et vérifiés avant chaque publication</p>'),
             ), 25),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Rapidité', array('header_size' => 'h4')),
-                dk_text(dk_uid(), '<p>Accès instantané à vos achats immédiatement après paiement</p>'),
+            dk_column(array(
+                dk_heading('Rapidité', 'h4', array('align' => 'center')),
+                dk_text('<p style="text-align: center;">Accès instantané à vos achats immédiatement après paiement</p>'),
             ), 25),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Qualité', array('header_size' => 'h4')),
-                dk_text(dk_uid(), '<p>Sélection rigoureuse de produits premium uniquement</p>'),
+            dk_column(array(
+                dk_heading('Qualité', 'h4', array('align' => 'center')),
+                dk_text('<p style="text-align: center;">Sélection rigoureuse de produits premium uniquement</p>'),
             ), 25),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
         // Products Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Nos produits populaires', array('align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Découvrez notre sélection de produits digitaux : applications, ebooks et templates de qualité professionnelle pour vos projets</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Nos produits populaires', 'h2', array('align' => 'center')),
+                dk_text('<p style="text-align: center; color: #666;">Découvrez notre sélection de produits digitaux : applications, ebooks et templates de qualité professionnelle</p>'),
+                dk_spacer(40),
+                dk_text('<p style="text-align: center; color: #999;">[Les produits seront affichés ici via WooCommerce]</p>'),
             ), 100),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
         // Categories Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Catégories de produits', array('align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Explorez notre sélection organisée par types de produits digitaux dans trois catégories principales</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Catégories de produits', 'h2', array('align' => 'center')),
+                dk_text('<p style="text-align: center; color: #666;">Explorez notre sélection organisée par types de produits digitaux</p>'),
             ), 100),
-        ), array('background_color' => '#f8f4ed')),
-
-        // Why Choose Us Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Pourquoi choisir Digital Kappa', array('align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">En tant que marketplace de confiance depuis 2024, nous nous engageons à offrir une expérience d\'achat de qualité</p>'),
-            ), 100),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#f8f4ed',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
         // CTA Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Prêt à découvrir nos produits digitaux ?', array(
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Prêt à découvrir nos produits digitaux ?', 'h2', array(
                     'align' => 'center',
                     'title_color' => '#ffffff',
                 )),
-                dk_text(dk_uid(), '<p style="text-align: center; color: #ffffff;">Explorez nos meilleures ressources et commencez dès aujourd\'hui à accélérer vos projets avec Digital Kappa.</p>'),
-                dk_button(dk_uid(), 'Explorer le catalogue', '/tous-nos-produits/', array(
-                    'align' => 'center',
-                )),
+                dk_text('<p style="text-align: center; color: rgba(255,255,255,0.8);">Explorez nos meilleures ressources et commencez dès aujourd\'hui à accélérer vos projets.</p>'),
+                dk_spacer(20),
+                dk_button('Explorer le catalogue', '/tous-nos-produits/', array('align' => 'center')),
             ), 100),
         ), array(
             'background_background' => 'classic',
             'background_color' => '#1a1a1a',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '100',
+                'right' => '0',
+                'bottom' => '100',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
     );
 }
@@ -233,50 +323,92 @@ function digital_kappa_elementor_home() {
 function digital_kappa_elementor_about() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_text(dk_uid(), '<span style="background: rgba(210, 163, 11, 0.1); color: #d2a30b; padding: 4px 12px; border-radius: 20px; font-size: 14px;">À propos de nous</span>'),
-                dk_heading(dk_uid(), 'Digital Kappa, votre<br>partenaire digital', array('header_size' => 'h1')),
-                dk_text(dk_uid(), '<p>Nous proposons des ressources numériques simples, efficaces et de qualité pour aider les créateurs, entrepreneurs et passionnés à accomplir plus en moins de temps.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_text('<span style="background: rgba(210, 163, 11, 0.1); color: #d2a30b; padding: 8px 16px; border-radius: 20px; font-size: 14px; display: inline-block;">À propos de nous</span>'),
+                dk_spacer(20),
+                dk_heading('Digital Kappa, votre partenaire digital', 'h1'),
+                dk_text('<p style="font-size: 18px; color: #666; line-height: 1.8;">Nous proposons des ressources numériques simples, efficaces et de qualité pour aider les créateurs, entrepreneurs et passionnés à accomplir plus en moins de temps.</p>'),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '100',
+                'right' => '0',
+                'bottom' => '100',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Stats Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '2026', array('align' => 'center', 'header_size' => 'h2')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Année de lancement</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('2026', 'h2', array('align' => 'center', 'title_color' => '#d2a30b')),
+                dk_text('<p style="text-align: center; color: #666;">Année de lancement</p>'),
             ), 25),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '100%', array('align' => 'center', 'header_size' => 'h2')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Engagement qualité</p>'),
+            dk_column(array(
+                dk_heading('100%', 'h2', array('align' => 'center', 'title_color' => '#d2a30b')),
+                dk_text('<p style="text-align: center; color: #666;">Engagement qualité</p>'),
             ), 25),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '14 jours', array('align' => 'center', 'header_size' => 'h2')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Garantie satisfait ou remboursé</p>'),
+            dk_column(array(
+                dk_heading('14 jours', 'h2', array('align' => 'center', 'title_color' => '#d2a30b')),
+                dk_text('<p style="text-align: center; color: #666;">Garantie satisfait ou remboursé</p>'),
             ), 25),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '24h', array('align' => 'center', 'header_size' => 'h2')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Support réactif</p>'),
+            dk_column(array(
+                dk_heading('24h', 'h2', array('align' => 'center', 'title_color' => '#d2a30b')),
+                dk_text('<p style="text-align: center; color: #666;">Support réactif</p>'),
             ), 25),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
         // Notre Histoire Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Notre histoire'),
-                dk_text(dk_uid(), '<p>Digital Kappa est né d\'une idée simple : rendre accessible des ressources numériques de qualité à tous ceux qui veulent gagner du temps et de l\'efficacité dans leurs projets.</p><p>En tant qu\'entrepreneurs nous-mêmes, nous avons souvent cherché des outils fiables, des templates bien conçus ou des applications prêtes à l\'emploi. Mais entre les produits de mauvaise qualité, les descriptions trompeuses et les plateformes peu fiables, trouver la perle rare était un vrai parcours du combattant.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Notre histoire', 'h2'),
+                dk_text('<p style="font-size: 16px; line-height: 1.8;">Digital Kappa est né d\'une idée simple : rendre accessible des ressources numériques de qualité à tous ceux qui veulent gagner du temps et de l\'efficacité dans leurs projets.</p><p style="font-size: 16px; line-height: 1.8;">En tant qu\'entrepreneurs nous-mêmes, nous avons souvent cherché des outils fiables, des templates bien conçus ou des applications prêtes à l\'emploi. Mais entre les produits de mauvaise qualité, les descriptions trompeuses et les plateformes peu fiables, trouver la perle rare était un vrai parcours du combattant.</p>'),
             ), 50),
-            dk_column(dk_uid(), array(
-                dk_image(dk_uid(), 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80'),
+            dk_column(array(
+                dk_image('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80'),
             ), 50),
-        ), array('background_color' => '#f8f4ed')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#f8f4ed',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Nos Valeurs Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Nos valeurs', array('align' => 'center')),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Nos valeurs', 'h2', array('align' => 'center')),
+                dk_spacer(40),
             ), 100),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
     );
 }
@@ -287,39 +419,84 @@ function digital_kappa_elementor_about() {
 function digital_kappa_elementor_faq() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Questions fréquentes', array('header_size' => 'h1', 'align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Retrouvez les réponses aux questions les plus fréquentes posées par nos clients. Si vous ne trouvez pas la réponse à votre question, n\'hésitez pas à nous contacter.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Questions fréquentes', 'h1', array('align' => 'center')),
+                dk_text('<p style="text-align: center; font-size: 18px; color: #666;">Retrouvez les réponses aux questions les plus fréquentes. Si vous ne trouvez pas la réponse, n\'hésitez pas à nous contacter.</p>'),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
-
-        // FAQ Content
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Général', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<h4>Qu\'est-ce que Digital Kappa ?</h4><p>Digital Kappa est une marketplace française de produits digitaux premium. Nous proposons des applications mobiles, des ebooks et des templates soigneusement sélectionnés pour leur qualité.</p>'),
-                dk_text(dk_uid(), '<h4>Comment fonctionne l\'achat ?</h4><p>L\'achat est simple : choisissez votre produit, procédez au paiement sécurisé via Stripe, et recevez immédiatement vos liens de téléchargement par email.</p>'),
-            ), 100),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '100',
+                'right' => '0',
+                'bottom' => '100',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
-        // Paiement Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Paiement', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<h4>Quels moyens de paiement acceptez-vous ?</h4><p>Nous acceptons les cartes bancaires (Visa, Mastercard, American Express) via notre partenaire de paiement sécurisé Stripe.</p>'),
-                dk_text(dk_uid(), '<h4>Le paiement est-il sécurisé ?</h4><p>Oui, tous les paiements sont 100% sécurisés. Nous utilisons Stripe, un leader mondial du paiement en ligne, qui garantit la protection de vos données bancaires.</p>'),
+        // FAQ Content - General
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Général', 'h3'),
+                dk_spacer(20),
+                dk_text('<h4 style="margin-bottom: 10px;">Qu\'est-ce que Digital Kappa ?</h4><p style="color: #666; margin-bottom: 30px;">Digital Kappa est une marketplace française de produits digitaux premium. Nous proposons des applications mobiles, des ebooks et des templates soigneusement sélectionnés pour leur qualité.</p>'),
+                dk_text('<h4 style="margin-bottom: 10px;">Comment fonctionne l\'achat ?</h4><p style="color: #666;">L\'achat est simple : choisissez votre produit, procédez au paiement sécurisé via Stripe, et recevez immédiatement vos liens de téléchargement par email.</p>'),
             ), 100),
-        ), array('background_color' => '#f8f4ed')),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
+
+        // FAQ Content - Paiement
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Paiement', 'h3'),
+                dk_spacer(20),
+                dk_text('<h4 style="margin-bottom: 10px;">Quels moyens de paiement acceptez-vous ?</h4><p style="color: #666; margin-bottom: 30px;">Nous acceptons les cartes bancaires (Visa, Mastercard, American Express) via notre partenaire de paiement sécurisé Stripe.</p>'),
+                dk_text('<h4 style="margin-bottom: 10px;">Le paiement est-il sécurisé ?</h4><p style="color: #666;">Oui, tous les paiements sont 100% sécurisés. Nous utilisons Stripe, un leader mondial du paiement en ligne, qui garantit la protection de vos données bancaires.</p>'),
+            ), 100),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#f8f4ed',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // CTA Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Vous avez d\'autres questions ?', array('align' => 'center', 'title_color' => '#ffffff')),
-                dk_text(dk_uid(), '<p style="text-align: center; color: #ffffff;">Notre équipe est disponible pour répondre à toutes vos questions.</p>'),
-                dk_button(dk_uid(), 'Nous contacter', '/contact/', array('align' => 'center')),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Vous avez d\'autres questions ?', 'h2', array('align' => 'center', 'title_color' => '#ffffff')),
+                dk_text('<p style="text-align: center; color: rgba(255,255,255,0.8);">Notre équipe est disponible pour répondre à toutes vos questions.</p>'),
+                dk_spacer(20),
+                dk_button('Nous contacter', '/contact/', array('align' => 'center')),
             ), 100),
-        ), array('background_color' => '#1a1a1a')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#1a1a1a',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
     );
 }
 
@@ -329,37 +506,73 @@ function digital_kappa_elementor_faq() {
 function digital_kappa_elementor_how_it_works() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_text(dk_uid(), '<span style="background: rgba(210, 163, 11, 0.1); color: #d2a30b; padding: 4px 12px; border-radius: 20px; font-size: 14px;">Simple et rapide</span>'),
-                dk_heading(dk_uid(), 'Comment ça marche ?', array('header_size' => 'h1', 'align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Découvrez comment acheter et télécharger vos produits digitaux en quelques minutes seulement.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_text('<span style="background: rgba(210, 163, 11, 0.1); color: #d2a30b; padding: 8px 16px; border-radius: 20px; font-size: 14px; display: inline-block;">Simple et rapide</span>'),
+                dk_spacer(20),
+                dk_heading('Comment ça marche ?', 'h1', array('align' => 'center')),
+                dk_text('<p style="text-align: center; font-size: 18px; color: #666;">Découvrez comment acheter et télécharger vos produits digitaux en quelques minutes.</p>'),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '100',
+                'right' => '0',
+                'bottom' => '100',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Steps Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '1. Choisissez', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<p>Parcourez notre catalogue et sélectionnez le produit qui correspond à vos besoins.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('1', 'h2', array('align' => 'center', 'title_color' => '#d2a30b')),
+                dk_heading('Choisissez', 'h3', array('align' => 'center')),
+                dk_text('<p style="text-align: center; color: #666;">Parcourez notre catalogue et sélectionnez le produit qui correspond à vos besoins.</p>'),
             ), 33),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '2. Payez', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<p>Procédez au paiement sécurisé via Stripe en quelques clics.</p>'),
+            dk_column(array(
+                dk_heading('2', 'h2', array('align' => 'center', 'title_color' => '#d2a30b')),
+                dk_heading('Payez', 'h3', array('align' => 'center')),
+                dk_text('<p style="text-align: center; color: #666;">Procédez au paiement sécurisé via Stripe en quelques clics.</p>'),
             ), 33),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '3. Téléchargez', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<p>Recevez instantanément vos liens de téléchargement par email.</p>'),
+            dk_column(array(
+                dk_heading('3', 'h2', array('align' => 'center', 'title_color' => '#d2a30b')),
+                dk_heading('Téléchargez', 'h3', array('align' => 'center')),
+                dk_text('<p style="text-align: center; color: #666;">Recevez instantanément vos liens de téléchargement par email.</p>'),
             ), 33),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
         // CTA Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Prêt à commencer ?', array('align' => 'center', 'title_color' => '#ffffff')),
-                dk_button(dk_uid(), 'Explorer les produits', '/tous-nos-produits/', array('align' => 'center')),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Prêt à commencer ?', 'h2', array('align' => 'center', 'title_color' => '#ffffff')),
+                dk_spacer(20),
+                dk_button('Explorer les produits', '/tous-nos-produits/', array('align' => 'center')),
             ), 100),
-        ), array('background_color' => '#1a1a1a')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#1a1a1a',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
     );
 }
 
@@ -369,25 +582,51 @@ function digital_kappa_elementor_how_it_works() {
 function digital_kappa_elementor_contact() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Contactez-nous', array('header_size' => 'h1', 'align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Une question, une suggestion ou besoin d\'aide ? Notre équipe est là pour vous répondre.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Contactez-nous', 'h1', array('align' => 'center')),
+                dk_text('<p style="text-align: center; font-size: 18px; color: #666;">Une question, une suggestion ou besoin d\'aide ? Notre équipe est là pour vous répondre.</p>'),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '100',
+                'right' => '0',
+                'bottom' => '100',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Contact Info + Form
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Informations de contact', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<p><strong>Email</strong><br>contact@digitalkappa.com</p>'),
-                dk_text(dk_uid(), '<p><strong>Horaires</strong><br>Lundi - Vendredi : 9h - 18h</p>'),
-                dk_text(dk_uid(), '<p><strong>Délai de réponse</strong><br>Sous 24h ouvrées</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Informations de contact', 'h3'),
+                dk_spacer(20),
+                dk_text('<p><strong>Email</strong><br><span style="color: #666;">contact@digitalkappa.com</span></p>'),
+                dk_spacer(15),
+                dk_text('<p><strong>Horaires</strong><br><span style="color: #666;">Lundi - Vendredi : 9h - 18h</span></p>'),
+                dk_spacer(15),
+                dk_text('<p><strong>Délai de réponse</strong><br><span style="color: #666;">Sous 24h ouvrées</span></p>'),
             ), 40),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Envoyez-nous un message', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<p>Utilisez le formulaire ci-dessous pour nous contacter. Nous vous répondrons dans les plus brefs délais.</p>'),
+            dk_column(array(
+                dk_heading('Envoyez-nous un message', 'h3'),
+                dk_spacer(20),
+                dk_text('<p style="color: #666;">Utilisez le formulaire ci-dessous pour nous contacter. Nous vous répondrons dans les plus brefs délais.</p>'),
+                dk_spacer(20),
+                dk_text('<p style="color: #999; font-style: italic;">[Ajoutez un widget de formulaire de contact ici avec Elementor ou WPForms]</p>'),
             ), 60),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
     );
 }
@@ -398,18 +637,38 @@ function digital_kappa_elementor_contact() {
 function digital_kappa_elementor_all_products() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Tous nos produits', array('header_size' => 'h1', 'align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Découvrez notre sélection complète de produits digitaux premium : applications mobiles, ebooks et templates professionnels.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Tous nos produits', 'h1', array('align' => 'center')),
+                dk_text('<p style="text-align: center; font-size: 18px; color: #666;">Découvrez notre sélection complète de produits digitaux premium : applications mobiles, ebooks et templates professionnels.</p>'),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '100',
+                'right' => '0',
+                'bottom' => '100',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
-        // Products Grid placeholder
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_text(dk_uid(), '<p style="text-align: center;">Les produits seront affichés ici via WooCommerce ou un système personnalisé.</p>'),
+        // Products Grid
+        dk_section(array(
+            dk_column(array(
+                dk_text('<p style="text-align: center; color: #999; padding: 60px 0;">[Les produits seront affichés ici via WooCommerce ou un shortcode personnalisé]</p>'),
             ), 100),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
     );
 }
@@ -420,34 +679,59 @@ function digital_kappa_elementor_all_products() {
 function digital_kappa_elementor_cgv() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Conditions Générales de Vente', array('header_size' => 'h1', 'align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Dernière mise à jour : Janvier 2025</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Conditions Générales de Vente', 'h1', array('align' => 'center')),
+                dk_text('<p style="text-align: center; color: #666;">Dernière mise à jour : Janvier 2025</p>'),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Content
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '1. Objet', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Les présentes Conditions Générales de Vente (CGV) régissent les ventes de produits digitaux effectuées sur le site Digital Kappa. Toute commande implique l\'acceptation sans réserve des présentes CGV.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('1. Objet', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Les présentes Conditions Générales de Vente (CGV) régissent les ventes de produits digitaux effectuées sur le site Digital Kappa. Toute commande implique l\'acceptation sans réserve des présentes CGV.</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), '2. Produits', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Digital Kappa propose des produits digitaux téléchargeables : applications mobiles, ebooks et templates. Les caractéristiques essentielles des produits sont présentées sur chaque fiche produit.</p>'),
+                dk_heading('2. Produits', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Digital Kappa propose des produits digitaux téléchargeables : applications mobiles, ebooks et templates. Les caractéristiques essentielles des produits sont présentées sur chaque fiche produit.</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), '3. Prix', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Les prix sont indiqués en euros TTC. Digital Kappa se réserve le droit de modifier ses prix à tout moment. Les produits sont facturés sur la base des tarifs en vigueur au moment de la validation de la commande.</p>'),
+                dk_heading('3. Prix', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Les prix sont indiqués en euros TTC. Digital Kappa se réserve le droit de modifier ses prix à tout moment. Les produits sont facturés sur la base des tarifs en vigueur au moment de la validation de la commande.</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), '4. Paiement', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Le paiement s\'effectue en ligne par carte bancaire via notre prestataire de paiement sécurisé Stripe. Le débit est effectué au moment de la validation de la commande.</p>'),
+                dk_heading('4. Paiement', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Le paiement s\'effectue en ligne par carte bancaire via notre prestataire de paiement sécurisé Stripe. Le débit est effectué au moment de la validation de la commande.</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), '5. Livraison', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Les produits digitaux sont livrés par téléchargement immédiat après paiement. Un email de confirmation contenant les liens de téléchargement est envoyé à l\'adresse email fournie lors de la commande.</p>'),
+                dk_heading('5. Livraison', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Les produits digitaux sont livrés par téléchargement immédiat après paiement. Un email de confirmation contenant les liens de téléchargement est envoyé à l\'adresse email fournie lors de la commande.</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), '6. Droit de rétractation', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Conformément à l\'article L221-28 du Code de la consommation, le droit de rétractation ne peut être exercé pour les contenus numériques fournis sur un support immatériel dont l\'exécution a commencé avec l\'accord du consommateur.</p><p>Toutefois, Digital Kappa offre une garantie satisfait ou remboursé de 14 jours. Contactez-nous si vous n\'êtes pas satisfait de votre achat.</p>'),
+                dk_heading('6. Droit de rétractation', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Conformément à l\'article L221-28 du Code de la consommation, le droit de rétractation ne peut être exercé pour les contenus numériques fournis sur un support immatériel dont l\'exécution a commencé avec l\'accord du consommateur.</p><p style="color: #666; line-height: 1.8;">Toutefois, Digital Kappa offre une garantie satisfait ou remboursé de 14 jours. Contactez-nous si vous n\'êtes pas satisfait de votre achat.</p>'),
             ), 100),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
     );
 }
@@ -458,28 +742,51 @@ function digital_kappa_elementor_cgv() {
 function digital_kappa_elementor_privacy() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Politique de confidentialité', array('header_size' => 'h1', 'align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Dernière mise à jour : Janvier 2025</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Politique de confidentialité', 'h1', array('align' => 'center')),
+                dk_text('<p style="text-align: center; color: #666;">Dernière mise à jour : Janvier 2025</p>'),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Content
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), '1. Collecte des données', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Nous collectons les données que vous nous fournissez directement : nom, prénom, adresse email lors de vos achats ou de votre inscription à notre newsletter.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('1. Collecte des données', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Nous collectons les données que vous nous fournissez directement : nom, prénom, adresse email lors de vos achats ou de votre inscription à notre newsletter.</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), '2. Utilisation des données', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Vos données sont utilisées pour :<br>- Traiter vos commandes et vous envoyer vos produits<br>- Vous contacter concernant vos achats<br>- Vous envoyer notre newsletter (avec votre consentement)<br>- Améliorer nos services</p>'),
+                dk_heading('2. Utilisation des données', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Vos données sont utilisées pour :</p><ul style="color: #666; line-height: 1.8;"><li>Traiter vos commandes et vous envoyer vos produits</li><li>Vous contacter concernant vos achats</li><li>Vous envoyer notre newsletter (avec votre consentement)</li><li>Améliorer nos services</li></ul>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), '3. Protection des données', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos données personnelles contre tout accès non autorisé, modification, divulgation ou destruction.</p>'),
+                dk_heading('3. Protection des données', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos données personnelles contre tout accès non autorisé, modification, divulgation ou destruction.</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), '4. Vos droits', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Conformément au RGPD, vous disposez des droits suivants :<br>- Droit d\'accès à vos données<br>- Droit de rectification<br>- Droit à l\'effacement<br>- Droit à la portabilité<br>- Droit d\'opposition</p><p>Pour exercer ces droits, contactez-nous à : contact@digitalkappa.com</p>'),
+                dk_heading('4. Vos droits', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Conformément au RGPD, vous disposez des droits suivants :</p><ul style="color: #666; line-height: 1.8;"><li>Droit d\'accès à vos données</li><li>Droit de rectification</li><li>Droit à l\'effacement</li><li>Droit à la portabilité</li><li>Droit d\'opposition</li></ul><p style="color: #666; line-height: 1.8;">Pour exercer ces droits, contactez-nous à : contact@digitalkappa.com</p>'),
             ), 100),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
     );
 }
@@ -490,24 +797,46 @@ function digital_kappa_elementor_privacy() {
 function digital_kappa_elementor_mentions_legales() {
     return array(
         // Hero Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Mentions légales', array('header_size' => 'h1', 'align' => 'center')),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Mentions légales', 'h1', array('align' => 'center')),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Content
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Éditeur du site', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p><strong>Digital Kappa</strong><br>Adresse : [Votre adresse]<br>Email : contact@digitalkappa.com<br>SIRET : [Votre numéro SIRET]</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Éditeur du site', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;"><strong>Digital Kappa</strong><br>Adresse : [Votre adresse]<br>Email : contact@digitalkappa.com<br>SIRET : [Votre numéro SIRET]</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), 'Hébergement', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Le site est hébergé par :<br>[Nom de l\'hébergeur]<br>[Adresse de l\'hébergeur]</p>'),
+                dk_heading('Hébergement', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">Le site est hébergé par :<br>[Nom de l\'hébergeur]<br>[Adresse de l\'hébergeur]</p>'),
+                dk_spacer(30),
 
-                dk_heading(dk_uid(), 'Propriété intellectuelle', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>L\'ensemble du contenu de ce site (textes, images, vidéos, logos) est protégé par le droit d\'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>'),
+                dk_heading('Propriété intellectuelle', 'h2'),
+                dk_text('<p style="color: #666; line-height: 1.8;">L\'ensemble du contenu de ce site (textes, images, vidéos, logos) est protégé par le droit d\'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.</p>'),
             ), 100),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
     );
 }
@@ -518,37 +847,72 @@ function digital_kappa_elementor_mentions_legales() {
 function digital_kappa_elementor_product_detail() {
     return array(
         // Product Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_image(dk_uid(), 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80'),
+        dk_section(array(
+            dk_column(array(
+                dk_image('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80'),
             ), 50),
-            dk_column(dk_uid(), array(
-                dk_text(dk_uid(), '<span style="background: rgba(210, 163, 11, 0.1); color: #d2a30b; padding: 4px 12px; border-radius: 20px; font-size: 14px;">Template</span>'),
-                dk_heading(dk_uid(), 'Dashboard Analytics Pro', array('header_size' => 'h1')),
-                dk_text(dk_uid(), '<p>Un template complet pour créer des tableaux de bord analytiques professionnels. Inclut plus de 50 composants, graphiques et widgets prêts à l\'emploi.</p>'),
-                dk_heading(dk_uid(), '149 €', array('header_size' => 'h2', 'title_color' => '#d2a30b')),
-                dk_button(dk_uid(), 'Acheter maintenant', '/checkout/', array(
-                    'background_color' => '#d2a30b',
-                )),
-                dk_text(dk_uid(), '<p style="font-size: 14px; color: #666;">Garantie satisfait ou remboursé 14 jours</p>'),
+            dk_column(array(
+                dk_text('<span style="background: rgba(210, 163, 11, 0.1); color: #d2a30b; padding: 8px 16px; border-radius: 20px; font-size: 14px; display: inline-block;">Template</span>'),
+                dk_spacer(15),
+                dk_heading('Dashboard Analytics Pro', 'h1'),
+                dk_text('<p style="font-size: 16px; color: #666; line-height: 1.8;">Un template complet pour créer des tableaux de bord analytiques professionnels. Inclut plus de 50 composants, graphiques et widgets prêts à l\'emploi.</p>'),
+                dk_spacer(20),
+                dk_heading('149 €', 'h2', array('title_color' => '#d2a30b')),
+                dk_spacer(20),
+                dk_button('Acheter maintenant', '/checkout/'),
+                dk_spacer(15),
+                dk_text('<p style="font-size: 14px; color: #999;">Garantie satisfait ou remboursé 14 jours</p>'),
             ), 50),
-        ), array('background_color' => '#f8f4ed')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#f8f4ed',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Description Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Description complète', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<p>Dashboard Analytics Pro est un template premium conçu pour les professionnels qui souhaitent créer des interfaces d\'analyse de données modernes et performantes.</p><p>Ce template inclut tous les composants nécessaires pour construire un tableau de bord complet : graphiques, tableaux, cartes de statistiques, formulaires, et bien plus encore.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Description complète', 'h2'),
+                dk_spacer(20),
+                dk_text('<p style="color: #666; line-height: 1.8;">Dashboard Analytics Pro est un template premium conçu pour les professionnels qui souhaitent créer des interfaces d\'analyse de données modernes et performantes.</p><p style="color: #666; line-height: 1.8;">Ce template inclut tous les composants nécessaires pour construire un tableau de bord complet : graphiques, tableaux, cartes de statistiques, formulaires, et bien plus encore.</p>'),
             ), 100),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
         // Features Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Fonctionnalités principales', array('header_size' => 'h2')),
-                dk_text(dk_uid(), '<ul><li>Plus de 50 composants prêts à l\'emploi</li><li>Design responsive (mobile, tablette, desktop)</li><li>Mode sombre inclus</li><li>Graphiques interactifs</li><li>Documentation complète</li><li>Mises à jour gratuites à vie</li></ul>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Fonctionnalités principales', 'h2'),
+                dk_spacer(20),
+                dk_text('<ul style="color: #666; line-height: 2;"><li>Plus de 50 composants prêts à l\'emploi</li><li>Design responsive (mobile, tablette, desktop)</li><li>Mode sombre inclus</li><li>Graphiques interactifs</li><li>Documentation complète</li><li>Mises à jour gratuites à vie</li></ul>'),
             ), 100),
-        ), array('background_color' => '#f8f4ed')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#f8f4ed',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
     );
 }
 
@@ -558,16 +922,30 @@ function digital_kappa_elementor_product_detail() {
 function digital_kappa_elementor_checkout() {
     return array(
         // Checkout Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Finaliser votre achat', array('header_size' => 'h1')),
-                dk_text(dk_uid(), '<p><strong>Informations de contact</strong></p><p>Le formulaire de paiement sera intégré ici via WooCommerce ou Stripe.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Finaliser votre achat', 'h1'),
+                dk_spacer(30),
+                dk_heading('Informations de contact', 'h3'),
+                dk_text('<p style="color: #999; font-style: italic;">[Le formulaire de paiement sera intégré ici via WooCommerce ou Stripe]</p>'),
             ), 60),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Récapitulatif de commande', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<p><strong>Dashboard Analytics Pro</strong><br>149 €</p><hr><p><strong>Total : 149 €</strong></p>'),
+            dk_column(array(
+                dk_heading('Récapitulatif de commande', 'h3'),
+                dk_spacer(20),
+                dk_text('<div style="background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #eee;"><p style="margin-bottom: 10px;"><strong>Dashboard Analytics Pro</strong></p><p style="color: #666;">149 €</p><hr style="margin: 15px 0; border: none; border-top: 1px solid #eee;"><p><strong>Total : 149 €</strong></p></div>'),
             ), 40),
-        ), array('background_color' => '#f8f4ed')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#f8f4ed',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
     );
 }
 
@@ -577,41 +955,87 @@ function digital_kappa_elementor_checkout() {
 function digital_kappa_elementor_confirmation() {
     return array(
         // Success Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_text(dk_uid(), '<div style="text-align: center; font-size: 64px; color: #16a34a;">✓</div>'),
-                dk_heading(dk_uid(), 'Commande confirmée !', array('header_size' => 'h1', 'align' => 'center')),
-                dk_text(dk_uid(), '<p style="text-align: center;">Merci pour votre achat. Votre commande a été traitée avec succès.</p>'),
+        dk_section(array(
+            dk_column(array(
+                dk_text('<div style="text-align: center; font-size: 80px; color: #16a34a;">✓</div>'),
+                dk_heading('Commande confirmée !', 'h1', array('align' => 'center')),
+                dk_text('<p style="text-align: center; font-size: 18px; color: #666;">Merci pour votre achat. Votre commande a été traitée avec succès.</p>'),
             ), 100),
-        ), array('background_color' => '#fdf8f0')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#fdf8f0',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // Details Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Vos produits', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<p>Les liens de téléchargement ont été envoyés à votre adresse email.</p>'),
-                dk_button(dk_uid(), 'Télécharger', '#', array('background_color' => '#d2a30b')),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Vos produits', 'h3'),
+                dk_text('<p style="color: #666;">Les liens de téléchargement ont été envoyés à votre adresse email.</p>'),
+                dk_spacer(20),
+                dk_button('Télécharger', '#'),
             ), 60),
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Récapitulatif', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<p>Commande n° : DK-123456<br>Date : [Date]<br>Total : 149 €</p>'),
+            dk_column(array(
+                dk_heading('Récapitulatif', 'h3'),
+                dk_spacer(10),
+                dk_text('<div style="background: #fff; padding: 20px; border-radius: 8px; border: 1px solid #eee;"><p><strong>Commande n° :</strong> DK-123456</p><p><strong>Date :</strong> [Date]</p><p><strong>Total :</strong> 149 €</p></div>'),
             ), 40),
+        ), array(
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
         )),
 
         // Next Steps Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Prochaines étapes', array('header_size' => 'h3')),
-                dk_text(dk_uid(), '<ol><li><strong>Consultez votre email</strong> - Un email de confirmation vous a été envoyé</li><li><strong>Téléchargez vos produits</strong> - Utilisez les liens de téléchargement</li><li><strong>Commencez à utiliser</strong> - Suivez la documentation incluse</li></ol>'),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Prochaines étapes', 'h3'),
+                dk_spacer(20),
+                dk_text('<ol style="color: #666; line-height: 2;"><li><strong>Consultez votre email</strong> - Un email de confirmation vous a été envoyé</li><li><strong>Téléchargez vos produits</strong> - Utilisez les liens de téléchargement</li><li><strong>Commencez à utiliser</strong> - Suivez la documentation incluse</li></ol>'),
             ), 100),
-        ), array('background_color' => '#f8f4ed')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#f8f4ed',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '60',
+                'right' => '0',
+                'bottom' => '60',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
 
         // CTA Section
-        dk_section(dk_uid(), array(
-            dk_column(dk_uid(), array(
-                dk_heading(dk_uid(), 'Découvrez nos autres produits', array('align' => 'center', 'title_color' => '#ffffff')),
-                dk_button(dk_uid(), 'Voir tous les produits', '/tous-nos-produits/', array('align' => 'center')),
+        dk_section(array(
+            dk_column(array(
+                dk_heading('Découvrez nos autres produits', 'h2', array('align' => 'center', 'title_color' => '#ffffff')),
+                dk_spacer(20),
+                dk_button('Voir tous les produits', '/tous-nos-produits/', array('align' => 'center')),
             ), 100),
-        ), array('background_color' => '#1a1a1a')),
+        ), array(
+            'background_background' => 'classic',
+            'background_color' => '#1a1a1a',
+            'padding' => array(
+                'unit' => 'px',
+                'top' => '80',
+                'right' => '0',
+                'bottom' => '80',
+                'left' => '0',
+                'isLinked' => false,
+            ),
+        )),
     );
 }

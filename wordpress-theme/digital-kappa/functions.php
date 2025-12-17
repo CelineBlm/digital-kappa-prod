@@ -335,10 +335,24 @@ function digital_kappa_create_pages() {
                 // Set Elementor data
                 $elementor_data = digital_kappa_get_elementor_template($page_data['elementor_type']);
                 if (!empty($elementor_data)) {
-                    update_post_meta($page_id, '_elementor_data', wp_json_encode($elementor_data));
+                    // Encode the data as JSON string
+                    $json_data = wp_json_encode($elementor_data);
+
+                    // Update all necessary Elementor meta fields
+                    update_post_meta($page_id, '_elementor_data', $json_data);
                     update_post_meta($page_id, '_elementor_edit_mode', 'builder');
                     update_post_meta($page_id, '_elementor_template_type', 'wp-page');
                     update_post_meta($page_id, '_elementor_version', '3.18.0');
+                    update_post_meta($page_id, '_elementor_css', '');
+
+                    // Clear Elementor cache for this page
+                    delete_post_meta($page_id, '_elementor_page_assets');
+
+                    // Update post content with a placeholder to indicate Elementor content
+                    wp_update_post(array(
+                        'ID' => $page_id,
+                        'post_content' => '<!-- wp:paragraph --><p>Cette page est construite avec Elementor.</p><!-- /wp:paragraph -->',
+                    ));
                 }
 
                 // Set home page as front page
@@ -698,7 +712,19 @@ function digital_kappa_settings_page() {
         delete_option('digital_kappa_pages_created');
         // Run the import function
         digital_kappa_create_pages();
-        echo '<div class="notice notice-success"><p>Les pages ont été importées avec succès !</p></div>';
+
+        // Clear Elementor cache if available
+        if (did_action('elementor/loaded') && class_exists('\Elementor\Plugin')) {
+            \Elementor\Plugin::$instance->files_manager->clear_cache();
+        }
+
+        echo '<div class="notice notice-success"><p>Les pages ont été importées avec succès ! Les contenus Elementor sont prêts à être modifiés.</p></div>';
+    }
+
+    // Handle regenerate Elementor data action
+    if (isset($_POST['dk_regenerate_elementor']) && check_admin_referer('dk_regenerate_action', 'dk_regenerate_nonce')) {
+        digital_kappa_regenerate_elementor_data();
+        echo '<div class="notice notice-success"><p>Les données Elementor ont été régénérées pour toutes les pages.</p></div>';
     }
 
     // Handle delete pages action
@@ -748,6 +774,17 @@ function digital_kappa_settings_page() {
             </ul>
         </div>
 
+        <div style="background: #e7f3ff; padding: 20px; border: 1px solid #0073aa; margin-top: 20px; border-radius: 4px;">
+            <h2 style="color: #0073aa;">Régénérer les contenus Elementor</h2>
+            <p>Si les pages existent déjà mais que le contenu Elementor ne s'affiche pas, utilisez ce bouton pour régénérer les données Elementor sans supprimer les pages.</p>
+            <form method="post" style="margin-top: 15px;">
+                <?php wp_nonce_field('dk_regenerate_action', 'dk_regenerate_nonce'); ?>
+                <button type="submit" name="dk_regenerate_elementor" class="button button-secondary" style="color: #0073aa; border-color: #0073aa;">
+                    Régénérer les données Elementor
+                </button>
+            </form>
+        </div>
+
         <div style="background: #fff3cd; padding: 20px; border: 1px solid #ffc107; margin-top: 20px; border-radius: 4px;">
             <h2 style="color: #856404;">Zone de danger</h2>
             <p>Supprimer toutes les pages créées par le thème Digital Kappa.</p>
@@ -789,6 +826,50 @@ function digital_kappa_delete_pages() {
     }
 
     delete_option('digital_kappa_pages_created');
+}
+
+/**
+ * Regenerate Elementor data for all theme pages
+ */
+function digital_kappa_regenerate_elementor_data() {
+    // Include Elementor templates
+    require_once DIGITAL_KAPPA_DIR . '/inc/elementor-templates.php';
+
+    $page_types = array(
+        'accueil' => 'home',
+        'tous-nos-produits' => 'all-products',
+        'comment-ca-marche' => 'how-it-works',
+        'faq' => 'faq',
+        'a-propos' => 'about',
+        'contact' => 'contact',
+        'fiche-produit' => 'product-detail',
+        'checkout' => 'checkout',
+        'confirmation' => 'confirmation',
+        'cgv' => 'cgv',
+        'mentions-legales' => 'mentions-legales',
+        'politique-de-confidentialite' => 'privacy',
+    );
+
+    foreach ($page_types as $slug => $elementor_type) {
+        $page = get_page_by_path($slug);
+        if ($page) {
+            $elementor_data = digital_kappa_get_elementor_template($elementor_type);
+            if (!empty($elementor_data)) {
+                $json_data = wp_json_encode($elementor_data);
+                update_post_meta($page->ID, '_elementor_data', $json_data);
+                update_post_meta($page->ID, '_elementor_edit_mode', 'builder');
+                update_post_meta($page->ID, '_elementor_template_type', 'wp-page');
+                update_post_meta($page->ID, '_elementor_version', '3.18.0');
+                update_post_meta($page->ID, '_elementor_css', '');
+                delete_post_meta($page->ID, '_elementor_page_assets');
+            }
+        }
+    }
+
+    // Clear Elementor cache
+    if (did_action('elementor/loaded') && class_exists('\Elementor\Plugin')) {
+        \Elementor\Plugin::$instance->files_manager->clear_cache();
+    }
 }
 
 /**

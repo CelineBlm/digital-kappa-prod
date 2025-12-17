@@ -622,6 +622,131 @@ function digital_kappa_activation() {
 add_action('after_switch_theme', 'digital_kappa_activation', 20);
 
 /**
+ * Reset pages created option when theme is switched away
+ */
+function digital_kappa_deactivation() {
+    delete_option('digital_kappa_pages_created');
+}
+add_action('switch_theme', 'digital_kappa_deactivation');
+
+/**
+ * Add admin menu page for Digital Kappa settings
+ */
+function digital_kappa_admin_menu() {
+    add_theme_page(
+        'Digital Kappa - Import Pages',
+        'Digital Kappa',
+        'manage_options',
+        'digital-kappa-settings',
+        'digital_kappa_settings_page'
+    );
+}
+add_action('admin_menu', 'digital_kappa_admin_menu');
+
+/**
+ * Admin settings page
+ */
+function digital_kappa_settings_page() {
+    // Handle import action
+    if (isset($_POST['dk_import_pages']) && check_admin_referer('dk_import_pages_action', 'dk_import_nonce')) {
+        // Reset the option to allow reimport
+        delete_option('digital_kappa_pages_created');
+        // Run the import function
+        digital_kappa_create_pages();
+        echo '<div class="notice notice-success"><p>Les pages ont été importées avec succès !</p></div>';
+    }
+
+    // Handle delete pages action
+    if (isset($_POST['dk_delete_pages']) && check_admin_referer('dk_delete_pages_action', 'dk_delete_nonce')) {
+        digital_kappa_delete_pages();
+        echo '<div class="notice notice-success"><p>Les pages ont été supprimées.</p></div>';
+    }
+
+    $pages_created = get_option('digital_kappa_pages_created');
+    ?>
+    <div class="wrap">
+        <h1>Digital Kappa - Gestion du thème</h1>
+
+        <div style="background: #fff; padding: 20px; border: 1px solid #ccd0d4; margin-top: 20px; border-radius: 4px;">
+            <h2>Import des pages</h2>
+            <p>Cliquez sur le bouton ci-dessous pour importer automatiquement toutes les pages du thème Digital Kappa.</p>
+
+            <?php if ($pages_created) : ?>
+                <p style="color: #0073aa;"><strong>✓ Les pages ont déjà été importées.</strong></p>
+            <?php else : ?>
+                <p style="color: #d63638;"><strong>✗ Les pages n'ont pas encore été importées.</strong></p>
+            <?php endif; ?>
+
+            <form method="post" style="margin-top: 15px;">
+                <?php wp_nonce_field('dk_import_pages_action', 'dk_import_nonce'); ?>
+                <button type="submit" name="dk_import_pages" class="button button-primary button-large">
+                    <?php echo $pages_created ? 'Réimporter les pages' : 'Importer les pages'; ?>
+                </button>
+            </form>
+        </div>
+
+        <div style="background: #fff; padding: 20px; border: 1px solid #ccd0d4; margin-top: 20px; border-radius: 4px;">
+            <h2>Liste des pages à importer</h2>
+            <ul style="list-style: disc; margin-left: 20px;">
+                <li>Accueil</li>
+                <li>Tous nos produits</li>
+                <li>Comment ça marche</li>
+                <li>FAQ</li>
+                <li>À propos</li>
+                <li>Contact</li>
+                <li>Fiche produit</li>
+                <li>Checkout</li>
+                <li>Confirmation de commande</li>
+                <li>CGV</li>
+                <li>Mentions légales</li>
+                <li>Politique de confidentialité</li>
+            </ul>
+        </div>
+
+        <div style="background: #fff3cd; padding: 20px; border: 1px solid #ffc107; margin-top: 20px; border-radius: 4px;">
+            <h2 style="color: #856404;">Zone de danger</h2>
+            <p>Supprimer toutes les pages créées par le thème Digital Kappa.</p>
+            <form method="post" style="margin-top: 15px;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer toutes les pages ? Cette action est irréversible.');">
+                <?php wp_nonce_field('dk_delete_pages_action', 'dk_delete_nonce'); ?>
+                <button type="submit" name="dk_delete_pages" class="button button-secondary" style="color: #d63638; border-color: #d63638;">
+                    Supprimer les pages
+                </button>
+            </form>
+        </div>
+    </div>
+    <?php
+}
+
+/**
+ * Delete all pages created by the theme
+ */
+function digital_kappa_delete_pages() {
+    $slugs = array(
+        'accueil',
+        'tous-nos-produits',
+        'comment-ca-marche',
+        'faq',
+        'a-propos',
+        'contact',
+        'fiche-produit',
+        'checkout',
+        'confirmation',
+        'cgv',
+        'mentions-legales',
+        'politique-de-confidentialite',
+    );
+
+    foreach ($slugs as $slug) {
+        $page = get_page_by_path($slug);
+        if ($page) {
+            wp_delete_post($page->ID, true);
+        }
+    }
+
+    delete_option('digital_kappa_pages_created');
+}
+
+/**
  * Allow SVG uploads
  */
 function digital_kappa_mime_types($mimes) {

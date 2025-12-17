@@ -696,6 +696,497 @@ p {
 }
 
 /* ============================================
+   BENEFITS BAR
+   ============================================ */
+
+.dk-benefits-bar {
+    background: var(--dk-bg-white);
+    padding: var(--dk-space-10) 0;
+    border-bottom: 1px solid var(--dk-border);
+}
+
+.dk-benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--dk-space-6);
+}
+
+@media (min-width: 640px) {
+    .dk-benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .dk-benefits-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--dk-space-8);
+    }
+}
+
+.dk-benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--dk-space-4);
+}
+
+.dk-benefit-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--dk-radius-full);
+    background: var(--dk-bg-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--dk-text-secondary);
+}
+
+.dk-benefit-icon svg,
+.dk-benefit-icon i {
+    width: 22px;
+    height: 22px;
+}
+
+.dk-benefit-text h4 {
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-base);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-1);
+}
+
+.dk-benefit-text p {
+    font-size: var(--dk-text-sm);
+    color: var(--dk-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ============================================
+   PRODUCT CARDS HOME
+   ============================================ */
+
+.dk-products-scroll {
+    display: flex;
+    gap: var(--dk-space-6);
+    overflow-x: auto;
+    padding-bottom: var(--dk-space-4);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.dk-products-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.dk-products-scroll::-webkit-scrollbar-track {
+    background: var(--dk-bg-gray);
+    border-radius: var(--dk-radius-full);
+}
+
+.dk-products-scroll::-webkit-scrollbar-thumb {
+    background: var(--dk-border-gray);
+    border-radius: var(--dk-radius-full);
+}
+
+.dk-product-card-home {
+    flex: 0 0 280px;
+    background: var(--dk-bg-white);
+    border-radius: var(--dk-radius-xl);
+    overflow: hidden;
+    text-decoration: none;
+    border: 1px solid var(--dk-border);
+    transition: transform var(--dk-transition), box-shadow var(--dk-transition);
+    scroll-snap-align: start;
+}
+
+.dk-product-card-home:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--dk-shadow-lg);
+}
+
+.dk-product-card-image {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.dk-product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dk-transition);
+}
+
+.dk-product-card-home:hover .dk-product-card-image img {
+    transform: scale(1.05);
+}
+
+.dk-product-card-content {
+    padding: var(--dk-space-5);
+}
+
+.dk-product-card-content h3 {
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-base);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-2);
+    line-height: 1.4;
+}
+
+.dk-product-card-price {
+    font-size: var(--dk-text-lg);
+    font-weight: 700;
+    color: var(--dk-text-primary);
+    display: block;
+    margin-bottom: var(--dk-space-3);
+}
+
+.dk-product-card-link {
+    font-size: var(--dk-text-sm);
+    color: var(--dk-gold);
+    font-weight: 500;
+}
+
+/* ============================================
+   CATEGORY CARDS
+   ============================================ */
+
+.dk-category-card {
+    background: var(--dk-bg-white);
+    border-radius: var(--dk-radius-xl);
+    padding: var(--dk-space-8);
+    text-align: center;
+    border: 1px solid var(--dk-border);
+    transition: box-shadow var(--dk-transition);
+}
+
+.dk-category-card:hover {
+    box-shadow: var(--dk-shadow-md);
+}
+
+.dk-category-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--dk-radius-full);
+    background: var(--dk-bg-gray);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--dk-space-5);
+    color: var(--dk-text-secondary);
+}
+
+.dk-category-icon svg,
+.dk-category-icon i {
+    width: 28px;
+    height: 28px;
+}
+
+.dk-category-card h3 {
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-lg);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-3);
+}
+
+.dk-category-card p {
+    font-size: var(--dk-text-sm);
+    color: var(--dk-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--dk-space-5);
+}
+
+.dk-category-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--dk-space-2);
+    font-size: var(--dk-text-sm);
+    font-weight: 600;
+    color: var(--dk-gold);
+    text-decoration: none;
+}
+
+.dk-category-link svg,
+.dk-category-link i {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--dk-transition);
+}
+
+.dk-category-link:hover svg,
+.dk-category-link:hover i {
+    transform: translateX(4px);
+}
+
+/* ============================================
+   ADVANTAGE CARDS
+   ============================================ */
+
+.dk-advantage-card {
+    text-align: center;
+    padding: var(--dk-space-6);
+}
+
+.dk-advantage-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--dk-radius-full);
+    background: var(--dk-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--dk-space-5);
+    color: #ffffff;
+}
+
+.dk-advantage-icon svg,
+.dk-advantage-icon i {
+    width: 32px;
+    height: 32px;
+}
+
+.dk-advantage-card h4 {
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-base);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-2);
+}
+
+.dk-advantage-card p {
+    font-size: var(--dk-text-sm);
+    color: var(--dk-text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* ============================================
+   PARTNER SECTION
+   ============================================ */
+
+.dk-partner-grid {
+    max-width: 800px;
+}
+
+.dk-partner-content h2 {
+    font-size: var(--dk-text-2xl);
+    margin-bottom: var(--dk-space-6);
+}
+
+@media (min-width: 768px) {
+    .dk-partner-content h2 {
+        font-size: var(--dk-text-3xl);
+    }
+}
+
+.dk-partner-intro {
+    font-size: var(--dk-text-lg);
+    color: var(--dk-text-secondary);
+    margin-bottom: var(--dk-space-4);
+}
+
+.dk-partner-content > p {
+    color: var(--dk-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--dk-space-6);
+}
+
+.dk-partner-checklist {
+    list-style: none;
+    margin-bottom: var(--dk-space-6);
+}
+
+.dk-partner-checklist li {
+    display: flex;
+    align-items: center;
+    gap: var(--dk-space-3);
+    padding: var(--dk-space-3) 0;
+    border-bottom: 1px solid var(--dk-border);
+}
+
+.dk-partner-checklist li:last-child {
+    border-bottom: none;
+}
+
+.dk-partner-checklist i {
+    width: 20px;
+    height: 20px;
+    color: var(--dk-gold);
+    flex-shrink: 0;
+}
+
+.dk-partner-checklist span {
+    font-weight: 500;
+    color: var(--dk-text-primary);
+}
+
+.dk-partner-note {
+    color: var(--dk-text-muted);
+    font-size: var(--dk-text-sm);
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+
+.dk-cta-section {
+    background: var(--dk-bg-dark);
+    padding: var(--dk-space-16) 0;
+}
+
+.dk-cta-section .dk-cta-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.dk-cta-section h2 {
+    color: #ffffff;
+    font-size: var(--dk-text-2xl);
+    margin-bottom: var(--dk-space-4);
+}
+
+@media (min-width: 768px) {
+    .dk-cta-section h2 {
+        font-size: var(--dk-text-3xl);
+    }
+}
+
+.dk-cta-section > .dk-container > .dk-cta-content > p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--dk-text-base);
+    line-height: 1.7;
+    margin-bottom: var(--dk-space-8);
+}
+
+.dk-cta-section .dk-cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--dk-space-4);
+    margin-bottom: var(--dk-space-12);
+}
+
+.dk-cta-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--dk-space-8);
+    padding-top: var(--dk-space-8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 768px) {
+    .dk-cta-features {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.dk-cta-feature {
+    text-align: center;
+    color: #ffffff;
+}
+
+.dk-cta-feature i {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--dk-space-3);
+    color: var(--dk-gold);
+}
+
+.dk-cta-feature span {
+    display: block;
+    font-weight: 600;
+    margin-bottom: var(--dk-space-1);
+}
+
+.dk-cta-feature small {
+    display: block;
+    font-size: var(--dk-text-sm);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================
+   INFO GRID
+   ============================================ */
+
+.dk-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--dk-space-8);
+}
+
+@media (min-width: 768px) {
+    .dk-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.dk-info-block {
+    display: flex;
+    gap: var(--dk-space-4);
+}
+
+.dk-info-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--dk-radius-lg);
+    background: rgba(210, 163, 11, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--dk-gold);
+}
+
+.dk-info-icon svg,
+.dk-info-icon i {
+    width: 20px;
+    height: 20px;
+}
+
+.dk-info-block p {
+    font-size: var(--dk-text-sm);
+    color: var(--dk-text-secondary);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ============================================
+   FAQ LIST
+   ============================================ */
+
+.dk-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dk-space-4);
+}
+
+.dk-faq-list .dk-accordion-item {
+    border: 1px solid var(--dk-border);
+    border-radius: var(--dk-radius-lg);
+    overflow: hidden;
+}
+
+.dk-faq-list .dk-accordion-trigger {
+    padding: var(--dk-space-5) var(--dk-space-6);
+}
+
+.dk-faq-list .dk-accordion-trigger span {
+    font-weight: 500;
+}
+
+/* ============================================
+   SECTION BACKGROUNDS
+   ============================================ */
+
+.dk-section-white {
+    background: var(--dk-bg-white);
+}
+
+/* ============================================
    FOOTER
    ============================================ */
 

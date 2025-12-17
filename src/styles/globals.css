@@ -1,0 +1,660 @@
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================
+   TOKENS & VARIABLES DE BASE
+   ============================================ */
+
+:root {
+  /* Système de design de base */
+  --font-size: 16px;
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* ============================================
+     VARIABLES SPÉCIFIQUES DIGITAL KAPPA
+     ============================================ */
+  
+  /* Couleurs de la marque */
+  --dk-gold: #d2a30b;
+  --dk-gold-hover: #b8900a;
+  --dk-gold-light: #fffbf0;
+  
+  /* Couleurs de texte */
+  --dk-text-primary: #1a1a1a;
+  --dk-text-primary-alt: #0d1421;
+  --dk-text-secondary: #4a5565;
+  --dk-text-muted: rgba(13, 20, 33, 0.7);
+  
+  /* Couleurs de fond */
+  --dk-bg-dark: #2b2d31;
+  --dk-bg-dark-alt: #1a1a1a;
+  --dk-bg-dark-card: #2c3340;
+  --dk-bg-light: #f9fafb;
+  --dk-bg-gray: #f0f2f5;
+  
+  /* Bordures et ombres */
+  --dk-border: #f0f2f5;
+  --dk-border-gray: #e5e7eb;
+  
+  /* Typographie */
+  --dk-font-heading: 'Merriweather', serif;
+  --dk-font-body: 'Montserrat', sans-serif;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* ============================================
+     TOKENS TAILWIND POUR DIGITAL KAPPA
+     ============================================ */
+  --color-dk-gold: var(--dk-gold);
+  --color-dk-gold-hover: var(--dk-gold-hover);
+  --color-dk-gold-light: var(--dk-gold-light);
+  --color-dk-text-primary: var(--dk-text-primary);
+  --color-dk-text-primary-alt: var(--dk-text-primary-alt);
+  --color-dk-text-secondary: var(--dk-text-secondary);
+  --color-dk-text-muted: var(--dk-text-muted);
+  --color-dk-bg-dark: var(--dk-bg-dark);
+  --color-dk-bg-dark-alt: var(--dk-bg-dark-alt);
+  --color-dk-bg-dark-card: var(--dk-bg-dark-card);
+  --color-dk-bg-light: var(--dk-bg-light);
+  --color-dk-bg-gray: var(--dk-bg-gray);
+  --color-dk-border: var(--dk-border);
+  --color-dk-border-gray: var(--dk-border-gray);
+}
+
+/* ============================================
+   STYLES DE BASE
+   ============================================ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--dk-font-body);
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+}
+
+/* ============================================
+   TYPOGRAPHIE STANDARDISÉE DIGITAL KAPPA
+   ============================================ */
+
+@layer base {
+  /* Titres avec Merriweather */
+  h1 {
+    font-family: var(--dk-font-heading);
+    font-size: 3rem; /* 48px - Standardisé */
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    color: var(--dk-text-primary-alt);
+  }
+
+  h2 {
+    font-family: var(--dk-font-heading);
+    font-size: 2rem; /* 32px - Standardisé */
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+    color: var(--dk-text-primary);
+  }
+
+  h3 {
+    font-family: var(--dk-font-heading);
+    font-size: 1.5rem; /* 24px */
+    font-weight: var(--font-weight-medium);
+    line-height: 1.4;
+    color: var(--dk-text-primary);
+  }
+
+  h4 {
+    font-family: var(--dk-font-heading);
+    font-size: 1.25rem; /* 20px */
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    color: var(--dk-text-primary);
+  }
+
+  h5 {
+    font-family: var(--dk-font-heading);
+    font-size: 1.125rem; /* 18px */
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    color: var(--dk-text-primary);
+  }
+
+  h6 {
+    font-family: var(--dk-font-heading);
+    font-size: 1rem; /* 16px */
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    color: var(--dk-text-primary);
+  }
+
+  /* Paragraphes et corps de texte */
+  p {
+    font-family: var(--dk-font-body);
+    line-height: 1.6;
+  }
+
+  /* Labels et boutons */
+  label {
+    font-family: var(--dk-font-body);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-family: var(--dk-font-body);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  /* Inputs */
+  input, textarea, select {
+    font-family: var(--dk-font-body);
+    font-size: 1rem;
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}
+
+/* ============================================
+   CLASSES UTILITAIRES DIGITAL KAPPA
+   ============================================ */
+
+@layer components {
+  /* Boutons primaires dorés */
+  .btn-dk-primary {
+    @apply bg-[#d2a30b] text-white px-6 py-3 rounded-lg;
+    @apply hover:bg-[#b8900a] transition-colors duration-200;
+    @apply font-['Montserrat',sans-serif] font-medium;
+  }
+
+  .btn-dk-secondary {
+    @apply bg-white text-[#d2a30b] border border-[#d2a30b] px-6 py-3 rounded-lg;
+    @apply hover:bg-[#fffbf0] transition-colors duration-200;
+    @apply font-['Montserrat',sans-serif] font-medium;
+  }
+
+  .btn-dk-dark {
+    @apply bg-[#2b2d31] text-white px-6 py-3 rounded-lg;
+    @apply hover:bg-[#3a3d42] transition-colors duration-200;
+    @apply font-['Montserrat',sans-serif] font-medium;
+  }
+
+  /* Sections communes */
+  .section-dk-light {
+    @apply bg-white py-12 lg:py-20 px-4 lg:px-20;
+  }
+
+  .section-dk-gray {
+    @apply bg-gray-50 py-12 lg:py-20 px-4 lg:px-20;
+  }
+
+  .section-dk-dark {
+    @apply bg-[#2b2d31] py-12 lg:py-20 px-4 lg:px-20;
+  }
+
+  /* Conteneurs */
+  .container-dk {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .container-dk-narrow {
+    @apply max-w-4xl mx-auto;
+  }
+
+  .container-dk-wide {
+    @apply max-w-6xl mx-auto;
+  }
+
+  /* Cartes produits */
+  .card-dk-product {
+    @apply bg-white rounded-2xl border border-[#f0f2f5] shadow-lg overflow-hidden;
+    @apply hover:shadow-xl transition-all duration-300;
+  }
+
+  .card-dk-feature {
+    @apply bg-white border border-gray-100 rounded-2xl p-6 lg:p-8;
+    @apply hover:border-[#d2a30b] transition-all duration-300;
+  }
+
+  /* Badges */
+  .badge-dk-gold {
+    @apply bg-[#d2a30b] text-white text-xs px-2.5 py-1 rounded-lg;
+    @apply font-['Montserrat',sans-serif] font-medium;
+  }
+
+  .badge-dk-light {
+    @apply bg-white text-[#d2a30b] text-xs px-2.5 py-1 rounded-lg border border-[#d2a30b];
+    @apply font-['Montserrat',sans-serif] font-medium;
+  }
+
+  /* En-têtes de section */
+  .section-header-dk {
+    @apply text-center mb-10 lg:mb-12;
+  }
+
+  .section-header-dk h2 {
+    @apply font-['Merriweather',serif] text-[#1a1a1a] mb-4;
+  }
+
+  .section-header-dk p {
+    @apply text-[#4a5565] max-w-2xl mx-auto;
+  }
+
+  /* Liens de navigation */
+  .nav-link-dk {
+    @apply text-[#1a1a1a] hover:text-[#d2a30b] transition-colors duration-200;
+    @apply font-['Montserrat',sans-serif];
+  }
+
+  .nav-link-dk-active {
+    @apply text-[#d2a30b];
+    @apply font-['Montserrat',sans-serif] font-medium;
+  }
+
+  /* Call to action section */
+  .cta-dk {
+    @apply bg-[#2b2d31] py-16 lg:py-24 px-4 lg:px-20;
+  }
+
+  .cta-dk h2 {
+    @apply font-['Merriweather',serif] text-white text-center;
+  }
+
+  .cta-dk p {
+    @apply text-white/80 text-center;
+  }
+
+  /* Grilles de produits */
+  .grid-dk-products {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8;
+  }
+
+  /* FAQ et accordéons */
+  .faq-item-dk {
+    @apply border-b border-gray-200 py-4;
+  }
+
+  /* Filtres sidebar */
+  .filter-dk {
+    @apply bg-white rounded-xl border border-gray-100 p-6;
+  }
+
+  /* Formulaires */
+  .input-dk {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-[#d2a30b] focus:border-transparent;
+    @apply font-['Montserrat',sans-serif];
+  }
+
+  .textarea-dk {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-200 resize-none;
+    @apply focus:outline-none focus:ring-2 focus:ring-[#d2a30b] focus:border-transparent;
+    @apply font-['Montserrat',sans-serif];
+  }
+
+  .label-dk {
+    @apply block text-[#1a1a1a] mb-2;
+    @apply font-['Montserrat',sans-serif] font-medium;
+  }
+
+  /* Espacements récurrents */
+  .space-section-dk {
+    @apply space-y-12 lg:space-y-16;
+  }
+
+  /* Overlay gradients pour images */
+  .overlay-dk-gradient {
+    @apply absolute inset-0 bg-gradient-to-b from-[rgba(13,20,33,0.6)] via-[rgba(13,20,33,0.15)] via-20% to-transparent;
+  }
+
+  /* Tag de catégorie */
+  .category-tag-dk {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full;
+    @apply bg-[#fffbf0] text-[#d2a30b];
+    @apply font-['Montserrat',sans-serif] text-sm;
+  }
+
+  /* Prix */
+  .price-dk {
+    @apply font-['Merriweather',serif] text-[#d2a30b];
+  }
+
+  .price-dk-large {
+    @apply font-['Merriweather',serif] text-[#d2a30b];
+  }
+
+  /* Dividers */
+  .divider-dk {
+    @apply border-t border-gray-200;
+  }
+
+  /* Header navigation */
+  .header-dk {
+    @apply bg-white border-b border-gray-100 sticky top-0 z-50;
+    @apply shadow-sm backdrop-blur-sm bg-white/95;
+  }
+
+  /* Footer */
+  .footer-dk {
+    @apply bg-[#1a1a1a] text-white py-12 lg:py-16 px-4 lg:px-20;
+  }
+
+  .footer-dk a {
+    @apply text-white/70 hover:text-white transition-colors duration-200;
+  }
+
+  /* Breadcrumbs */
+  .breadcrumb-dk {
+    @apply flex items-center gap-2 text-sm text-[#4a5565];
+    @apply font-['Montserrat',sans-serif];
+  }
+
+  .breadcrumb-dk a {
+    @apply hover:text-[#d2a30b] transition-colors duration-200;
+  }
+
+  /* Statuts et indicateurs */
+  .status-success-dk {
+    @apply bg-green-50 text-green-700 px-3 py-1 rounded-full text-sm;
+    @apply font-['Montserrat',sans-serif];
+  }
+
+  .status-warning-dk {
+    @apply bg-yellow-50 text-yellow-700 px-3 py-1 rounded-full text-sm;
+    @apply font-['Montserrat',sans-serif];
+  }
+
+  .status-error-dk {
+    @apply bg-red-50 text-red-700 px-3 py-1 rounded-full text-sm;
+    @apply font-['Montserrat',sans-serif];
+  }
+
+  /* Animations communes */
+  .animate-fade-in-dk {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* États hover pour les cartes */
+  .card-hover-dk {
+    @apply transition-all duration-300;
+    @apply hover:scale-[1.02] hover:shadow-xl;
+  }
+
+  /* Support textes */
+  .support-text-dk {
+    @apply text-sm text-[#d2a30b];
+    @apply font-['Montserrat',sans-serif];
+  }
+
+  /* Icônes dorées */
+  .icon-dk-gold {
+    @apply text-[#d2a30b];
+  }
+
+  /* Section avec background pattern */
+  .section-pattern-dk {
+    @apply relative;
+  }
+
+  .section-pattern-dk::before {
+    content: '';
+    @apply absolute inset-0 opacity-5;
+    background-image: radial-gradient(circle at 2px 2px, #d2a30b 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+}
+
+/* ============================================
+   STYLES RESPONSIVES SPÉCIFIQUES
+   ============================================ */
+
+@layer utilities {
+  /* Typographie responsive */
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 2.25rem; /* 36px sur mobile */
+    }
+
+    h2 {
+      font-size: 1.75rem; /* 28px sur mobile */
+    }
+
+    h3 {
+      font-size: 1.25rem; /* 20px sur mobile */
+    }
+  }
+
+  /* Espacements mobile */
+  .mobile-spacing-dk {
+    @apply space-y-6 lg:space-y-8;
+  }
+
+  /* Grille responsive */
+  .grid-responsive-dk {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6;
+  }
+}
+
+/* ============================================
+   OVERRIDES POUR COMPOSANTS SPÉCIAUX
+   ============================================ */
+
+/* Accordions Digital Kappa */
+[data-accordion-dk] {
+  @apply border-b border-gray-200;
+}
+
+[data-accordion-dk] button {
+  @apply w-full text-left py-4;
+  @apply font-['Montserrat',sans-serif];
+}
+
+/* Carrousels */
+.carousel-dk {
+  @apply relative overflow-hidden rounded-2xl;
+}
+
+.carousel-dk-dots {
+  @apply flex gap-2 justify-center mt-4;
+}
+
+.carousel-dk-dot {
+  @apply w-2 h-2 rounded-full bg-gray-300 cursor-pointer;
+  @apply hover:bg-[#d2a30b] transition-colors duration-200;
+}
+
+.carousel-dk-dot-active {
+  @apply bg-[#d2a30b];
+}
+
+/* Tooltips */
+.tooltip-dk {
+  @apply bg-[#2b2d31] text-white px-3 py-2 rounded-lg text-sm;
+  @apply font-['Montserrat',sans-serif];
+}
+
+/* Loading states */
+.skeleton-dk {
+  @apply bg-gray-200 animate-pulse rounded;
+}
+
+/* ============================================
+   STYLES POUR LES PAGES SPÉCIFIQUES
+   ============================================ */
+
+/* Page produit */
+.product-detail-dk {
+  @apply space-y-12 lg:space-y-16;
+}
+
+/* Page checkout */
+.checkout-dk {
+  @apply max-w-7xl mx-auto grid lg:grid-cols-3 gap-8;
+}
+
+/* Page légale */
+.legal-page-dk {
+  @apply max-w-4xl mx-auto;
+}
+
+.legal-page-dk h2 {
+  @apply font-['Merriweather',serif] text-[#1a1a1a] mt-8 mb-4;
+}
+
+.legal-page-dk p {
+  @apply text-[#4a5565] mb-4;
+}
+
+.legal-page-dk ul {
+  @apply list-disc list-inside space-y-2 text-[#4a5565];
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  .header-dk,
+  .footer-dk,
+  .btn-dk-primary,
+  .btn-dk-secondary {
+    @apply hidden;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+}

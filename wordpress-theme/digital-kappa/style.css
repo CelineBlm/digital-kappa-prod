@@ -4103,6 +4103,134 @@ p {
     margin-bottom: 0;
 }
 
+/* Privacy Page Title */
+.dk-privacy-title {
+    font-family: var(--dk-font-heading);
+    font-style: italic;
+}
+
+/* Legal Highlights 3 columns */
+.dk-legal-highlights-3 {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .dk-legal-highlights-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Legal Section Title with Icon */
+.dk-legal-section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--dk-space-3);
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-lg);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-top: var(--dk-space-10);
+    margin-bottom: var(--dk-space-4);
+    padding-bottom: var(--dk-space-3);
+    border-bottom: 1px solid var(--dk-border);
+}
+
+.dk-legal-section-title:first-child {
+    margin-top: 0;
+}
+
+.dk-legal-section-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(210, 163, 11, 0.1);
+    border-radius: var(--dk-radius-md);
+    flex-shrink: 0;
+}
+
+.dk-legal-section-icon i {
+    width: 18px;
+    height: 18px;
+    color: var(--dk-gold);
+}
+
+/* Legal Subsection */
+.dk-legal-subsection {
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-base);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-top: var(--dk-space-6);
+    margin-bottom: var(--dk-space-3);
+}
+
+/* Legal List Block */
+.dk-legal-list-block {
+    border-left: 2px solid var(--dk-border-gray);
+    padding-left: var(--dk-space-5);
+    margin: var(--dk-space-4) 0;
+}
+
+.dk-legal-list-item {
+    margin-bottom: var(--dk-space-4);
+}
+
+.dk-legal-list-item:last-child {
+    margin-bottom: 0;
+}
+
+.dk-legal-list-item strong {
+    display: block;
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-sm);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-1);
+}
+
+.dk-legal-list-item p {
+    font-size: var(--dk-text-sm);
+    color: var(--dk-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Legal Rights Grid */
+.dk-legal-rights-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--dk-space-4);
+    margin: var(--dk-space-6) 0;
+}
+
+.dk-legal-right-item {
+    padding-bottom: var(--dk-space-4);
+    border-bottom: 1px solid var(--dk-border);
+}
+
+.dk-legal-right-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dk-legal-right-item strong {
+    display: block;
+    font-family: var(--dk-font-body);
+    font-size: var(--dk-text-base);
+    font-weight: 600;
+    color: var(--dk-text-primary);
+    margin-bottom: var(--dk-space-1);
+}
+
+.dk-legal-right-item p {
+    font-size: var(--dk-text-sm);
+    color: var(--dk-text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
 /* ============================================
    PRINT STYLES
    ============================================ */

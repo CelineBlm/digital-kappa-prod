@@ -901,3 +901,108 @@ require_once DIGITAL_KAPPA_DIR . '/inc/template-tags.php';
 if (did_action('elementor/loaded')) {
     require_once DIGITAL_KAPPA_DIR . '/inc/elementor-integration.php';
 }
+
+/**
+ * AJAX handler for product search autocomplete
+ */
+function digital_kappa_ajax_search_products() {
+    // Verify nonce
+    if (!isset($_GET['nonce']) || !wp_verify_nonce($_GET['nonce'], 'digital_kappa_nonce')) {
+        wp_send_json_error('Nonce invalide');
+    }
+
+    $search_term = isset($_GET['search']) ? sanitize_text_field($_GET['search']) : '';
+
+    if (strlen($search_term) < 2) {
+        wp_send_json_success(array('products' => array()));
+    }
+
+    // Sample products data (replace with WooCommerce query if needed)
+    $all_products = array(
+        array(
+            'id' => 1,
+            'title' => 'App Fitness Premium',
+            'category' => 'Application',
+            'price' => '49 €',
+            'image' => 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=100&q=80',
+            'url' => home_url('/fiche-produit/'),
+        ),
+        array(
+            'id' => 2,
+            'title' => 'Dashboard Analytics Pro',
+            'category' => 'Template',
+            'price' => '39 €',
+            'image' => 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&q=80',
+            'url' => home_url('/fiche-produit/'),
+        ),
+        array(
+            'id' => 3,
+            'title' => 'Guide du Développeur Moderne',
+            'category' => 'Ebook',
+            'price' => '29 €',
+            'image' => 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=100&q=80',
+            'url' => home_url('/fiche-produit/'),
+        ),
+        array(
+            'id' => 4,
+            'title' => 'Pack 50 Templates Email Marketing',
+            'category' => 'Template',
+            'price' => '59 €',
+            'image' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&q=80',
+            'url' => home_url('/fiche-produit/'),
+        ),
+        array(
+            'id' => 5,
+            'title' => 'E-commerce App Starter Kit',
+            'category' => 'Application',
+            'price' => '89 €',
+            'image' => 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100&q=80',
+            'url' => home_url('/fiche-produit/'),
+        ),
+        array(
+            'id' => 6,
+            'title' => 'Ebook Marketing Digital 2025',
+            'category' => 'Ebook',
+            'price' => '19 €',
+            'image' => 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=100&q=80',
+            'url' => home_url('/fiche-produit/'),
+        ),
+        array(
+            'id' => 7,
+            'title' => 'Landing Page Templates Pack',
+            'category' => 'Template',
+            'price' => '45 €',
+            'image' => 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=100&q=80',
+            'url' => home_url('/fiche-produit/'),
+        ),
+        array(
+            'id' => 8,
+            'title' => 'App de Gestion de Tâches',
+            'category' => 'Application',
+            'price' => '35 €',
+            'image' => 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=100&q=80',
+            'url' => home_url('/fiche-produit/'),
+        ),
+    );
+
+    // Filter products based on search term
+    $filtered_products = array_filter($all_products, function($product) use ($search_term) {
+        $search_lower = mb_strtolower($search_term);
+        $title_lower = mb_strtolower($product['title']);
+        $category_lower = mb_strtolower($product['category']);
+
+        return strpos($title_lower, $search_lower) !== false ||
+               strpos($category_lower, $search_lower) !== false;
+    });
+
+    // Limit to 5 results
+    $filtered_products = array_slice(array_values($filtered_products), 0, 5);
+
+    wp_send_json_success(array(
+        'products' => $filtered_products,
+        'total' => count($filtered_products),
+        'search_url' => home_url('/tous-nos-produits/?search=' . urlencode($search_term)),
+    ));
+}
+add_action('wp_ajax_dk_search_products', 'digital_kappa_ajax_search_products');
+add_action('wp_ajax_nopriv_dk_search_products', 'digital_kappa_ajax_search_products');

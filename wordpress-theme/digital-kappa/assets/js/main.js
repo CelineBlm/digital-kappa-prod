@@ -17,6 +17,7 @@
         initSmoothScroll();
         initFormValidation();
         initLucideIcons();
+        initSearchAutocomplete();
     });
 
     /**
@@ -25,6 +26,156 @@
     function initLucideIcons() {
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
+        }
+    }
+
+    /**
+     * Search Autocomplete
+     */
+    function initSearchAutocomplete() {
+        const searchInput = document.getElementById('dk-search-input');
+        const searchResults = document.getElementById('dk-search-results');
+
+        if (!searchInput || !searchResults) return;
+
+        let debounceTimer;
+        let currentRequest = null;
+
+        // Handle input changes
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim();
+
+            // Clear previous timer
+            clearTimeout(debounceTimer);
+
+            // Hide results if query is too short
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            // Debounce the search
+            debounceTimer = setTimeout(function() {
+                performSearch(query);
+            }, 300);
+        });
+
+        // Handle focus
+        searchInput.addEventListener('focus', function() {
+            if (this.value.trim().length >= 2 && searchResults.innerHTML !== '') {
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Handle click outside to close
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Handle escape key
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchResults.style.display = 'none';
+                this.blur();
+            }
+        });
+
+        function performSearch(query) {
+            // Cancel previous request
+            if (currentRequest) {
+                currentRequest.abort();
+            }
+
+            // Show loading state
+            searchResults.innerHTML = '<div class="dk-search-results-inner"><div class="dk-search-loading">Recherche en cours...</div></div>';
+            searchResults.style.display = 'block';
+
+            // Check if digitalKappa is defined (WordPress localized script)
+            if (typeof digitalKappa === 'undefined') {
+                // Use mock data for demo
+                showMockResults(query);
+                return;
+            }
+
+            // Make AJAX request
+            const url = digitalKappa.ajaxUrl + '?action=dk_search_products&search=' + encodeURIComponent(query) + '&nonce=' + digitalKappa.nonce;
+
+            currentRequest = new XMLHttpRequest();
+            currentRequest.open('GET', url, true);
+
+            currentRequest.onload = function() {
+                if (this.status >= 200 && this.status < 400) {
+                    try {
+                        const response = JSON.parse(this.responseText);
+                        if (response.success) {
+                            renderResults(response.data.products, response.data.search_url);
+                        } else {
+                            showNoResults();
+                        }
+                    } catch (e) {
+                        showNoResults();
+                    }
+                } else {
+                    showNoResults();
+                }
+            };
+
+            currentRequest.onerror = function() {
+                showNoResults();
+            };
+
+            currentRequest.send();
+        }
+
+        function showMockResults(query) {
+            // Mock products for demo
+            const mockProducts = [
+                { id: 1, title: 'App Fitness Premium', category: 'Application', price: '49 €', image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=100&q=80', url: '#' },
+                { id: 2, title: 'Dashboard Analytics Pro', category: 'Template', price: '39 €', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&q=80', url: '#' },
+                { id: 3, title: 'Guide du Développeur Moderne', category: 'Ebook', price: '29 €', image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=100&q=80', url: '#' },
+                { id: 4, title: 'Pack 50 Templates Email Marketing', category: 'Template', price: '59 €', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&q=80', url: '#' },
+                { id: 5, title: 'E-commerce App Starter Kit', category: 'Application', price: '89 €', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100&q=80', url: '#' },
+            ];
+
+            const queryLower = query.toLowerCase();
+            const filtered = mockProducts.filter(function(p) {
+                return p.title.toLowerCase().includes(queryLower) || p.category.toLowerCase().includes(queryLower);
+            }).slice(0, 5);
+
+            renderResults(filtered, '/tous-nos-produits/?search=' + encodeURIComponent(query));
+        }
+
+        function renderResults(products, searchUrl) {
+            if (!products || products.length === 0) {
+                showNoResults();
+                return;
+            }
+
+            let html = '<div class="dk-search-results-inner">';
+
+            products.forEach(function(product) {
+                html += '<a href="' + product.url + '" class="dk-search-result-item">';
+                html += '<img src="' + product.image + '" alt="' + product.title + '" class="dk-search-result-image">';
+                html += '<div class="dk-search-result-info">';
+                html += '<p class="dk-search-result-title">' + product.title + '</p>';
+                html += '<p class="dk-search-result-category">' + product.category + '</p>';
+                html += '</div>';
+                html += '<span class="dk-search-result-price">' + product.price + '</span>';
+                html += '</a>';
+            });
+
+            html += '</div>';
+            html += '<a href="' + searchUrl + '" class="dk-search-view-all">Voir tous les résultats →</a>';
+
+            searchResults.innerHTML = html;
+            searchResults.style.display = 'block';
+        }
+
+        function showNoResults() {
+            searchResults.innerHTML = '<div class="dk-search-results-inner"><div class="dk-search-no-results">Aucun produit trouvé</div></div>';
+            searchResults.style.display = 'block';
         }
     }
 

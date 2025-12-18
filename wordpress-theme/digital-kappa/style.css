@@ -313,6 +313,17 @@ p {
     padding: var(--dk-space-4) 0;
 }
 
+/* Adjust for WordPress admin bar */
+body.admin-bar .dk-header {
+    top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+    body.admin-bar .dk-header {
+        top: 46px;
+    }
+}
+
 .dk-header-inner {
     display: flex;
     align-items: center;
